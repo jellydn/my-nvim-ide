@@ -3,6 +3,7 @@
   My personal neovim configuration.
 </p>
 
+[![Screenshot](https://i.gyazo.com/3134fcc6cd2a15340e10951d6a21f2c4.png)](https://gyazo.com/3134fcc6cd2a15340e10951d6a21f2c4)
 ## Why another neovim configuration?
 
 I have been using Neovim for a long time and I have tried many configurations. I have learned a lot from them and I have decided to create my own configuration. This configuration is inspired by LazyVim and other configurations (kickstart.nvim, nvchad/tinyvim) and I have added my own ideas to it.
