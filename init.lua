@@ -18,6 +18,7 @@ require("lazy").setup({
   spec = {
     { import = "core.editor" },
     { import = "core.coding" },
+    { import = "core.colorscheme" },
     { import = "core.lspconfig" },
     { import = "core.treesitter" },
     { import = "plugins" },
@@ -39,4 +40,4 @@ require("lazy").setup({
 })
 
 -- Do not set colorscheme if using vscode
-require("config.lazy").setup(not vim.g.vscode and "kanagawa" or "")
+require("config.lazy").setup(not vim.g.vscode and require("themer").selectColorSchemeByTime() or "")
