@@ -4,6 +4,7 @@
 </p>
 
 [![Screenshot](https://i.gyazo.com/3134fcc6cd2a15340e10951d6a21f2c4.png)](https://gyazo.com/3134fcc6cd2a15340e10951d6a21f2c4)
+
 ## Why another neovim configuration?
 
 I have been using Neovim for a long time and I have tried many configurations. I have learned a lot from them and I have decided to create my own configuration. This configuration is inspired by LazyVim and other configurations (kickstart.nvim, nvchad/tinyvim) and I have added my own ideas to it.
@@ -32,6 +33,7 @@ git clone https://github.com/jellydn/my-nvim-ide.git ~/.config/nvim
     - [x] Refactoring
     - [x] Ts comments
     - [x] Neogen for code annotation
+  - [x] [Colorscheme](./lua/core/colorscheme.lua) (Kanagaga)
   - [x] [Editor](./lua/core/editor.lua)
     - [x] Better escape with jj or jk
     - [x] Auto close buffer after 30 minutes of inactivity
@@ -57,7 +59,6 @@ git clone https://github.com/jellydn/my-nvim-ide.git ~/.config/nvim
 - [ ] Plugins
   - [x] Biome
   - [x] Cloak for secure .env with overlay
-  - [x] colorscheme (Kanagaga)
   - [x] conform for formatting
   - [x] copilot-chat
   - [x] dashboard
