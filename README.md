@@ -34,20 +34,20 @@ git clone https://github.com/jellydn/my-nvim-ide.git ~/.config/nvim
 Clone the repository and install the plugins:
 
 ```sh
-git clone git@github.com:jellydn/my-nvim-ide ~/.config/jellydn/my-nvim-ide
+git clone git@github.com:jellydn/my-nvim-ide ~/.config/my-nvim-ide
 ```
 
 Open Neovim with this config:
 
 ```sh
-NVIM_APPNAME=jellydn/my-nvim-ide/ nvim
+NVIM_APPNAME=my-nvim-ide/ nvim
 ```
 
 ### Try with Docker
 
 ```sh
 docker run -w /root -it --rm alpine:latest sh -uelic '
-  apk add git nodejs npm neovim ripgrep build-base make musl-dev go --update
+  apk add git nodejs npm neovim fzf ripgrep build-base make musl-dev go --update
   go install github.com/jesseduffield/lazygit@latest
   git clone https://github.com/jellydn/my-nvim-ide ~/.config/nvim
   nvim
