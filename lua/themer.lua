@@ -18,6 +18,7 @@ local night_themes = {
   "kanagawa",
   "nightfox",
   "rose-pine",
+  "tokyonight",
 }
 
 local function select_theme()

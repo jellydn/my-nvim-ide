@@ -92,4 +92,16 @@ return {
       vim.o.spell = false
     end,
   },
+  {
+    "folke/tokyonight.nvim",
+    lazy = true,
+    opts = {
+      style = "moon",
+      transparent = is_transparent,
+      styles = is_transparent and {
+        sidebars = "transparent",
+        floats = "transparent",
+      } or {},
+    },
+  },
 }
