@@ -27,7 +27,7 @@ bob use nightly
 git clone https://github.com/jellydn/my-nvim-ide.git ~/.config/nvim
 ```
 
-### Install Instructions
+### Try with NVIM_APPNAME
 
 > Install requires Neovim 0.10+. Always review the code before installing a configuration.
 
@@ -41,6 +41,17 @@ Open Neovim with this config:
 
 ```sh
 NVIM_APPNAME=jellydn/my-nvim-ide/ nvim
+```
+
+### Try with Docker
+
+```sh
+docker run -w /root -it --rm alpine:latest sh -uelic '
+  apk add git nodejs npm neovim ripgrep build-base make musl-dev go --update
+  go install github.com/jesseduffield/lazygit@latest
+  git clone https://github.com/jellydn/my-nvim-ide ~/.config/nvim
+  nvim
+  '
 ```
 
 ## Features
@@ -118,17 +129,6 @@ title-hidden = true
 I recommend using the following repo to get a "Nerd Font" (Font that supports icons)
 
 [getnf](https://github.com/ronniedroid/getnf)
-
-## Try with Docker
-
-```sh
-docker run -w /root -it --rm alpine:latest sh -uelic '
-  apk add git nodejs npm neovim ripgrep build-base make musl-dev go --update
-  go install github.com/jesseduffield/lazygit@latest
-  git clone https://github.com/jellydn/my-nvim-ide ~/.config/nvim
-  nvim
-  '
-```
 
 ## Uninstall
 
