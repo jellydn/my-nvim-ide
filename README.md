@@ -3,6 +3,10 @@
   My personal neovim configuration.
 </p>
 
+<a href="https://dotfyle.com/jellydn/my-nvim-ide"><img src="https://dotfyle.com/jellydn/my-nvim-ide/badges/plugins?style=flat" /></a>
+<a href="https://dotfyle.com/jellydn/my-nvim-ide"><img src="https://dotfyle.com/jellydn/my-nvim-ide/badges/leaderkey?style=flat" /></a>
+<a href="https://dotfyle.com/jellydn/my-nvim-ide"><img src="https://dotfyle.com/jellydn/my-nvim-ide/badges/plugin-manager?style=flat" /></a>
+
 [![Screenshot](https://i.gyazo.com/3134fcc6cd2a15340e10951d6a21f2c4.png)](https://gyazo.com/3134fcc6cd2a15340e10951d6a21f2c4)
 
 ## Why another neovim configuration?
@@ -21,6 +25,22 @@ bob use nightly
 
 ```sh
 git clone https://github.com/jellydn/my-nvim-ide.git ~/.config/nvim
+```
+
+### Install Instructions
+
+> Install requires Neovim 0.10+. Always review the code before installing a configuration.
+
+Clone the repository and install the plugins:
+
+```sh
+git clone git@github.com:jellydn/my-nvim-ide ~/.config/jellydn/my-nvim-ide
+```
+
+Open Neovim with this config:
+
+```sh
+NVIM_APPNAME=jellydn/my-nvim-ide/ nvim
 ```
 
 ## Features
