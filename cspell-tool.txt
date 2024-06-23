@@ -23,6 +23,7 @@ devicons
 previm
 rustaceanvim
 toggleterm
+tokyonight
 treesj
 twoslash
 typecheck
