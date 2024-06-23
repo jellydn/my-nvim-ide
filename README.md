@@ -7,7 +7,7 @@
 <a href="https://dotfyle.com/jellydn/my-nvim-ide"><img src="https://dotfyle.com/jellydn/my-nvim-ide/badges/leaderkey?style=flat" /></a>
 <a href="https://dotfyle.com/jellydn/my-nvim-ide"><img src="https://dotfyle.com/jellydn/my-nvim-ide/badges/plugin-manager?style=flat" /></a>
 
-[![Screenshot](https://i.gyazo.com/3134fcc6cd2a15340e10951d6a21f2c4.png)](https://gyazo.com/3134fcc6cd2a15340e10951d6a21f2c4)
+[![IT Man - My Neovim IDE 2024 Version](https://i.ytimg.com/vi/MhBuhOhwGSM/hqdefault.jpg)](https://www.youtube.com/watch?v=MhBuhOhwGSM)
 
 ## Why another neovim configuration?
 
@@ -53,6 +53,12 @@ docker run -w /root -it --rm alpine:latest sh -uelic '
   nvim
   '
 ```
+
+## Screenshots
+
+[![Screenshot](https://i.gyazo.com/3134fcc6cd2a15340e10951d6a21f2c4.png)](https://gyazo.com/3134fcc6cd2a15340e10951d6a21f2c4)
+
+[![Image from Gyazo](https://i.gyazo.com/073db438c28c8aeca19d2e6e77f696ca.gif)](https://gyazo.com/073db438c28c8aeca19d2e6e77f696ca)
 
 ## Features
 
