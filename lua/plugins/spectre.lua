@@ -27,6 +27,13 @@ return {
         desc = "Replace in files",
       },
       {
+        "<leader>sR",
+        function()
+          require("spectre").open({ cwd = vim.fn.expand("%:p:h") })
+        end,
+        desc = "Replace in files (current dir)",
+      },
+      {
         "<leader>sp",
         ":lua require('spectre').open(_G.get_spectre_options())<CR>",
         desc = "Replace in files (Root dir)",

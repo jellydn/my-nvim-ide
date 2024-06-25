@@ -36,10 +36,18 @@ return {
         end
 
         map("n", "]h", function()
-          gs.nav_hunk("next")
+          if vim.wo.diff then
+            vim.cmd.normal({ "]c", bang = true })
+          else
+            gs.nav_hunk("next")
+          end
         end, "Next Hunk")
         map("n", "[h", function()
-          gs.nav_hunk("prev")
+          if vim.wo.diff then
+            vim.cmd.normal({ "[c", bang = true })
+          else
+            gs.nav_hunk("prev")
+          end
         end, "Prev Hunk")
         map("n", "]H", function()
           gs.nav_hunk("last")
@@ -56,6 +64,9 @@ return {
         map("n", "<leader>ghb", function()
           gs.blame_line({ full = true })
         end, "Blame Line")
+        map("n", "<leader>ghB", function()
+          gs.blame()
+        end, "Blame Buffer")
         map("n", "<leader>ghd", gs.diffthis, "Diff This")
         map("n", "<leader>ghD", function()
           gs.diffthis("~")
@@ -148,7 +159,7 @@ return {
         ["<leader>c"] = { name = "+code" },
         ["<leader>f"] = { name = "+file/find" },
         ["<leader>g"] = { name = "+git" },
-        ["<leader>gh"] = { name = "+hunks" },
+        ["<leader>gh"] = { name = "+hunks", ["_"] = "which_key_ignore" },
         ["<leader>q"] = { name = "+quit/session" },
         ["<leader>s"] = { name = "+search" },
         ["<leader>u"] = { name = "+ui" },
