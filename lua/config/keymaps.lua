@@ -319,3 +319,9 @@ map(
   "<cmd>lua require('utils.cspell').add_word_to_c_spell_dictionary()<CR>",
   { noremap = true, silent = true, desc = "Add unknown to cspell dictionary" }
 )
+
+-- Toggle wrap
+map("n", "<leader>uw", "<cmd>set wrap!<CR>", {
+  desc = "Toggle wrap",
+  silent = true,
+})
