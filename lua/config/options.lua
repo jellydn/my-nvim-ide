@@ -69,11 +69,15 @@ opt.fillchars = {
   eob = " ",
 }
 opt.foldlevel = 99
-opt.formatexpr = "v:lua.require'conform'.formatexpr()"
-opt.smoothscroll = true
-opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-opt.foldmethod = "expr"
-opt.foldtext = ""
+if vim.fn.has("nvim-0.10") == 1 or vim.fn.has("nvim-0.11") then
+  opt.smoothscroll = true
+  opt.foldexpr = "v:lua.require'utils.ui'.foldexpr()"
+  opt.foldmethod = "expr"
+  opt.foldtext = ""
+else
+  opt.foldmethod = "indent"
+  opt.foldtext = "v:lua.require'utils.ui'.foldtext()"
+end
 
 -- Enable spell check by default unless in vscode
 if not vim.g.vscode then
