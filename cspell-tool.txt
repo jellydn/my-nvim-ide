@@ -209,11 +209,16 @@ useany
 staticcheck
 stevearc
 goimports
+mfussenegger
+golangci
+golangcilint
 fredrikaverpil
 leoluz
 jsonls
 Bilal
 neodev
+intelephense
+phpcs
 pyright
 basedpyright
 taplo
@@ -221,6 +226,7 @@ Pyright
 pytest
 venv
 Saecki
+rustfmt
 rustup
 mrcjkb
 clippy
@@ -232,8 +238,6 @@ vtsls
 yamlls
 fnameescape
 laytan
-gofmt
-rustfmt
 dprint
 formatexpr
 commitizen
@@ -259,9 +263,6 @@ Jumplist
 jellydn
 Previm
 arkdown
-mfussenegger
-golangci
-golangcilint
 oxlint
 rhysd
 dotenv
