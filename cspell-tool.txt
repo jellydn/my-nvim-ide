@@ -144,7 +144,6 @@ foldopen
 foldclose
 foldsep
 foldlevel
-formatexpr
 foldexpr
 foldmethod
 foldtext
@@ -208,7 +207,10 @@ unusedparams
 unusedwrite
 useany
 staticcheck
+stevearc
 goimports
+fredrikaverpil
+leoluz
 jsonls
 Bilal
 neodev
@@ -230,10 +232,10 @@ vtsls
 yamlls
 fnameescape
 laytan
-stevearc
 gofmt
 rustfmt
 dprint
+formatexpr
 commitizen
 gitdiff
 fzflua
@@ -300,10 +302,16 @@ getcwd
 systemlist
 bufpath
 pesc
+lnum
 nvchad
 tinyvim
 Mordechai
 Hadad
+NVIM
+APPNAME
+uelic
+jesseduffield
+Gyazo
 Kanagaga
 bufremoev
 Whichkey
@@ -314,6 +322,4 @@ vimtest
 zenmode
 buttonless
 getnf
-uelic
-jesseduffield
 todesktop

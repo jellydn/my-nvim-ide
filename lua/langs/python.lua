@@ -62,6 +62,25 @@ return {
       },
     },
   },
+  -- Format & Lint
+  {
+    "stevearc/conform.nvim",
+    optional = true,
+    opts = {
+      formatters_by_ft = {
+        python = { "ruff_fix", "ruff_format" },
+      },
+    },
+  },
+  {
+    "mfussenegger/nvim-lint",
+    optional = true,
+    opts = {
+      linters_by_ft = {
+        python = { "ruff" },
+      },
+    },
+  },
   {
     "hrsh7th/nvim-cmp",
     opts = function(_, opts)

@@ -32,12 +32,7 @@ return {
         return { timeout_ms = 500, lsp_format = "fallback" }
       end,
       formatters_by_ft = {
-        lua = { "stylua" },
         -- Conform will run multiple formatters sequentially
-        go = { "goimports", "gofmt" },
-        python = { "ruff_fix", "ruff_format" },
-        php = { "pint" },
-        rust = { "rustfmt" },
         -- Use a sub-list to run only the first available formatter
         yaml = { { "prettierd", "prettier", "dprint" } },
         ["markdown"] = { { "prettierd", "prettier", "dprint" } },

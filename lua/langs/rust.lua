@@ -22,6 +22,26 @@ return {
     end,
   },
 
+  -- Format & Lint
+  {
+    "stevearc/conform.nvim",
+    optional = true,
+    opts = {
+      formatters_by_ft = {
+        rust = { "rustfmt" },
+      },
+    },
+  },
+  {
+    "mfussenegger/nvim-lint",
+    optional = true,
+    opts = {
+      linters_by_ft = {
+        rust = {},
+      },
+    },
+  },
+
   -- Add Rust & related to treesitter
   {
     "nvim-treesitter/nvim-treesitter",

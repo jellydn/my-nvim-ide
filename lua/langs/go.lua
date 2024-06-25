@@ -72,6 +72,27 @@ return {
       },
     },
   },
+  -- Format & Lint
+  {
+    "stevearc/conform.nvim",
+    optional = true,
+    opts = {
+      formatters_by_ft = {
+        go = { "goimports", "gofumpt" },
+      },
+    },
+  },
+  {
+    "mfussenegger/nvim-lint",
+    optional = true,
+    opts = {
+      linters_by_ft = {
+        -- Need to install golangci-lint
+        -- e.g: brew install golangci-lint
+        go = { "golangcilint" },
+      },
+    },
+  },
   -- Ensure Go tools are installed
   {
     "williamboman/mason.nvim",
@@ -80,14 +101,14 @@ return {
   {
     "nvim-neotest/neotest",
     dependencies = {
-      "nvim-neotest/neotest-go",
+      "fredrikaverpil/neotest-golang",
     },
     opts = {
       adapters = {
-        ["neotest-go"] = {
-          -- Here we can set options for neotest-go, e.g.
-          -- args = { "-tags=integration" }
-          recursive_run = true,
+        ["neotest-golang"] = {
+          -- Here we can set options for neotest-golang, e.g.
+          -- go_test_args = { "-v", "-race", "-count=1", "-timeout=60s" },
+          -- dap_go_enabled = true, -- requires leoluz/nvim-dap-go
         },
       },
     },
