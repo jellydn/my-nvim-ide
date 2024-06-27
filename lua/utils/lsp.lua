@@ -60,6 +60,10 @@ M.deno_config_exist = function()
   return has_config ~= nil
 end
 
+M.spectral_config_path = function()
+  return get_config_path(".spectral.yaml")
+end
+
 M.eslint_config_exists = function()
   local current_dir = vim.fn.getcwd()
   local config_files =
