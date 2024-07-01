@@ -19,7 +19,7 @@ return {
         spectral = {},
       },
       setup = {
-        spectral = function(_, opts)
+        spectral = function()
           -- Disable spectral client if no config file is found
           if not Lsp.spectral_config_path() then
             return true
