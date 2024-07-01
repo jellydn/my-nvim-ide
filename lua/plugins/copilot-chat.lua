@@ -86,8 +86,8 @@ return {
       -- Use unnamed register for the selection
       opts.selection = select.unnamed
 
-      local user = vim.env.USER or "User"
-      user = user:sub(1, 1):upper() .. user:sub(2)
+      local hostname = io.popen("hostname"):read("*a"):gsub("%s+", "")
+      local user = hostname or vim.env.USER or "User"
       opts.question_header = "  " .. user .. " "
       opts.answer_header = "  Copilot "
       -- Override the git prompts message
