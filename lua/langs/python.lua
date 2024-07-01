@@ -1,5 +1,6 @@
-local lsp = "pyright"
-local ruff = "ruff_lsp"
+-- Credit to https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/plugins/extras/lang/python.lua
+local lsp = "pyright" -- or "basedpyright"
+local ruff = "ruff_lsp" -- or "ruff"
 
 return {
   {
