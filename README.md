@@ -70,6 +70,7 @@ docker run -w /root -it --rm alpine:latest sh -uelic '
     - [x] Refactoring
     - [x] Ts comments
     - [x] Neogen for code annotation
+    - [x] Lightbulb for code actions (VS Code like)
   - [x] [Colorscheme](./lua/core/colorscheme.lua) (Kanagaga)
   - [x] [Editor](./lua/core/editor.lua)
     - [x] Better escape with jj or jk
@@ -84,6 +85,7 @@ docker run -w /root -it --rm alpine:latest sh -uelic '
     - [x] Trouble
     - [x] Flash
     - [x] Mini Surround
+    - [x] Mini Indent for indenting
     - [x] Edgy for layout management
     - [x] Setup Folding with conform.nvim
   - [x] [Lspconfig](./lua/core/lspconfig.lua)

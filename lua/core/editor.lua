@@ -141,6 +141,34 @@ return {
       },
     },
   },
+  -- Indent
+  {
+    "echasnovski/mini.indentscope",
+    version = false,
+    event = "VeryLazy",
+    opts = {
+      symbol = "│",
+      options = { try_as_border = true },
+    },
+    init = function()
+      -- Disable mini.indentscope for some filetypes
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = {
+          "dashboard",
+          "fzf",
+          "help",
+          "lazy",
+          "mason",
+          "toggleterm",
+          "Trouble",
+          "trouble",
+        },
+        callback = function()
+          vim.b.miniindentscope_disable = true
+        end,
+      })
+    end,
+  },
   -- Which key
   {
     "folke/which-key.nvim",

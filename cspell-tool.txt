@@ -12,6 +12,7 @@ lazydev
 luvit
 bufremove
 cursorword
+indentscope
 statusline
 neogen
 neotest
@@ -165,6 +166,7 @@ Primeagen
 folke
 danymat
 Neogen
+kosayoda
 rebelot
 neovim
 Mofiqul
@@ -176,6 +178,7 @@ diffthis
 Tabline
 akinsho
 echasnovski
+miniindentscope
 cmdline
 popupmenu
 Munif
@@ -261,7 +264,6 @@ Keymaps
 colorschemes
 Jumplist
 jellydn
-kosayoda
 Previm
 arkdown
 oxlint

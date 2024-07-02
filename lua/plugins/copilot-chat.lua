@@ -158,7 +158,6 @@ return {
         },
       })
     end,
-    event = "VeryLazy",
     keys = {
       -- Show help actions
       {

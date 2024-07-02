@@ -230,4 +230,18 @@ return {
       { "<leader>ci", "<cmd>Neogen<cr>", desc = "Neogen: Annotation generator" },
     },
   },
+  -- Lightbulb for LSP code action (VS Code like)
+  {
+    "kosayoda/nvim-lightbulb",
+    event = "LspAttach",
+    opts = {
+      autocmd = { enabled = true },
+      -- Sign column.
+      sign = {
+        enabled = true,
+        text = "⚡",
+        hl = "LightBulbSign",
+      },
+    },
+  },
 }
