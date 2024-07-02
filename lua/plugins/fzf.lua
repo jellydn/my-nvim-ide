@@ -62,9 +62,8 @@ return {
         },
       },
       defaults = {
-        -- VS Code style, v2 is broken, use v1
+        -- VS Code style
         formatter = { "path.filename_first", 2 },
-        -- formatter = { "path.filename_first" },
       },
       lsp = {
         async_or_timeout = true,
