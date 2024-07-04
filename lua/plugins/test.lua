@@ -72,10 +72,9 @@ return {
       vim.g["test#javascript#denotest#options"] = "-A"
     end,
   },
-  { "nvim-neotest/neotest-plenary" },
   {
     "nvim-neotest/neotest",
-    dependencies = { "nvim-neotest/nvim-nio" },
+    dependencies = { "nvim-neotest/nvim-nio", { "nvim-neotest/neotest-plenary" } },
     opts = {
       -- Can be a list of adapters like what neotest expects,
       -- or a list of adapter names,
