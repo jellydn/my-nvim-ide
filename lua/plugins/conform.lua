@@ -35,6 +35,7 @@ return {
         -- Conform will run multiple formatters sequentially
         -- Use a sub-list to run only the first available formatter
         yaml = { { "prettierd", "prettier", "dprint" } },
+        sh = { "shfmt" },
         ["markdown"] = { { "prettierd", "prettier", "dprint" } },
         ["markdown.mdx"] = { { "prettierd", "prettier", "dprint" } },
         ["javascript"] = { { "deno_fmt", "prettierd", "prettier", "biome", "dprint" } },
