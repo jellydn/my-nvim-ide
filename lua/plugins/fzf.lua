@@ -7,9 +7,7 @@ return {
   },
   {
     "ibhagwan/fzf-lua",
-    cmd = "FzfLua",
-    -- optional for icon support
-    dependencies = { "nvim-tree/nvim-web-devicons" },
+    event = "VeryLazy",
     opts = {
       hls = {
         border = "FloatBorder",

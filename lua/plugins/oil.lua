@@ -84,8 +84,6 @@ return {
         ["<C-y>"] = "actions.copy_entry_path",
       },
     },
-    -- Optional dependencies
-    dependencies = { "nvim-tree/nvim-web-devicons" },
     -- Use g? to see default key mappings
     keys = {
       {
