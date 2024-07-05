@@ -1,5 +1,7 @@
 local Lsp = require("utils.lsp")
+local typescript_lsp = "vtsls" -- tsserver or vtsls
 
+-- TODO: add toggle between tsserver and vtsls in the future
 return {
   "neovim/nvim-lspconfig",
   dependencies = {
@@ -125,6 +127,89 @@ return {
           },
         },
       },
+      vtsls = {
+        settings = {
+          complete_function_calls = true,
+          vtsls = {
+            enableMoveToFileCodeAction = true,
+            autoUseWorkspaceTsdk = true,
+            experimental = {
+              completion = {
+                enableServerSideFuzzyMatch = true,
+              },
+            },
+          },
+          javascript = {
+            updateImportsOnFileMove = { enabled = "always" },
+            suggest = {
+              completeFunctionCalls = true,
+            },
+            inlayHints = {
+              parameterNames = { enabled = "literals" },
+              parameterTypes = { enabled = true },
+              variableTypes = { enabled = true },
+              propertyDeclarationTypes = { enabled = true },
+              functionLikeReturnTypes = { enabled = true },
+              enumMemberValues = { enabled = true },
+            },
+          },
+          typescript = {
+            updateImportsOnFileMove = { enabled = "always" },
+            suggest = {
+              completeFunctionCalls = true,
+            },
+            inlayHints = {
+              parameterNames = { enabled = "literals" },
+              parameterTypes = { enabled = false },
+              variableTypes = { enabled = false },
+              propertyDeclarationTypes = { enabled = false },
+              functionLikeReturnTypes = { enabled = true },
+              enumMemberValues = { enabled = true },
+            },
+          },
+        },
+        keys = {
+          {
+            "gD",
+            function()
+              local params = vim.lsp.util.make_position_params()
+              Lsp.execute({
+                command = "typescript.goToSourceDefinition",
+                arguments = { params.textDocument.uri, params.position },
+                open = true,
+              })
+            end,
+            desc = "Goto Source Definition",
+          },
+          {
+            "<leader>co",
+            Lsp.action["source.organizeImports"],
+            desc = "Organize Imports",
+          },
+          {
+            "<leader>cM",
+            Lsp.action["source.addMissingImports.ts"],
+            desc = "Add missing imports",
+          },
+          {
+            "<leader>cu",
+            Lsp.action["source.removeUnused.ts"],
+            desc = "Remove unused imports",
+          },
+          {
+            "<leader>cD",
+            Lsp.action["source.fixAll.ts"],
+            desc = "Fix all diagnostics",
+          },
+          {
+            "<leader>cv",
+            function()
+              Lsp.execute({ command = "typescript.selectTypeScriptVersion" })
+            end,
+            desc = "Select TS workspace version",
+          },
+        },
+      },
     },
     -- Enable this to enable the builtin LSP inlay hints on Neovim >= 0.10.0
     -- Be aware that you also will need to properly configure your LSP server to
@@ -140,11 +225,29 @@ return {
     },
     setup = {
       -- Disable vtsls
-      vtsls = function()
-        return true
+      vtsls = function(_, opts)
+        if Lsp.deno_config_exist() then
+          return true
+        end
+
+        if typescript_lsp == "tsserver" then
+          return true
+        end
+
+        Lsp.on_attach(function(client, bufnr)
+          if client.name == "vtsls" then
+            -- Attach twoslash queries
+            require("twoslash-queries").attach(client, bufnr)
+          end
+        end)
+        Lsp.register_keymaps("vtsls", opts.keys, "TS")
       end,
       tsserver = function(_, opts)
         if Lsp.deno_config_exist() then
+          return true
+        end
+
+        if typescript_lsp == "vtsls" then
           return true
         end
 
