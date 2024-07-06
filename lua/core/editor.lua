@@ -4,6 +4,7 @@ return {
     "max397574/better-escape.nvim",
     event = "InsertEnter",
     config = true,
+    commit = "7e86edafb8c7e73699e0320f225464a298b96d12",
   },
   -- Send buffers into early retirement by automatically closing them after x minutes of inactivity.
   {
@@ -352,6 +353,7 @@ return {
   {
     "folke/flash.nvim",
     event = "VeryLazy",
+    vscode = true, -- Enable this plugin for vscode
     ---@type Flash.Config
     opts = {},
     keys = {
