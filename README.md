@@ -77,15 +77,16 @@ docker run -w /root -it --rm alpine:latest sh -uelic '
     - [x] Auto close buffer after 30 minutes of inactivity
     - [x] Git signs
     - [x] Tabline with bufferline
-    - [x] Mini statusline
-    - [x] Mini bufremoev
     - [x] Whichkey
     - [x] Noice
     - [x] Toggle Term
     - [x] Trouble
     - [x] Flash
-    - [x] Mini Surround
-    - [x] Mini Indent for indenting
+    - [x] Mini icon
+    - [x] Mini statusline
+    - [x] Mini bufremoev
+    - [x] Mini surround
+    - [x] Mini indent for indenting
     - [x] Edgy for layout management
     - [x] Setup Folding with conform.nvim
   - [x] [Lspconfig](./lua/core/lspconfig.lua)
