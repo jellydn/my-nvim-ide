@@ -325,3 +325,9 @@ map("n", "<leader>uw", "<cmd>set wrap!<CR>", {
   desc = "Toggle wrap",
   silent = true,
 })
+
+-- Toggle spell
+map("n", "<leader>uS", "<cmd>set spell!<CR>", {
+  desc = "Toggle spell",
+  silent = true,
+})
