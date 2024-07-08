@@ -4,7 +4,7 @@ return {
     "max397574/better-escape.nvim",
     event = "InsertEnter",
     config = true,
-    commit = "7e86edafb8c7e73699e0320f225464a298b96d12",
+    commit = "7e86edafb8c7e73699e0320f225464a298b96d12", -- Stick to v1, refer https://github.com/max397574/better-escape.nvim/issues/61
   },
   -- Send buffers into early retirement by automatically closing them after x minutes of inactivity.
   {
