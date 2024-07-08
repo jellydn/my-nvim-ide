@@ -138,8 +138,9 @@ return {
   -- Refactoring
   {
     "ThePrimeagen/refactoring.nvim",
+    vscode = true,
     dependencies = {
-      { "nvim-lua/plenary.nvim" },
+      { "nvim-lua/plenary.nvim", vscode = true },
       { "nvim-treesitter/nvim-treesitter" },
     },
     keys = {
@@ -226,6 +227,7 @@ return {
     dependencies = "nvim-treesitter/nvim-treesitter",
     opts = { enabled = true },
     cmd = "Neogen",
+    vscode = true,
     keys = {
       { "<leader>ci", "<cmd>Neogen<cr>", desc = "Neogen: Annotation generator" },
     },

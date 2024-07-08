@@ -402,6 +402,7 @@ return {
   -- Use gs for surround as `s` is used by flash
   {
     "echasnovski/mini.surround",
+    vscode = true,
     opts = {
       mappings = {
         add = "gsa", -- Add surrounding in Normal and Visual modes

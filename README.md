@@ -84,7 +84,7 @@ docker run -w /root -it --rm alpine:latest sh -uelic '
     - [x] Flash
     - [x] Mini icon
     - [x] Mini statusline
-    - [x] Mini bufremoev
+    - [x] Mini bufremove
     - [x] Mini surround
     - [x] Mini indent for indenting
     - [x] Edgy for layout management
