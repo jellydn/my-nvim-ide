@@ -13,7 +13,10 @@ return {
   {
     "folke/persistence.nvim",
     event = "BufReadPre",
-    opts = {},
+    opts = {
+      dir = vim.fn.stdpath("state") .. "/nvim-sessions/", -- directory where session files are saved
+      branch = true, -- use git branch to save session
+    },
   },
   {
     "nvimdev/dashboard-nvim",
