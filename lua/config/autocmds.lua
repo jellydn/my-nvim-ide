@@ -150,3 +150,12 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
     vim.opt_local.filetype = "embedded_template"
   end,
 })
+
+-- Set filetype for .code-snippets files
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+  group = augroup("code_snippets_filetype"),
+  pattern = { "*.code-snippets" },
+  callback = function()
+    vim.opt_local.filetype = "json"
+  end,
+})
