@@ -1,3 +1,15 @@
+local Lsp = require("utils.lsp")
+
+local function symbols_filter(entry, ctx)
+  if ctx.symbols_filter == nil then
+    ctx.symbols_filter = Lsp.get_kind_filter(ctx.bufnr) or false
+  end
+  if ctx.symbols_filter == false then
+    return true
+  end
+  return vim.tbl_contains(ctx.symbols_filter, entry.kind)
+end
+
 return {
   {
     "ahmedkhalf/project.nvim",
@@ -338,14 +350,18 @@ return {
       {
         "<leader>ss",
         function()
-          require("fzf-lua").lsp_document_symbols()
+          require("fzf-lua").lsp_document_symbols({
+            regex_filter = symbols_filter,
+          })
         end,
         desc = "Goto Symbol",
       },
       {
         "<leader>sS",
         function()
-          require("fzf-lua").lsp_live_workspace_symbols()
+          require("fzf-lua").lsp_live_workspace_symbols({
+            regex_filter = symbols_filter,
+          })
         end,
         desc = "Goto Symbol (Workspace)",
       },
