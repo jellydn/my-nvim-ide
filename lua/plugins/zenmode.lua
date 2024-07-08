@@ -8,6 +8,25 @@ end
 
 return {
   {
+    "folke/twilight.nvim",
+    lazy = true,
+    opts = {
+      dimming = {
+        inactive = true, -- when true, other windows will be fully dimmed (unless they contain the same buffer)
+      },
+      context = 20, -- amount of lines we will try to show around the current line
+      treesitter = true, -- use treesitter when available for the filetype
+    },
+    keys = {
+      -- add <leader>uT to toggle twilight
+      {
+        "<leader>uT",
+        "<cmd>Twilight<cr>",
+        desc = "Toggle Twilight",
+      },
+    },
+  },
+  {
     "folke/zen-mode.nvim",
     cmd = { "ZenMode" },
     opts = {

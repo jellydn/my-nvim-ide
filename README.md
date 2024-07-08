@@ -121,7 +121,7 @@ docker run -w /root -it --rm alpine:latest sh -uelic '
   - [x] undotree for undo history
   - [x] vscode for vscode integration
   - [x] wakatime for tracking time
-  - [x] zenmode for coding in distraction free mode
+  - [x] zenmode & twilight for coding in distraction free mode
 
 ## Neovide
 
