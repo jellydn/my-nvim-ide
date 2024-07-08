@@ -86,6 +86,7 @@ docker run -w /root -it --rm alpine:latest sh -uelic '
     - [x] Mini statusline
     - [x] Mini bufremove
     - [x] Mini surround
+    - [x] Mini pairs
     - [x] Mini indent for indenting
     - [x] Edgy for layout management
     - [x] Setup Folding with conform.nvim

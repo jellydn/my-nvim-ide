@@ -31,6 +31,7 @@
   "mini.cursorword": { "branch": "main", "commit": "7a9f1ec73c52124abc39f0309d332ababefc68b2" },
   "mini.icons": { "branch": "main", "commit": "6fc6877d58635a13efca456cb025f1dfbf59786d" },
   "mini.indentscope": { "branch": "main", "commit": "1222393d9c5e8d92b913ccab6701a7164b21781c" },
+  "mini.pairs": { "branch": "main", "commit": "927d19cbdd0e752ab1c7eed87072e71d2cd6ff51" },
   "mini.statusline": { "branch": "main", "commit": "ec7e2c509c7262fef85a28a772f60ebe146297db" },
   "mini.surround": { "branch": "main", "commit": "7098744c8d4573a4b32cb172965f6b2ba03465d2" },
   "neogen": { "branch": "main", "commit": "6de0add4805165317ab7d3d36b5cef48b1b865f3" },

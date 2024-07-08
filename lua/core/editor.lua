@@ -415,6 +415,13 @@ return {
       },
     },
   },
+  -- Mini pairs
+  {
+    "echasnovski/mini.pairs",
+    event = "VeryLazy",
+    vscode = true,
+    opts = {},
+  },
   -- Layout with edgy
   {
     "folke/edgy.nvim",
