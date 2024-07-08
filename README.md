@@ -107,6 +107,7 @@ docker run -w /root -it --rm alpine:latest sh -uelic '
   - [x] Fzf for file search
   - [x] harpoon for quickly navigate between buffers
   - [x] hurl
+  - [x] vim-jsdoc for JSDoc comments
   - [x] markdown
   - [x] nvim-lint
   - [x] oil for file explorer
