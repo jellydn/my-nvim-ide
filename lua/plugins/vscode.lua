@@ -23,20 +23,31 @@ end
 vim.api.nvim_create_autocmd("User", {
   pattern = "NvimIdeKeymaps", -- This pattern will be called when the plugin is loaded
   callback = function()
-    -- find file
+    -- Find file
     vim.keymap.set("n", "<leader><space>", "<cmd>Find<cr>")
-    -- find in files
+    -- Find in files
     vim.keymap.set("n", "<leader>/", [[<cmd>call VSCodeNotify('workbench.action.findInFiles')<cr>]])
-    -- open symbol
+    -- Open symbol
     vim.keymap.set("n", "<leader>ss", [[<cmd>call VSCodeNotify('workbench.action.gotoSymbol')<cr>]])
-    -- view problem
+    -- View problem
     vim.keymap.set("n", "<leader>xx", [[<cmd>call VSCodeNotify('workbench.actions.view.problems')<cr>]])
-    -- open file explorer in left sidebar
+    -- Open file explorer in left sidebar
     vim.keymap.set("n", "<leader>e", [[<cmd>call VSCodeNotify('workbench.view.explorer')<cr>]])
     -- Code Action
     vim.keymap.set("n", "<leader>ca", [[<cmd>call VSCodeNotify('editor.action.codeAction')<cr>]])
+    -- Code Rename
+    vim.keymap.set("n", "<leader>cr", [[<cmd>call VSCodeNotify('editor.action.rename')<cr>]])
+    -- LSP Reference
+    vim.keymap.set("n", "gr", [[<cmd>call VSCodeNotify('editor.action.referenceSearch.trigger')<cr>]])
+    -- Git status
+    vim.keymap.set("n", "<leader>gs", [[<cmd>call VSCodeNotify('workbench.view.scm')<cr>]])
+    -- Switch project
+    vim.keymap.set("n", "<leader>fp", [[<cmd>call VSCodeNotify('workbench.action.openRecent')<cr>]])
     -- Open terminal
     vim.keymap.set("n", "<leader>ft", [[<cmd>call VSCodeNotify('workbench.action.terminal.focus')<cr>]])
+
+    -- Close buffer
+    vim.keymap.set("n", "<leader>bd", [[<cmd>call VSCodeNotify('workbench.action.closeActiveEditor')<cr>]])
   end,
 })
 
