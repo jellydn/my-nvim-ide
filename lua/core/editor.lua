@@ -19,7 +19,15 @@ return {
   -- Use mini.icon for better performance
   {
     "echasnovski/mini.icons",
-    opts = {},
+    opts = {
+      file = {
+        [".keep"] = { glyph = "󰊢", hl = "MiniIconsGrey" },
+        ["devcontainer.json"] = { glyph = "", hl = "MiniIconsAzure" },
+      },
+      filetype = {
+        dotenv = { glyph = "", hl = "MiniIconsYellow" },
+      },
+    },
     config = function(_, options)
       local icons = require("mini.icons")
       icons.setup(options)
