@@ -12,6 +12,8 @@ local setup_keymaps = function(client, buffer)
   end
 
   map("<leader>ca", vim.lsp.buf.code_action, "Code Actions")
+  map("<leader>.", vim.lsp.buf.code_action, "Code Actions")
+
   map("<leader>cA", require("utils.lsp").action.source, "Source Actions")
   map("<leader>cr", vim.lsp.buf.rename, "Code Rename")
   map("<leader>cf", vim.lsp.buf.format, "Code Format")
