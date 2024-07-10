@@ -40,6 +40,7 @@ return {
           showcmd = false, -- disables the command in the last line of the screen
           laststatus = 0, -- turn off the statusline in zen mode
         },
+        twilight = { enabled = false }, -- disables to start Twilight when zen mode opens
         -- NOTE: Those options are disables by default, change to enabled = true to enable
         gitsigns = { enabled = false }, -- disables git signs
         tmux = { enabled = false }, -- disables the tmux statusline
