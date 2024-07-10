@@ -36,6 +36,12 @@ vim.api.nvim_create_autocmd("User", {
     -- +Search
     -- Open symbol
     vim.keymap.set("n", "<leader>ss", [[<cmd>call VSCodeNotify('workbench.action.gotoSymbol')<cr>]])
+    -- Search word under cursor
+    vim.keymap.set("n", "<leader>sw", function()
+      local code = require("vscode")
+      code.action("editor.action.addSelectionToNextFindMatch")
+      code.action("workbench.action.findInFiles")
+    end)
 
     -- +Code
     -- Code Action
