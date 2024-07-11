@@ -18,13 +18,46 @@ return {
     opts = {
       linters_by_ft = {
         -- markdown = { "markdownlint" },
-        ["*"] = { "cspell", "codespell" },
+        ["*"] = { "cspell", "codespell" }, -- Install with: pip install codespell
         javascript = { "oxlint" },
-        typescript = { "oxlint" },
+        typescript = { "oxlint", "eslint_fixer" },
         javascriptreact = { "oxlint" },
         typescriptreact = { "oxlint" },
       },
     },
+    init = function()
+      -- Register customer linter
+      require("lint").linters.eslint_fixer = {
+        name = "eslint_fixer",
+        cmd = "eslint-fixer", -- e.g: npm install -g @jellydn/eslint-fixer
+        stdin = false,
+        stream = "stdout",
+        ignore_exitcode = true,
+        parser = function(output, bufnr)
+          local trimmed_output = vim.trim(output)
+          if trimmed_output == "" then
+            return {}
+          end
+          -- Skip if Parsing error on output
+          if string.match(trimmed_output, "Parsing error") then
+            -- print(trimmed_output)
+            -- vim.notify(trimmed_output, vim.log.levels.INFO, {
+            --   title = "eslint_fixer",
+            -- })
+            return {}
+          end
+
+          -- Parse output base on the eslint error format
+          local diagnostic = require("lint.parser").from_errorformat("%f %l:%c %m", {
+            error = vim.diagnostic.severity.ERROR,
+            warning = vim.diagnostic.severity.WARN,
+            source = "eslint_fixer",
+          })(trimmed_output, bufnr)
+
+          return diagnostic
+        end,
+      }
+    end,
     config = function(_, opts)
       local lint = require("lint")
       lint.linters_by_ft = opts.linters_by_ft
