@@ -20,72 +20,117 @@ Config.options.defaults.cond = function(plugin)
 end
 
 -- Add some vscode specific keymaps
+-- Refer to https://github.com/vscode-neovim/vscode-neovim#code-navigation-bindings for default keymaps
 vim.api.nvim_create_autocmd("User", {
   pattern = "NvimIdeKeymaps", -- This pattern will be called when the plugin is loaded
   callback = function()
+    local vscode = require("vscode")
     -- +File
     -- Find file
     vim.keymap.set("n", "<leader><space>", "<cmd>Find<cr>")
     -- Open other files
-    vim.keymap.set("n", "<leader>,", [[<cmd>call VSCodeNotify('workbench.action.showAllEditors')<cr>]])
+    vim.keymap.set("n", "<leader>,", function()
+      vscode.call("workbench.action.showAllEditors")
+    end)
     -- Find in files
-    vim.keymap.set("n", "<leader>/", [[<cmd>call VSCodeNotify('workbench.action.findInFiles')<cr>]])
+    vim.keymap.set("n", "<leader>/", function()
+      vscode.call("workbench.action.findInFiles")
+    end)
     -- Open file explorer in left sidebar
-    vim.keymap.set("n", "<leader>e", [[<cmd>call VSCodeNotify('workbench.view.explorer')<cr>]])
+    vim.keymap.set("n", "<leader>e", function()
+      vscode.call("workbench.view.explorer")
+    end)
 
     -- +Search
     -- Open symbol
-    vim.keymap.set("n", "<leader>ss", [[<cmd>call VSCodeNotify('workbench.action.gotoSymbol')<cr>]])
+    vim.keymap.set("n", "<leader>ss", function()
+      vscode.call("workbench.action.gotoSymbol")
+    end)
     -- Search word under cursor
     vim.keymap.set("n", "<leader>sw", function()
       local code = require("vscode")
       code.action("editor.action.addSelectionToNextFindMatch")
       code.action("workbench.action.findInFiles")
+      -- Or send as the param like this: code.action("workbench.action.findInFiles", { args = { query = vim.fn.expand("<cword>") } })
     end)
 
     -- +Code
     -- Code Action
-    vim.keymap.set("n", "<leader>ca", [[<cmd>call VSCodeNotify('editor.action.codeAction')<cr>]])
+    vim.keymap.set("n", "<leader>ca", function()
+      vscode.call("editor.action.codeAction")
+    end)
     -- Source Action
-    vim.keymap.set("n", "<leader>cA", [[<cmd>call VSCodeNotify('editor.action.sourceAction')<cr>]])
+    vim.keymap.set("n", "<leader>cA", function()
+      vscode.call("editor.action.sourceAction")
+    end)
     -- Code Rename
-    vim.keymap.set("n", "<leader>cr", [[<cmd>call VSCodeNotify('editor.action.rename')<cr>]])
+    vim.keymap.set("n", "<leader>cr", function()
+      vscode.call("editor.action.rename")
+    end)
     -- Quickfix shortcut
-    vim.keymap.set("n", "<leader>.", [[<cmd>call VSCodeNotify('editor.action.quickFix')<cr>]])
+    vim.keymap.set("n", "<leader>.", function()
+      vscode.call("editor.action.quickFix")
+    end)
     -- Code format
-    vim.keymap.set("n", "<leader>cf", [[<cmd>call VSCodeNotify('editor.action.formatDocument')<cr>]])
+    vim.keymap.set("n", "<leader>cf", function()
+      vscode.call("editor.action.formatDocument")
+    end)
     -- Refactor
-    vim.keymap.set("n", "<leader>rm", [[<cmd>call VSCodeNotify('editor.action.refactor')<cr>]])
+    vim.keymap.set("n", "<leader>rm", function()
+      vscode.call("editor.action.refactor")
+    end)
 
     -- +Terminal
     -- Open terminal
-    vim.keymap.set("n", "<leader>ft", [[<cmd>call VSCodeNotify('workbench.action.terminal.focus')<cr>]])
+    vim.keymap.set("n", "<leader>ft", function()
+      vscode.call("workbench.action.terminal.focus")
+    end)
 
     -- +LSP
     -- View problem
-    vim.keymap.set("n", "<leader>xx", [[<cmd>call VSCodeNotify('workbench.actions.view.problems')<cr>]])
+    vim.keymap.set("n", "<leader>xx", function()
+      vscode.call("workbench.actions.view.problems")
+    end)
     -- Go to next/prev error
-    vim.keymap.set("n", "]e", [[<cmd>call VSCodeNotify('editor.action.marker.next')<cr>]])
-    vim.keymap.set("n", "[e", [[<cmd>call VSCodeNotify('editor.action.marker.prev')<cr>]])
+    vim.keymap.set("n", "]e", function()
+      vscode.call("editor.action.marker.next")
+    end)
+    vim.keymap.set("n", "[e", function()
+      vscode.call("editor.action.marker.prev")
+    end)
 
     -- Find references
-    vim.keymap.set("n", "gr", [[<cmd>call VSCodeNotify('references-view.find')<cr>]])
+    vim.keymap.set("n", "gr", function()
+      vscode.call("references-view.find")
+    end)
 
     -- +Git
     -- Git status
-    vim.keymap.set("n", "<leader>gs", [[<cmd>call VSCodeNotify('workbench.view.scm')<cr>]])
+    vim.keymap.set("n", "<leader>gs", function()
+      vscode.call("workbench.view.scm")
+    end)
     -- Go to next/prev change
-    vim.keymap.set("n", "]h", [[<cmd>call VSCodeNotify('workbench.action.editor.nextChange')<cr>]])
-    vim.keymap.set("n", "[h", [[<cmd>call VSCodeNotify('workbench.action.editor.previousChange')<cr>]])
+    vim.keymap.set("n", "]h", function()
+      vscode.call("workbench.action.editor.nextChange")
+    end)
+    vim.keymap.set("n", "[h", function()
+      vscode.call("workbench.action.editor.previousChange")
+    end)
 
     -- +Buffer
     -- Close buffer
-    vim.keymap.set("n", "<leader>bd", [[<cmd>call VSCodeNotify('workbench.action.closeActiveEditor')<cr>]])
+    vim.keymap.set("n", "<leader>bd", function()
+      vscode.call("workbench.action.closeActiveEditor")
+    end)
     -- Close other buffers
-    vim.keymap.set("n", "<leader>bo", [[<cmd>call VSCodeNotify('workbench.action.closeOtherEditors')<cr>]])
+    vim.keymap.set("n", "<leader>bo", function()
+      vscode.call("workbench.action.closeOtherEditors")
+    end)
 
     -- +Project
-    vim.keymap.set("n", "<leader>fp", [[<cmd>call VSCodeNotify('workbench.action.openRecent')<cr>]])
+    vim.keymap.set("n", "<leader>fp", function()
+      vscode.call("workbench.action.openRecent")
+    end)
 
     -- Other keymaps will be used with https://github.com/VSpaceCode/vscode-which-key, so we don't need to define them here
     -- Trigger which-key by pressing <CMD+Space>, refer more default keymaps https://github.com/VSpaceCode/vscode-which-key/blob/15c5aa2da5812a21210c5599d9779c46d7bfbd3c/package.json#L265
