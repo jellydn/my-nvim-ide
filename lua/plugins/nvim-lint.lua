@@ -20,7 +20,7 @@ return {
         -- markdown = { "markdownlint" },
         ["*"] = { "cspell", "codespell" }, -- Install with: pip install codespell
         javascript = { "oxlint" },
-        typescript = { "oxlint", "eslint_fixer" },
+        typescript = { "oxlint" },
         javascriptreact = { "oxlint" },
         typescriptreact = { "oxlint" },
       },
@@ -33,29 +33,11 @@ return {
         stdin = false,
         stream = "stdout",
         ignore_exitcode = true,
-        parser = function(output, bufnr)
-          local trimmed_output = vim.trim(output)
-          if trimmed_output == "" then
-            return {}
-          end
-          -- Skip if Parsing error on output
-          if string.match(trimmed_output, "Parsing error") then
-            -- print(trimmed_output)
-            -- vim.notify(trimmed_output, vim.log.levels.INFO, {
-            --   title = "eslint_fixer",
-            -- })
-            return {}
-          end
-
-          -- Parse output base on the eslint error format
-          local diagnostic = require("lint.parser").from_errorformat("%f %l:%c %m", {
-            error = vim.diagnostic.severity.ERROR,
-            warning = vim.diagnostic.severity.WARN,
-            source = "eslint_fixer",
-          })(trimmed_output, bufnr)
-
-          return diagnostic
-        end,
+        parser = require("lint.parser").from_errorformat("%f %l:%c %m", {
+          error = vim.diagnostic.severity.ERROR,
+          warning = vim.diagnostic.severity.WARN,
+          source = "eslint_fixer",
+        }),
       }
     end,
     config = function(_, opts)
@@ -96,6 +78,8 @@ return {
             "dotenv_linter", -- brew install dotenv-linter
             -- Markdown and writing
             "write_good", -- npm install -g write-good
+            -- Eslint fixer
+            "eslint_fixer", -- npm install -g @jellydn/eslint-fixer
           }
 
           vim.ui.select(items, {
