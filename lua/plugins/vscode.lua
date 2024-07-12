@@ -52,6 +52,10 @@ vim.api.nvim_create_autocmd("User", {
     vim.keymap.set("n", "<leader>cr", [[<cmd>call VSCodeNotify('editor.action.rename')<cr>]])
     -- Quickfix shortcut
     vim.keymap.set("n", "<leader>.", [[<cmd>call VSCodeNotify('editor.action.quickFix')<cr>]])
+    -- Code format
+    vim.keymap.set("n", "<leader>cf", [[<cmd>call VSCodeNotify('editor.action.formatDocument')<cr>]])
+    -- Refactor
+    vim.keymap.set("n", "<leader>rm", [[<cmd>call VSCodeNotify('editor.action.refactor')<cr>]])
 
     -- +Terminal
     -- Open terminal
@@ -63,8 +67,9 @@ vim.api.nvim_create_autocmd("User", {
     -- Go to next/prev error
     vim.keymap.set("n", "]e", [[<cmd>call VSCodeNotify('editor.action.marker.next')<cr>]])
     vim.keymap.set("n", "[e", [[<cmd>call VSCodeNotify('editor.action.marker.prev')<cr>]])
-    -- LSP Reference, gd is for go to definition but it also works for reference if call it 'gd' on definition :)
-    vim.keymap.set("n", "gr", [[<cmd>call VSCodeNotify('editor.action.referenceSearch.trigger')<cr>]])
+
+    -- Find references
+    vim.keymap.set("n", "gr", [[<cmd>call VSCodeNotify('references-view.find')<cr>]])
 
     -- +Git
     -- Git status
