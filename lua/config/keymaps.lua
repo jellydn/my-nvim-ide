@@ -245,27 +245,8 @@ map("n", "<leader>td", function()
   Diagnostics.toggle_diagnostics_level()
 end, { noremap = true, silent = true, desc = "Toggle Diagnostics Level" })
 
-local function open_dashboard()
-  vim.cmd("Dashboard")
-end
-
 -- Silent keymap option
 local opts = { silent = true }
-
--- Dashboard
--- Add keymap to open alpha dashboard
-map("n", "<leader>;", function()
-  -- close all open buffers before open dashboard
-  for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
-    ---@diagnostic disable-next-line: redundant-parameter
-    local buftype = vim.api.nvim_buf_get_option(bufnr, "buftype")
-    if buftype ~= "terminal" then
-      vim.api.nvim_buf_delete(bufnr, { force = true })
-    end
-  end
-
-  open_dashboard()
-end, { desc = "Open Dashboard", noremap = true })
 
 -- Better paste
 -- remap "p" in visual mode to delete the highlighted text without overwriting your yanked/copied text, and then paste the content from the unnamed register.
