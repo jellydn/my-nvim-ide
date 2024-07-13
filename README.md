@@ -178,6 +178,11 @@ Also increasing Key Repeat and Delay Until Repeat settings in System Preferences
 
 [![Key repeat rate](https://i.gyazo.com/e58be996275fe50bee31412ea5930017.png)](https://gyazo.com/e58be996275fe50bee31412ea5930017)
 
+- Disable `full stop with double-space` if you see the delay with `<space>-<space>`
+
+[![Which-key](https://i.gyazo.com/6403f6c57d2e54aca230589b2173eeb0.png)](https://gyazo.com/6403f6c57d2e54aca230589b2173eeb0)
+
+
 ## Resources
 
 [![IT Man - LazyVim Power User Guide](https://i.ytimg.com/vi/jveM3hZs_oI/hqdefault.jpg)](https://www.youtube.com/watch?v=jveM3hZs_oI)
