@@ -44,13 +44,6 @@ return {
               key = "f",
             },
             {
-              icon = " ",
-              desc = "Live Grep",
-              group = "Number",
-              action = [[lua require('fzf-lua').live_grep({cwd_prompt = false, multiprocess = true})]],
-              key = "g",
-            },
-            {
               icon = " ",
               desc = " Restore Session",
               group = "Number",

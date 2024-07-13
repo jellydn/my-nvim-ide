@@ -13,6 +13,15 @@ end
 
 return {
   {
+    "folke/which-key.nvim",
+    optional = true,
+    opts = {
+      spec = {
+        { "<leader>l", group = "linter" },
+      },
+    },
+  },
+  {
     "mfussenegger/nvim-lint",
     event = "VeryLazy",
     opts = {
@@ -61,7 +70,17 @@ return {
 
           -- Run linters.
           if #names > 0 then
-            lint.try_lint(names)
+            -- Check the if the linter is available, otherwise it will throw an error.
+            for _, name in ipairs(names) do
+              local cmd = vim.fn.executable(name)
+              if cmd == 0 then
+                vim.notify("Linter " .. name .. " is not available", vim.log.levels.INFO)
+                return
+              else
+                -- Run the linter
+                lint.try_lint(name)
+              end
+            end
           end
         end,
       })
@@ -69,7 +88,7 @@ return {
     keys = {
       {
         -- Run lint by name
-        "<leader>rl",
+        "<leader>lr",
         function()
           local items = {
             -- Github actions

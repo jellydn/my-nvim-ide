@@ -16,12 +16,12 @@ return {
     },
     keys = {
       {
-        "<leader>fhh",
+        "<leader>fhm",
         function()
           local harpoon = require("harpoon")
           harpoon.ui:toggle_quick_menu(harpoon:list())
         end,
-        desc = "Harpoon toggle menu",
+        desc = "Harpoon menu",
       },
       {
         "<leader>fha",

@@ -7,6 +7,15 @@ return {
       },
     },
   },
+  {
+    "folke/which-key.nvim",
+    optional = true,
+    opts = {
+      spec = {
+        { "<leader>m", group = "markdown", icon = "" },
+      },
+    },
+  },
   -- Markdown preview
   {
     "MeanderingProgrammer/markdown.nvim",
@@ -29,11 +38,10 @@ return {
     end,
     ft = { "markdown" },
     keys = {
-      -- add <leader>m to open markdown preview
       {
-        "<leader>mp",
+        "<leader>m",
         "<cmd>PrevimOpen<cr>",
-        desc = "[M]arkdown [p]review",
+        desc = "Markdown preview",
       },
     },
   },

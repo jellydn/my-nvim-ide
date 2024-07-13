@@ -11,7 +11,7 @@ return {
     cmd = { "QuickCodeRunner", "QuickCodePad" },
     keys = {
       {
-        "<leader>cr",
+        "<leader>cp",
         ":QuickCodeRunner<CR>",
         desc = "Quick Code Runner",
         mode = { "v" },

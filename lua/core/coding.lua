@@ -141,10 +141,12 @@ return {
     optional = true,
     opts = {
       spec = {
-        { "<leader>a", group = "ai" },
+        { "<leader>d", group = "debug" },
+        { "<leader>r", group = "refactoring", icon = "" },
       },
     },
   },
+  -- The Refactoring library based off the Refactoring book by Martin Fowler
   {
     "ThePrimeagen/refactoring.nvim",
     vscode = true,
@@ -160,8 +162,62 @@ return {
             show_success_message = true,
           })
         end,
-        mode = { "v" },
-        desc = "Refactoring menu",
+        mode = { "n", "v" },
+        desc = "Refactoring Menu",
+      },
+      {
+        "<leader>re",
+        function()
+          require("refactoring").refactor("Extract Function")
+        end,
+        desc = "Extract",
+        mode = "x",
+      },
+      {
+        "<leader>rf",
+        function()
+          require("refactoring").refactor("Extract Function To File")
+        end,
+        desc = "Extract to file",
+        mode = "x",
+      },
+      {
+        "<leader>rv",
+        function()
+          require("refactoring").refactor("Extract Variable")
+        end,
+        desc = "Extract variable",
+        mode = "x",
+      },
+      {
+        "<leader>ri",
+        function()
+          require("refactoring").refactor("Inline Variable")
+        end,
+        desc = "Inline variable",
+        mode = { "n", "x" },
+      },
+      {
+        "<leader>rI",
+        function()
+          require("refactoring").refactor("Inline Function")
+        end,
+        desc = "Inline function",
+        mode = { "n" },
+      },
+      {
+        "<leader>rb",
+        function()
+          require("refactoring").refactor("Extract Block")
+        end,
+        desc = "Extract block",
+      },
+      {
+        "<leader>rB",
+        function()
+          require("refactoring").refactor("Extract Block To File")
+        end,
+        desc = "Extract block to file",
       },
       -- Debug variable
       {

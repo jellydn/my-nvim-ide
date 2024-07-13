@@ -6,7 +6,7 @@ return {
     optional = true,
     opts = {
       spec = {
-        { "<leader>r", group = "runner" },
+        { "<leader>h", group = "hurl", icon = "" },
       },
     },
   },
@@ -31,18 +31,19 @@ return {
     },
     keys = {
       -- Run API request
-      { "<leader>rA", "<cmd>HurlRunner<CR>", desc = "Hurl - Run All requests" },
-      { "<leader>ra", "<cmd>HurlRunnerAt<CR>", desc = "Hurl - Run Api request" },
-      { "<leader>re", "<cmd>HurlRunnerToEntry<CR>", desc = "Hurl -Run Api request to entry" },
-      { "<leader>th", "<cmd>HurlToggleMode<CR>", desc = "Hurl - Toggle Mode" },
-      { "<leader>rv", "<cmd>HurlVerbose<CR>", desc = "Hurl - Run Api in verbose mode" },
+      { "<leader>hA", "<cmd>HurlRunner<CR>", desc = "Run All requests" },
+      { "<leader>ha", "<cmd>HurlRunnerAt<CR>", desc = "Run Api request" },
+      { "<leader>he", "<cmd>HurlRunnerToEntry<CR>", desc = "Run Api request to entry" },
+      { "<leader>hv", "<cmd>HurlVerbose<CR>", desc = "Run Api in verbose mode" },
       -- Run Hurl request in visual mode
-      { "<leader>rh", ":HurlRunner<CR>", desc = "Hurl Runner", mode = "v" },
+      { "<leader>hh", ":HurlRunner<CR>", desc = "Hurl Runner", mode = "v" },
       -- Show last response
-      { "<leader>rh", "<cmd>HurlShowLastResponse<CR>", desc = "Hurl History", mode = "n" },
+      { "<leader>hh", "<cmd>HurlShowLastResponse<CR>", desc = "History", mode = "n" },
       -- Manage variable
-      { "<leader>rg", ":HurlSetVariable", desc = "Hurl - Add global variable" },
-      { "<leader>rG", "<cmd>HurlManageVariable<CR>", desc = "Hurl - Manage global variable" },
+      { "<leader>hg", ":HurlSetVariable", desc = "Add global variable" },
+      { "<leader>hG", "<cmd>HurlManageVariable<CR>", desc = "Manage global variable" },
+      -- Toggle
+      { "<leader>tH", "<cmd>HurlToggleMode<CR>", desc = "Toggle Hurl Split/Popup" },
     },
   },
   {

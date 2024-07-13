@@ -1,7 +1,6 @@
 local Lsp = require("utils.lsp")
-local typescript_lsp = "vtsls" -- tsserver or vtsls
+local typescript_lsp = vim.g.typescript_lsp or "vtsls" -- tsserver or vtsls
 
--- TODO: add toggle between tsserver and vtsls in the future
 return {
   {
     "neovim/nvim-lspconfig",

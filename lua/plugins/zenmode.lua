@@ -18,11 +18,10 @@ return {
       treesitter = true, -- use treesitter when available for the filetype
     },
     keys = {
-      -- add <leader>uT to toggle twilight
       {
-        "<leader>uT",
+        "<leader>tt",
         "<cmd>Twilight<cr>",
-        desc = "Toggle Twilight",
+        desc = "Toggle twilight",
       },
     },
   },

@@ -77,7 +77,7 @@ map("n", "gco", "o<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = "Add Commen
 map("n", "gcO", "O<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = "Add Comment Above" })
 
 -- lazy
-map("n", "<leader>l", "<cmd>Lazy<cr>", { desc = "Lazy" })
+map("n", "<leader>z", "<cmd>Lazy<cr>", { desc = "Lazy" })
 
 -- new file
 map("n", "<leader>fn", "<cmd>enew<cr>", { desc = "New File" })
@@ -237,12 +237,8 @@ function _G.toggle_q_macro()
   end
 end
 
-map(
-  "n",
-  "<leader>tq",
-  "<cmd>lua _G.toggle_q_macro()<CR>",
-  { noremap = true, silent = true, desc = "Toggle 'q' Functionality" }
-)
+-- Disable q default as it's used for quitting
+map("n", "<leader>tq", "<cmd>lua _G.toggle_q_macro()<CR>", { noremap = true, silent = true, desc = "Toggle Macros" })
 map("n", "q", "<Nop>", { noremap = true })
 
 map("n", "<leader>td", function()
@@ -321,13 +317,13 @@ map(
 )
 
 -- Toggle wrap
-map("n", "<leader>uw", "<cmd>set wrap!<CR>", {
-  desc = "Toggle wrap",
+map("n", "<leader>tw", "<cmd>set wrap!<CR>", {
+  desc = "Toggle Wrap",
   silent = true,
 })
 
 -- Toggle spell
-map("n", "<leader>uS", "<cmd>set spell!<CR>", {
-  desc = "Toggle spell",
+map("n", "<leader>ts", "<cmd>set spell!<CR>", {
+  desc = "Toggle Spell",
   silent = true,
 })

@@ -76,7 +76,7 @@ vim.api.nvim_create_autocmd("User", {
       vscode.call("editor.action.formatDocument")
     end)
     -- Refactor
-    vim.keymap.set("n", "<leader>rm", function()
+    vim.keymap.set("n", "<leader>cR", function()
       vscode.call("editor.action.refactor")
     end)
 
