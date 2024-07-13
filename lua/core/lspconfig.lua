@@ -26,8 +26,9 @@ local setup_keymaps = function(client, buffer)
     map("gD", vim.lsp.buf.declaration, "Goto Declaration")
   end
   if client.server_capabilities.referencesProvider then
-    -- NOTE: Neovim 0.11 introduced a default keymaps for LSP, refer https://github.com/neovim/neovim/pull/28650
-    map("gr", vim.lsp.buf.references, "Goto References")
+    -- NOTE: Neovim v0.11 has introduced a default keymaps for LSP, refer https://github.com/neovim/neovim/pull/28650
+    -- map("gr", vim.lsp.buf.references, "Goto References")
+    vim.keymap.set("n", "gr", vim.lsp.buf.references, { buffer = buffer, desc = "LSP: Goto References", nowait = true })
   end
   if client.server_capabilities.implementationProvider then
     map("gi", vim.lsp.buf.implementation, "Goto Implementation")
