@@ -197,6 +197,8 @@ return {
     opts_extend = { "spec" },
     opts = {
       defaults = {},
+      ---@type false | "classic" | "modern" | "helix"
+      preset = "helix", -- default is "classic"
       spec = {
         {
           mode = { "n", "v" },

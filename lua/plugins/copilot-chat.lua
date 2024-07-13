@@ -25,7 +25,7 @@ return {
     optional = true,
     opts = {
       spec = {
-        { "<leader>a", group = "ai", icon = "" },
+        { "<leader>a", group = "ai" },
       },
     },
   },
