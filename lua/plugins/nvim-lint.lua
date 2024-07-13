@@ -17,7 +17,7 @@ return {
     optional = true,
     opts = {
       spec = {
-        { "<leader>l", group = "linter" },
+        { "<leader>l", group = "linter", icon = "" },
       },
     },
   },
@@ -113,7 +113,7 @@ return {
       },
       -- Fix .env variables
       {
-        "<leader>fv",
+        "<leader>lf",
         function()
           local file = vim.fn.fnameescape(vim.fn.expand("%:p")) -- Escape file path for shell
 
@@ -125,7 +125,7 @@ return {
 
           vim.cmd("silent !dotenv-linter fix " .. file)
         end,
-        desc = "dotenv linter - fix",
+        desc = "Fix .env file",
       },
     },
   },
