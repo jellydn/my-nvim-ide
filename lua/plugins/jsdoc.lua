@@ -1,4 +1,13 @@
 return {
+  {
+    "folke/which-key.nvim",
+    optional = true,
+    opts = {
+      spec = {
+        { "<leader>cj", group = "code JS" },
+      },
+    },
+  },
   -- JsDoc generator
   {
     "heavenshell/vim-jsdoc",
@@ -6,8 +15,8 @@ return {
     vscode = true,
     cmd = { "JsDoc", "JsDocFormat" },
     keys = {
-      { "<leader>jd", "<cmd>JsDoc<cr>", desc = "JsDoc" },
-      { "<leader>jf", "<cmd>JsDocFormat<cr>", desc = "JsDocFormat" },
+      { "<leader>cjd", "<cmd>JsDoc<cr>", desc = "JsDoc" },
+      { "<leader>cjf", "<cmd>JsDocFormat<cr>", desc = "JsDocFormat" },
     },
     -- make sure that you will have lehre install locally on plugin folder, refer https://github.com/heavenshell/vim-jsdoc#manual-installation
     build = "make install",

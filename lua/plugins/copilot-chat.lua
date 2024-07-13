@@ -21,6 +21,15 @@ local prompts = {
 
 return {
   {
+    "folke/which-key.nvim",
+    optional = true,
+    opts = {
+      spec = {
+        { "<leader>d", group = "debug" },
+      },
+    },
+  },
+  {
     dir = IS_DEV and "~/Projects/research/CopilotChat.nvim" or nil,
     "CopilotC-Nvim/CopilotChat.nvim",
     -- version = "v2.10.0",
@@ -144,18 +153,13 @@ return {
         end,
       })
 
-      -- Add which-key mappings
       local wk = require("which-key")
-      wk.register({
-        g = {
-          m = {
-            name = "+Copilot Chat",
-            d = "Show diff",
-            p = "System prompt",
-            s = "Show selection",
-            y = "Yank diff",
-          },
-        },
+      wk.add({
+        { "<leader>gm", group = "+Copilot Chat" }, -- group
+        { "<leader>gmd", desc = "Show diff" },
+        { "<leader>gmp", desc = "System prompt" },
+        { "<leader>gms", desc = "Show selection" },
+        { "<leader>gmy", desc = "Yank diff" },
       })
     end,
     keys = {

@@ -2,6 +2,15 @@ local IS_DEV = false
 
 return {
   {
+    "folke/which-key.nvim",
+    optional = true,
+    opts = {
+      spec = {
+        { "<leader>r", group = "runner" },
+      },
+    },
+  },
+  {
     "jellydn/hurl.nvim",
     dir = IS_DEV and "~/Projects/research/hurl.nvim" or nil,
     ft = "hurl",
@@ -32,8 +41,8 @@ return {
       -- Show last response
       { "<leader>rh", "<cmd>HurlShowLastResponse<CR>", desc = "Hurl History", mode = "n" },
       -- Manage variable
-      { "<leader>hg", ":HurlSetVariable", desc = "Hurl - Set global variable" },
-      { "<leader>hG", "<cmd>HurlManageVariable<CR>", desc = "Hurl - Manage global variable" },
+      { "<leader>rg", ":HurlSetVariable", desc = "Hurl - Add global variable" },
+      { "<leader>rG", "<cmd>HurlManageVariable<CR>", desc = "Hurl - Manage global variable" },
     },
   },
   {

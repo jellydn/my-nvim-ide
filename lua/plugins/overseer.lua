@@ -1,5 +1,14 @@
 return {
   {
+    "folke/which-key.nvim",
+    optional = true,
+    opts = {
+      spec = {
+        { "<leader>r", group = "runner" },
+      },
+    },
+  },
+  {
     "stevearc/overseer.nvim",
     dependencies = {
       "akinsho/toggleterm.nvim",

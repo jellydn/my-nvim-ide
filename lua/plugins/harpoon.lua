@@ -1,5 +1,14 @@
 return {
   {
+    "folke/which-key.nvim",
+    optional = true,
+    opts = {
+      spec = {
+        { "<leader>fh", group = "harpoon" },
+      },
+    },
+  },
+  {
     "ThePrimeagen/harpoon",
     branch = "harpoon2",
     dependencies = {
@@ -7,7 +16,7 @@ return {
     },
     keys = {
       {
-        "<leader>hh",
+        "<leader>fhh",
         function()
           local harpoon = require("harpoon")
           harpoon.ui:toggle_quick_menu(harpoon:list())
@@ -15,7 +24,7 @@ return {
         desc = "Harpoon toggle menu",
       },
       {
-        "<leader>ha",
+        "<leader>fha",
         function()
           local harpoon = require("harpoon")
           harpoon:list():add()
@@ -23,7 +32,7 @@ return {
         desc = "Harpoon Add File",
       },
       {
-        "<leader>hj",
+        "<leader>fhj",
         function()
           local harpoon = require("harpoon")
           harpoon:list():next()
@@ -31,7 +40,7 @@ return {
         desc = "Harpoon Next",
       },
       {
-        "<leader>hk",
+        "<leader>fhk",
         function()
           local harpoon = require("harpoon")
           harpoon:list():prev()

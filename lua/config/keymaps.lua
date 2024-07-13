@@ -269,7 +269,7 @@ map("n", "<leader>;", function()
   end
 
   open_dashboard()
-end, opts)
+end, { desc = "Open Dashboard", noremap = true })
 
 -- Better paste
 -- remap "p" in visual mode to delete the highlighted text without overwriting your yanked/copied text, and then paste the content from the unnamed register.

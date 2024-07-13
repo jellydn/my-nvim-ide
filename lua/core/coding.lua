@@ -137,6 +137,15 @@ return {
   },
   -- Refactoring
   {
+    "folke/which-key.nvim",
+    optional = true,
+    opts = {
+      spec = {
+        { "<leader>a", group = "ai" },
+      },
+    },
+  },
+  {
     "ThePrimeagen/refactoring.nvim",
     vscode = true,
     dependencies = {
