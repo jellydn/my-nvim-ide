@@ -48,6 +48,10 @@ return {
           enabled = false,
           font = "+1", -- +1 font size or fixed size, e.g. 21
         },
+        alacritty = {
+          enabled = true,
+          font = "20",
+        },
       },
     },
     config = true,

@@ -5,6 +5,10 @@ local function is_warp_terminal()
   return os.getenv("TERM_PROGRAM") == "WarpTerminal"
 end
 
+local function is_alacritty_terminal()
+  return os.getenv("TERM") == "xterm-256color"
+end
+
 local function is_tmux()
   return os.getenv("TMUX") ~= nil
 end
@@ -42,6 +46,10 @@ M.selectColorSchemeByTime = function()
   -- If it's vscode, warp terminal, tmux, neovide, or transparent background, use default color scheme
   if vim.g.vscode or is_warp_terminal() or is_tmux() or vim.g.neovide then
     return default_color_scheme
+  end
+
+  if is_alacritty_terminal() then
+    return "kanagawa"
   end
 
   local idx = tonumber(os.date("%S")) % #night_themes + 1
