@@ -294,18 +294,24 @@ return {
     keys = {
       {
         "<c-_>",
-        desc = "Toggle term",
+        "<cmd>:ToggleTerm<cr>",
+        desc = "Toggle Term",
+      },
+      {
+        "<leader>ft",
+        "<cmd>:ToggleTerm<cr>",
+        desc = "Find Toggle Term",
       },
       -- Send to terminal
       {
         "<leader><c-_>",
         "<cmd>:ToggleTermSendCurrentLine<cr>",
-        desc = "Send current line to terminal",
+        desc = "Send Current Line To Terminal",
       },
       {
         "<leader><c-_>",
         "<cmd>:ToggleTermSendVisualSelection<cr>",
-        desc = "Send visual selection to terminal",
+        desc = "Send Visual Selection To Terminal",
         mode = "v",
       },
       {

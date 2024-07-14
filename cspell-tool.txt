@@ -80,8 +80,6 @@ nargs
 Neovide
 neovide
 noremap
-bufnr
-bufs
 autocmds
 keymaps
 Nvim
@@ -189,6 +187,7 @@ Munif
 Tanjim
 lazygit
 startinsert
+bufnr
 nowait
 Lazygit
 loclist
@@ -257,6 +256,7 @@ fzflua
 Vsplit
 nvimdev
 productsway
+bufs
 ahmedkhalf
 ibhagwan
 cursorlinenr
