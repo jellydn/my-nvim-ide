@@ -34,21 +34,6 @@ return {
         typescriptreact = { "oxlint" },
       },
     },
-    init = function()
-      -- Register customer linter
-      require("lint").linters.eslint_fixer = {
-        name = "eslint_fixer",
-        cmd = "eslint-fixer", -- e.g: npm install -g @jellydn/eslint-fixer
-        stdin = false,
-        stream = "stdout",
-        ignore_exitcode = true,
-        parser = require("lint.parser").from_errorformat("%f %l:%c %m", {
-          error = vim.diagnostic.severity.ERROR,
-          warning = vim.diagnostic.severity.WARN,
-          source = "eslint_fixer",
-        }),
-      }
-    end,
     config = function(_, opts)
       local lint = require("lint")
       lint.linters_by_ft = opts.linters_by_ft
@@ -97,8 +82,6 @@ return {
             "dotenv_linter", -- brew install dotenv-linter
             -- Markdown and writing
             "write_good", -- npm install -g write-good
-            -- Eslint fixer
-            "eslint_fixer", -- npm install -g @jellydn/eslint-fixer
           }
 
           vim.ui.select(items, {
