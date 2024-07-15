@@ -310,6 +310,8 @@ isdirectory
 commentstring
 showcmd
 wezterm
+alacritty
+winnr
 getcwd
 systemlist
 bufpath
