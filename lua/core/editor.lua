@@ -198,7 +198,12 @@ return {
     opts = {
       defaults = {},
       ---@type false | "classic" | "modern" | "helix"
-      preset = "helix", -- default is "classic"
+      preset = "modern", -- default is "classic"
+      -- Custom helix layout
+      -- win = {
+      --   width = { min = 30, max = 60 },
+      --   height = { min = 4, max = 0.85 },
+      -- },
       spec = {
         {
           mode = { "n", "v" },
