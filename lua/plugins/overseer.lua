@@ -4,7 +4,7 @@ return {
     optional = true,
     opts = {
       spec = {
-        { "<leader>T", group = "task", icon = "" },
+        { "<leader>o", group = "overseer task", icon = "" },
       },
     },
   },
@@ -29,19 +29,19 @@ return {
     },
     keys = {
       {
-        "<leader>Tt",
+        "<leader>ot",
         "<CMD>OverseerRun<CR>",
         desc = "Overseer - Run Task",
       },
       -- Quick action
       {
-        "<leader>Tq",
+        "<leader>oq",
         "<CMD>OverseerQuickAction<CR>",
         desc = "Overseer - Quick Action",
       },
       -- Rerun last command
       {
-        "<leader>Tr",
+        "<leader>or",
         function()
           local overseer = require("overseer")
           local tasks = overseer.list_tasks({ recent_first = true })
@@ -55,7 +55,7 @@ return {
       },
       -- Toggle
       {
-        "<leader>To",
+        "<leader>oo",
         "<CMD>OverseerToggle bottom<CR>",
         desc = "Overseer - Toggle at bottom",
       },
