@@ -308,3 +308,9 @@ map("n", "<leader>ts", "<cmd>set spell!<CR>", {
   desc = "Toggle Spell",
   silent = true,
 })
+
+-- Format selected text with jq
+map("x", "<leader>ff", ":<C-u>lua require('utils.format').format_json_with_jq()<CR>", {
+  desc = "Format selected text with jq",
+  silent = true,
+})
