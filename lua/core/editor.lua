@@ -198,12 +198,12 @@ return {
     opts = {
       defaults = {},
       ---@type false | "classic" | "modern" | "helix"
-      preset = "modern", -- default is "classic"
+      preset = "helix", -- default is "classic"
       -- Custom helix layout
-      -- win = {
-      --   width = { min = 30, max = 60 },
-      --   height = { min = 4, max = 0.85 },
-      -- },
+      win = {
+        width = { min = 30, max = 60 },
+        height = { min = 4, max = 0.85 },
+      },
       spec = {
         {
           mode = { "n", "v" },
@@ -216,9 +216,9 @@ return {
           { "<leader>q", group = "quit/session" },
           { "<leader>s", group = "search" },
           { "<leader>t", group = "toggle" },
-          { "<leader>u", group = "ui" },
+          { "<leader>u", group = "ui", icon = { icon = "󰙵 ", color = "cyan" } },
           { "<leader>w", group = "windows" },
-          { "<leader>x", group = "diagnostics/quickfix" },
+          { "<leader>x", group = "diagnostics/quickfix", icon = { icon = "󱖫 ", color = "green" } },
           { "[", group = "prev" },
           { "]", group = "next" },
           { "g", group = "goto" },
@@ -233,7 +233,7 @@ return {
         function()
           require("which-key").show({ global = false })
         end,
-        desc = "Buffer Local Keymaps (which-key)",
+        desc = "Buffer Keymaps (which-key)",
       },
     },
     config = function(_, opts)
