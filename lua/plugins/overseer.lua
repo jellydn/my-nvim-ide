@@ -4,7 +4,7 @@ return {
     optional = true,
     opts = {
       spec = {
-        { "<leader>o", group = "overseer task", icon = "" },
+        { "<leader>o", group = "overseer/task", icon = "" },
       },
     },
   },
@@ -31,13 +31,13 @@ return {
       {
         "<leader>ot",
         "<CMD>OverseerRun<CR>",
-        desc = "Overseer - Run Task",
+        desc = "Run Task",
       },
       -- Quick action
       {
         "<leader>oq",
         "<CMD>OverseerQuickAction<CR>",
-        desc = "Overseer - Quick Action",
+        desc = "Quick Action",
       },
       -- Rerun last command
       {
@@ -51,13 +51,13 @@ return {
             overseer.run_action(tasks[1], "restart")
           end
         end,
-        desc = "Overseer - Rerun Last Task",
+        desc = "Rerun Last Task",
       },
       -- Toggle
       {
         "<leader>oo",
         "<CMD>OverseerToggle bottom<CR>",
-        desc = "Overseer - Toggle at bottom",
+        desc = "Toggle at bottom",
       },
     },
   },
