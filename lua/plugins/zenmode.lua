@@ -7,6 +7,7 @@ local function zen_mode_width()
 end
 
 return {
+  -- Not performant so only enable when needed
   {
     "folke/twilight.nvim",
     lazy = true,
@@ -50,7 +51,7 @@ return {
         },
         alacritty = {
           enabled = true,
-          font = "20",
+          font = "19.5", -- set font size to 19.5
         },
       },
     },
