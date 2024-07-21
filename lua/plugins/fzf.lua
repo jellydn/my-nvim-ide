@@ -25,6 +25,7 @@ return {
         border = "FloatBorder",
         cursorline = "Visual",
         cursorlinenr = "Visual",
+        backdrop = "FzfLuaBackdrop",
       },
       fzf_colors = false,
       -- History file
@@ -45,6 +46,7 @@ return {
           flip_columns = 130,
           scrollchars = { "┃", "" },
         },
+        backdrop = 60,
       },
       files = {
         multiprocess = true,
