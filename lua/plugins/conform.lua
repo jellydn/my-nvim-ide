@@ -1,5 +1,20 @@
 local Lsp = require("utils.lsp")
 
+---Run the first available formatter followed by more formatters
+---@param bufnr integer
+---@param ... string
+---@return string
+local function first(bufnr, ...)
+  local conform = require("conform")
+  for i = 1, select("#", ...) do
+    local formatter = select(i, ...)
+    if conform.get_formatter_info(formatter, bufnr).available then
+      return formatter
+    end
+  end
+  return select(1, ...)
+end
+
 return {
   -- Setup config for formatter
   {
@@ -24,6 +39,7 @@ return {
       { "<leader>cn", "<cmd>ConformInfo<cr>", desc = "Conform Info" },
       { "<leader>cf", "<cmd>Format<cr>", desc = "Format Code", mode = "v" },
     },
+    ---@type conform.setupOpts
     opts = {
       format_on_save = function(bufnr)
         -- Disable with a global or buffer-local variable
@@ -33,17 +49,22 @@ return {
         return { timeout_ms = 500, lsp_format = "fallback" }
       end,
       formatters_by_ft = {
-        -- Conform will run multiple formatters sequentially
-        -- Use a sub-list to run only the first available formatter
-        yaml = { { "prettierd", "prettier", "dprint" } },
         sh = { "shfmt" },
-        ["markdown"] = { { "prettierd", "prettier", "dprint" } },
-        ["markdown.mdx"] = { { "prettierd", "prettier", "dprint" } },
-        ["javascript"] = { { "deno_fmt", "prettierd", "prettier", "biome", "dprint" } },
-        ["javascriptreact"] = { "rustywind", { "deno_fmt", "prettierd", "prettier", "biome", "dprint" } },
-        ["typescript"] = { { "deno_fmt", "prettierd", "prettier", "biome", "dprint" } },
-        ["typescriptreact"] = { "rustywind", { "deno_fmt", "prettierd", "prettier", "biome", "dprint" } },
-        ["svelte"] = { "rustywind", { "deno_fmt", "prettierd", "prettier", "biome", "dprint" } },
+        -- Conform will run multiple formatters sequentially
+        yaml = { "prettierd", "prettier", "dprint", stop_after_first = true },
+        ["markdown"] = { "prettierd", "prettier", "dprint", stop_after_first = true },
+        ["markdown.mdx"] = { "prettierd", "prettier", "dprint", stop_after_first = true },
+        ["javascript"] = { "deno_fmt", "prettierd", "prettier", "biome", "dprint", stop_after_first = true },
+        ["javascriptreact"] = function(bufnr)
+          return { first(bufnr, "deno_fmt", "prettierd", "prettier", "biome", "dprint"), "rustywind" }
+        end,
+        ["typescript"] = { "deno_fmt", "prettierd", "prettier", "biome", "dprint", stop_after_first = true },
+        ["typescriptreact"] = function(bufnr)
+          return { first(bufnr, "deno_fmt", "prettierd", "prettier", "biome", "dprint"), "rustywind" }
+        end,
+        ["svelte"] = function(bufnr)
+          return { first(bufnr, "deno_fmt", "prettierd", "prettier", "biome", "dprint"), "rustywind" }
+        end,
       },
       formatters = {
         biome = {
