@@ -56,14 +56,14 @@ return {
         ["markdown.mdx"] = { "prettierd", "prettier", "dprint", stop_after_first = true },
         ["javascript"] = { "deno_fmt", "prettierd", "prettier", "biome", "dprint", stop_after_first = true },
         ["javascriptreact"] = function(bufnr)
-          return { first(bufnr, "deno_fmt", "prettierd", "prettier", "biome", "dprint"), "rustywind" }
+          return { "rustywind", first(bufnr, "deno_fmt", "prettierd", "prettier", "biome", "dprint") }
         end,
         ["typescript"] = { "deno_fmt", "prettierd", "prettier", "biome", "dprint", stop_after_first = true },
         ["typescriptreact"] = function(bufnr)
-          return { first(bufnr, "deno_fmt", "prettierd", "prettier", "biome", "dprint"), "rustywind" }
+          return { "rustywind", first(bufnr, "deno_fmt", "prettierd", "prettier", "biome", "dprint") }
         end,
         ["svelte"] = function(bufnr)
-          return { first(bufnr, "deno_fmt", "prettierd", "prettier", "biome", "dprint"), "rustywind" }
+          return { "rustywind", first(bufnr, "deno_fmt", "prettierd", "prettier", "biome", "dprint") }
         end,
       },
       formatters = {
