@@ -36,11 +36,13 @@ return {
     },
     config = function()
       local cmp = require("cmp")
-      cmp.setup({
+      local luasnip = require("luasnip")
+      luasnip.config.setup({})
 
+      cmp.setup({
         snippet = {
           expand = function(args)
-            vim.snippet.expand(args.body)
+            luasnip.lsp_expand(args.body)
           end,
         },
 
@@ -60,7 +62,21 @@ return {
 
           -- Manually trigger a completion from nvim-cmp.
           ["<C-Space>"] = cmp.mapping.complete({}),
+
+          -- <c-l> will move you to the right of each of the expansion locations.
+          -- <c-h> is similar, except moving you backwards.
+          ["<C-l>"] = cmp.mapping(function()
+            if luasnip.expand_or_locally_jumpable() then
+              luasnip.expand_or_jump()
+            end
+          end, { "i", "s" }),
+          ["<C-h>"] = cmp.mapping(function()
+            if luasnip.locally_jumpable(-1) then
+              luasnip.jump(-1)
+            end
+          end, { "i", "s" }),
         }),
+
         sources = {
           { name = "nvim_lsp" },
           -- { name = "snippets" },
