@@ -22,6 +22,9 @@ require("lazy").setup({
     { import = "core.lspconfig" },
     { import = "core.treesitter" },
     { import = "plugins" },
+    -- Extra plugins won't be loaded by default
+    -- Add the extra plugins here if needed
+    -- { import = "plugins.extras.grug-far" },
     { import = "langs" },
   },
   checker = { enabled = true }, -- automatically check for plugin updates

@@ -2,10 +2,12 @@ lazypath
 stdpath
 nvim
 lspconfig
+grug
 tohtml
 themer
 bufferline
 catppuccin
+luasnip
 gitsigns
 kanagawa
 lazydev
@@ -148,8 +150,10 @@ foldtext
 guifont
 antialiasing
 hrsh
-garymjr
+jsregexp
+premade
 rafamadriz
+saadparwaiz
 noinsert
 revious
 orward
@@ -247,8 +251,8 @@ vitest
 yamlls
 fnameescape
 laytan
-dprint
 shfmt
+dprint
 formatexpr
 commitizen
 gitdiff
@@ -257,6 +261,7 @@ Vsplit
 nvimdev
 productsway
 bufs
+Grug
 ahmedkhalf
 ibhagwan
 cursorlinenr
@@ -275,8 +280,6 @@ heavenshell
 lehre
 Previm
 oxlint
-exitcode
-errorformat
 rhysd
 gsplit
 trimempty
@@ -312,6 +315,7 @@ showcmd
 wezterm
 alacritty
 winnr
+tempname
 getcwd
 systemlist
 bufpath
