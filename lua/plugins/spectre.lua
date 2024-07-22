@@ -6,7 +6,8 @@ function _G.get_spectre_options(default_opts)
   local opts = default_opts or {}
 
   if Path.is_git_repo() then
-    opts.cwd = Path.get_git_root()
+    local git_root = require("utils.root").git()
+    opts.cwd = git_root
   end
 
   return opts
@@ -29,7 +30,8 @@ return {
       {
         "<leader>sR",
         function()
-          require("spectre").open({ cwd = vim.fn.expand("%:p:h") })
+          local cwd = require("utils.root").cwd()
+          require("spectre").open({ cwd = cwd })
         end,
         desc = "Replace in files (current dir)",
       },
