@@ -7,12 +7,29 @@ return {
     dependencies = {
       -- Snippet Engine & its associated nvim-cmp source
       {
-        "garymjr/nvim-snippets",
-        opts = {
-          friendly_snippets = true,
+        "L3MON4D3/LuaSnip",
+        build = (function()
+          -- Build Step is needed for regex support in snippets.
+          -- This step is not supported in many windows environments.
+          -- Remove the below condition to re-enable on windows.
+          if vim.fn.has("win32") == 1 or vim.fn.executable("make") == 0 then
+            return
+          end
+          return "make install_jsregexp"
+        end)(),
+        dependencies = {
+          -- `friendly-snippets` contains a variety of premade snippets.
+          {
+            "rafamadriz/friendly-snippets",
+            config = function()
+              require("luasnip.loaders.from_vscode").lazy_load()
+            end,
+          },
         },
-        dependencies = { "rafamadriz/friendly-snippets" },
       },
+      "saadparwaiz1/cmp_luasnip",
+
+      -- LSP source for nvim-cmp
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-path",
@@ -46,36 +63,13 @@ return {
         }),
         sources = {
           { name = "nvim_lsp" },
-          { name = "snippets" },
+          -- { name = "snippets" },
+          { name = "luasnip" },
           { name = "path" },
           { name = "buffer" },
         },
       })
     end,
-  },
-  -- Snippets
-  {
-    "garymjr/nvim-snippets",
-    keys = {
-      {
-        "<C-l>",
-        function()
-          return vim.snippet.active({ direction = 1 }) and "<cmd>lua vim.snippet.jump(1)<cr>" or "<C-l>"
-        end,
-        expr = true,
-        silent = true,
-        mode = { "i", "s" },
-      },
-      {
-        "<C-h>",
-        function()
-          return vim.snippet.active({ direction = -1 }) and "<cmd>lua vim.snippet.jump(-1)<cr>" or "<C-h>"
-        end,
-        expr = true,
-        silent = true,
-        mode = { "i", "s" },
-      },
-    },
   },
   -- Copilot
   {
@@ -86,6 +80,8 @@ return {
       -- enable copilot for specific filetypes
       vim.g.copilot_filetypes = {
         ["TelescopePrompt"] = false,
+        ["grug-far"] = false,
+        ["grug-far-history"] = false,
       }
 
       -- Set to true to assume that copilot is already mapped
