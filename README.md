@@ -65,7 +65,7 @@ docker run -w /root -it --rm alpine:latest sh -uelic '
 - [ ] Core
   - [x] [Coding](./lua/core/coding.lua)
     - [x] Cmp for completion
-    - [x] Nvim snippets
+    - [x] Snippets with LuaSnip
     - [x] Copilot
     - [x] Refactoring
     - [x] Ts comments
@@ -181,7 +181,6 @@ Also increasing Key Repeat and Delay Until Repeat settings in System Preferences
 - Disable `full stop with double-space` if you see the delay with `<space>-<space>`
 
 [![Which-key](https://i.gyazo.com/6403f6c57d2e54aca230589b2173eeb0.png)](https://gyazo.com/6403f6c57d2e54aca230589b2173eeb0)
-
 
 ## Resources
 
