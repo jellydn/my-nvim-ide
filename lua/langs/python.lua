@@ -1,6 +1,5 @@
 -- Credit to https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/plugins/extras/lang/python.lua
 local lsp = "pyright" -- or "basedpyright"
-local ruff = "ruff_lsp" -- or "ruff"
 
 return {
   {
@@ -17,16 +16,12 @@ return {
         basedpyright = {
           enabled = lsp == "basedpyright",
         },
+        -- Either pyright or basedpyright should be enabled
         [lsp] = {
           enabled = true,
         },
-        ruff_lsp = {
-          enabled = ruff == "ruff_lsp",
-        },
         ruff = {
-          enabled = ruff == "ruff",
-        },
-        [ruff] = {
+          enabled = true,
           keys = {
             {
               "<leader>co",
@@ -37,12 +32,12 @@ return {
         },
       },
       setup = {
-        [ruff] = function(_, opts)
+        ruff = function(_, opts)
           require("utils.lsp").register_keymaps("taplo", opts.keys, "Ruff")
           require("utils.lsp").on_attach(function(client, _)
             -- Disable hover in favor of Pyright
             client.server_capabilities.hoverProvider = false
-          end, ruff)
+          end, "Ruff")
         end,
       },
     },
