@@ -6,7 +6,7 @@ function _G.get_spectre_options(default_opts)
   local opts = default_opts or {}
 
   if Path.is_git_repo() then
-    local git_root = require("utils.root").git()
+    local git_root = require("utils.root").get()
     opts.cwd = git_root
   end
 
@@ -20,45 +20,34 @@ return {
     cmd = "Spectre",
     opts = { open_cmd = "noswapfile vnew" },
     keys = {
+      -- Search and replace from git root
       {
         "<leader>sr",
         function()
-          require("spectre").open()
+          local git_root = require("utils.root").git()
+          require("spectre").open({
+            cwd = git_root,
+          })
         end,
+        desc = "Replace in Files (Git root)",
+      },
+      -- Search and replace from LSP root, useful for monorepo
+      {
+        "<leader>s/",
+        ":lua require('spectre').open(_G.get_spectre_options())<CR>",
         desc = "Replace in files",
       },
+      -- Search on select word
       {
-        "<leader>sR",
-        function()
-          local cwd = require("utils.root").cwd()
-          require("spectre").open({ cwd = cwd })
-        end,
-        desc = "Replace in files (current dir)",
-      },
-      {
-        "<leader>sp",
-        ":lua require('spectre').open(_G.get_spectre_options())<CR>",
-        desc = "Replace in files (Root dir)",
-      },
-      -- Search current word
-      {
-        "<leader>sP",
+        "<leader>sf",
         ":lua require('spectre').open_visual(_G.get_spectre_options({ select_word = true }))<CR>",
-        desc = "Replace current word (Root dir)",
-      },
-      -- Open search with select word in visual mode
-      {
-        "<leader>sr",
-        ":lua require('spectre').open_visual(_G.get_spectre_options())<CR>",
-        mode = "v",
-        silent = true,
-        desc = "Replace current word (Root dir)",
+        desc = "Search word on all files",
       },
       -- Search on current file
       {
-        "<leader>sf",
+        "<leader>sF",
         ":lua require('spectre').open_file_search(_G.get_spectre_options({ select_word = true }))<CR>",
-        desc = "Replace in current file",
+        desc = "Search word on current file",
       },
     },
   },
