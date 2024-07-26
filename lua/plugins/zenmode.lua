@@ -53,6 +53,10 @@ return {
           enabled = true,
           font = "19.5", -- set font size to 19.5
         },
+        kitty = {
+          enabled = true,
+          font = "+1", -- increase font size by 2
+        },
       },
     },
     config = true,
