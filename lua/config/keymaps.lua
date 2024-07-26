@@ -191,30 +191,6 @@ map("n", "zk", "zckzOzz", {
   desc = "Close current fold when open. Always open previous fold.",
 })
 
-local Diagnostics = require("utils.diagnostics")
-
-local Lsp = require("utils.lsp")
-local Cmd = require("utils.cmd")
-
--- Create command to stop LSP client
-Cmd.create_cmd("StopLspClient", function()
-  -- List all active clients
-  local clients = vim.lsp.get_active_clients()
-  local items = {}
-  for _, client in ipairs(clients) do
-    table.insert(items, client.name)
-  end
-
-  -- Show list of clients with ui select
-  vim.ui.select(items, {
-    prompt = "Select LSP client to stop",
-  }, function(choice)
-    if choice ~= nil then
-      Lsp.stop_lsp_client_by_name(choice)
-    end
-  end)
-end, { nargs = 0 })
-
 -- Refer [FAQ - Neovide](https://neovide.dev/faq.html#how-can-i-use-cmd-ccmd-v-to-copy-and-paste)
 if vim.g.neovide then
   vim.keymap.set("n", "<D-s>", ":w<CR>") -- Save
@@ -244,10 +220,6 @@ end
 -- Disable q default as it's used for quitting
 map("n", "<leader>tq", "<cmd>lua _G.toggle_q_macro()<CR>", { noremap = true, silent = true, desc = "Toggle Macros" })
 map("n", "q", "<Nop>", { noremap = true })
-
-map("n", "<leader>td", function()
-  Diagnostics.toggle_diagnostics_level()
-end, { noremap = true, silent = true, desc = "Toggle Diagnostics Level" })
 
 -- Silent keymap option
 local opts = { silent = true }
@@ -318,3 +290,43 @@ map("x", "<leader>ff", ":<C-u>lua require('utils.format').format_json_with_jq()<
   desc = "Format selected text with jq",
   silent = true,
 })
+
+local Diagnostics = require("utils.diagnostics")
+local Lsp = require("utils.lsp")
+local Cmd = require("utils.cmd")
+
+map("n", "<leader>td", function()
+  Diagnostics.toggle_diagnostics_level()
+end, { noremap = true, silent = true, desc = "Toggle Diagnostics Level" })
+
+-- Stop LSP client by name
+Cmd.create_cmd("StopLspClient", function()
+  -- List all active clients
+  local clients = vim.lsp.get_active_clients()
+  local items = {}
+  for _, client in ipairs(clients) do
+    table.insert(items, client.name)
+  end
+
+  -- Show list of clients with ui select
+  vim.ui.select(items, {
+    prompt = "Select LSP client to stop",
+  }, function(choice)
+    if choice ~= nil then
+      Lsp.stop_lsp_client_by_name(choice)
+    end
+  end)
+end, { nargs = 0 })
+
+map("n", "<leader>ls", ":StopLspClient<CR>", { noremap = true, silent = true, desc = "Stop LSP Client" })
+
+-- Change directory to the root of the current LSP client
+Cmd.create_cmd("LspRooter", function()
+  local root_dir = require("utils.root").get()
+  if root_dir then
+    vim.cmd("cd " .. root_dir)
+  else
+    print("No root directory found for client")
+  end
+end, { nargs = 0 })
+map("n", "<leader>ld", ":LspRooter<CR>", { noremap = true, silent = true, desc = "Change directory to LSP root" })
