@@ -102,7 +102,7 @@ return {
       local config = require("fzf-lua.config")
 
       -- Files actions
-      config.defaults.actions.files["alt-h"] = actions.toggle_hidden
+      config.defaults.actions.files["alt-."] = actions.toggle_hidden
 
       -- Trouble
       config.defaults.actions.files["ctrl-t"] = require("trouble.sources.fzf").actions.open
