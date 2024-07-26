@@ -355,7 +355,26 @@ return {
   -- Trouble
   {
     "folke/trouble.nvim",
-    opts = {}, -- for default options, refer to the configuration section for custom setup.
+    opts = {
+      modes = {
+        -- Diagnostics for the current buffer and errors from the current project
+        errors = {
+          mode = "diagnostics", -- inherit from diagnostics mode
+          filter = {
+            any = {
+              buf = 0, -- current buffer
+              {
+                severity = vim.diagnostic.severity.ERROR, -- errors only
+                -- limit to files in the current project
+                function(item)
+                  return item.filename:find((vim.loop or vim.uv).cwd(), 1, true)
+                end,
+              },
+            },
+          },
+        },
+      },
+    },
     cmd = "Trouble",
     keys = {
       {
@@ -382,6 +401,23 @@ return {
         "<leader>xQ",
         "<cmd>Trouble qflist toggle<cr>",
         desc = "Quickfix List (Trouble)",
+      },
+    },
+  },
+  {
+    "folke/todo-comments.nvim",
+    optional = true,
+    dependencies = { "nvim-lua/plenary.nvim" },
+    keys = {
+      {
+        "<leader>xf",
+        ":Trouble todo filter = {tag = {FIX,FIXME}}<CR>",
+        desc = "Fix/Fixme (Trouble)",
+      },
+      {
+        "<leader>xt",
+        ":Trouble todo filter = {tag = {TODO}}<CR>",
+        desc = "Todo (Trouble)",
       },
     },
   },
