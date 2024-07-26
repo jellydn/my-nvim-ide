@@ -17,7 +17,7 @@ return {
     optional = true,
     opts = {
       spec = {
-        { "<leader>l", group = "linter", icon = "" },
+        { "<leader>l", group = "linter/lsp", icon = "" },
       },
     },
   },
