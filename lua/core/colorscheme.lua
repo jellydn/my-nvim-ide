@@ -79,6 +79,34 @@ return {
     name = "catppuccin",
     opts = {
       transparent_background = is_transparent,
+      integrations = {
+        cmp = true,
+        dashboard = true,
+        flash = true,
+        gitsigns = true,
+        headlines = true,
+        indent_blankline = { enabled = true },
+        lsp_trouble = true,
+        mason = true,
+        markdown = true,
+        mini = true,
+        native_lsp = {
+          enabled = true,
+          underlines = {
+            errors = { "undercurl" },
+            hints = { "undercurl" },
+            warnings = { "undercurl" },
+            information = { "undercurl" },
+          },
+        },
+        neotest = true,
+        noice = true,
+        notify = true,
+        semantic_tokens = true,
+        treesitter = true,
+        treesitter_context = true,
+        which_key = true,
+      },
     },
   },
   {
@@ -93,6 +121,16 @@ return {
     config = function(_, opts)
       local dracula = require("dracula")
       dracula.setup(opts)
+      -- Disable spell check as it's too red
+      vim.o.spell = false
+    end,
+  },
+  {
+    "lalitmee/cobalt2.nvim",
+    lazy = true,
+    dependencies = { "tjdevries/colorbuddy.nvim", tag = "v1.0.0" },
+    init = function()
+      require("colorbuddy").colorscheme("cobalt2")
       -- Disable spell check as it's too red
       vim.o.spell = false
     end,

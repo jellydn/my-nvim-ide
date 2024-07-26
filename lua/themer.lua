@@ -13,6 +13,10 @@ local function is_tmux()
   return os.getenv("TMUX") ~= nil
 end
 
+local function is_kitty_terminal()
+  return os.getenv("TERM") == "xterm-kitty"
+end
+
 -- Default color scheme
 local default_color_scheme = "kanagawa"
 
@@ -22,6 +26,7 @@ local night_themes = {
   "kanagawa",
   "nightfox",
   "rose-pine",
+  "cobalt2",
   "tokyonight",
 }
 
@@ -48,7 +53,7 @@ M.selectColorSchemeByTime = function()
     return default_color_scheme
   end
 
-  if is_alacritty_terminal() then
+  if is_alacritty_terminal() or is_kitty_terminal() then
     return "kanagawa"
   end
 
