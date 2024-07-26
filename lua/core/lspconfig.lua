@@ -19,6 +19,7 @@ local setup_keymaps = function(client, buffer)
   map("<leader>cf", vim.lsp.buf.format, "Code Format")
 
   if client.server_capabilities.hoverProvider then
+    map("<leader>k", vim.lsp.buf.hover, "Documentation")
     map("K", vim.lsp.buf.hover, "Documentation")
   end
   if client.server_capabilities.definitionProvider or client.server_capabilities.declarationProvider then
