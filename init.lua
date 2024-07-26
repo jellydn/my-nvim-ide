@@ -25,6 +25,8 @@ require("lazy").setup({
     -- Extra plugins won't be loaded by default
     -- Add the extra plugins here if needed
     -- { import = "plugins.extras.grug-far" },
+    -- { import = "plugins.extras.statuscol" },
+    -- { import = "plugins.extras.nvim-ufo" },
     { import = "langs" },
   },
   checker = { enabled = true }, -- automatically check for plugin updates
