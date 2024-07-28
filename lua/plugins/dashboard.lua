@@ -11,6 +11,19 @@ logo = string.rep("\n", 4) .. logo .. "\n\n"
 
 return {
   {
+    "folke/persistence.nvim",
+    event = "BufReadPre", -- this will only start session saving when an actual file was opened
+    opts = {
+      dir = vim.fn.stdpath("state") .. "/my-sessions/", -- directory where session files are saved
+    },
+    keys = {
+      { "<leader>qs", function() require("persistence").save() end, desc = "Save session" },
+      { "<leader>ql", function() require("persistence").load({ last = true }) end, desc = "Restore last session" },
+      { "<leader>qS", function() require("persistence").select() end, desc = "Select session to restore" },
+      { "<leader>qd", function() require("persistence").stop() end, desc = "Stop persistence" },
+    },
+  },
+  {
     "nvimdev/dashboard-nvim",
     lazy = false, -- As https://github.com/nvimdev/dashboard-nvim/pull/450, dashboard-nvim shouldn't be lazy-loaded to properly handle stdin.
     opts = function()
@@ -20,13 +33,7 @@ return {
           packages = { enable = false },
           header = vim.split(logo, "\n"),
           shortcut = {
-            {
-              icon = "󰊳 ",
-              desc = "Update",
-              group = "@property",
-              action = "Lazy update",
-              key = "u",
-            },
+            { icon = "󰊳 ", desc = "Update", group = "@property", action = "Lazy update", key = "u" },
             {
               icon = " ",
               icon_hl = "@variable",
@@ -43,19 +50,14 @@ return {
               key = "c",
             },
             {
-              icon = "󰒲 ",
-              desc = " Lazy",
+              icon = " ",
+              desc = " Restore Session",
               group = "Number",
-              action = "Lazy",
-              key = "l",
+              action = [[lua require('persistence').load()]],
+              key = "s",
             },
-            {
-              icon = " ",
-              desc = " Quit",
-              group = "Number",
-              action = "qa",
-              key = "q",
-            },
+            { icon = "󰒲 ", desc = " Lazy", group = "Number", action = "Lazy", key = "l" },
+            { icon = " ", desc = " Quit", group = "Number", action = "qa", key = "q" },
           },
           footer = function()
             return { "productsway.com" }
