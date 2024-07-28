@@ -26,6 +26,7 @@ local night_themes = {
   "kanagawa",
   "nightfox",
   "rose-pine",
+  "night-owl",
   "tokyonight",
 }
 

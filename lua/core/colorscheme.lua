@@ -137,6 +137,17 @@ return {
     end,
   },
   {
+    "oxfist/night-owl.nvim",
+    lazy = true,
+    opts = {
+      bold = true,
+      italics = true,
+      underline = true,
+      undercurl = true,
+      transparent_background = is_transparent,
+    },
+  },
+  {
     "folke/tokyonight.nvim",
     lazy = true,
     opts = {
