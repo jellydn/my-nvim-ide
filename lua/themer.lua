@@ -26,7 +26,6 @@ local night_themes = {
   "kanagawa",
   "nightfox",
   "rose-pine",
-  "cobalt2",
   "tokyonight",
 }
 
@@ -48,13 +47,16 @@ vim.keymap.set("n", "<leader>sC", select_theme, {
 
 -- Select color scheme based on the time
 M.selectColorSchemeByTime = function()
-  -- If it's vscode, warp terminal, tmux, neovide, or transparent background, use default color scheme
-  if vim.g.vscode or is_warp_terminal() or is_tmux() or vim.g.neovide then
+  -- If it's vscode, warp terminal, tmux, neovide then use default color scheme
+  if
+    vim.g.vscode
+    or is_warp_terminal()
+    or is_tmux()
+    or is_alacritty_terminal()
+    or is_kitty_terminal()
+    or vim.g.neovide
+  then
     return default_color_scheme
-  end
-
-  if is_alacritty_terminal() or is_kitty_terminal() then
-    return "kanagawa"
   end
 
   local idx = tonumber(os.date("%S")) % #night_themes + 1
