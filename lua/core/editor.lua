@@ -175,7 +175,8 @@ return {
             {
               hl = "MiniStatuslineFileinfo",
               strings = {
-                vim.bo.filetype ~= "" and require("mini.icons").get("filetype", vim.bo.filetype),
+                vim.bo.filetype ~= ""
+                  and require("mini.icons").get("filetype", vim.bo.filetype) .. " " .. vim.bo.filetype,
               },
             },
             { hl = mode_hl, strings = { "%l:%v" } },
