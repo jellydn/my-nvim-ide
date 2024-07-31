@@ -26,7 +26,7 @@ return {
       },
     },
     keys = {
-      { "<leader>tv", ":Hardtime toggle", desc = "Toggle hardtime" },
+      { "<leader>th", ":Hardtime toggle", desc = "Toggle hardtime" },
     },
   },
 }
