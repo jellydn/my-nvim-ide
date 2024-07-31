@@ -27,7 +27,6 @@ local fold_text_handler = function(virtual_text, lnum, endLnum, width, truncate)
 end
 
 return {
-  { import = "plugins.extras.statuscol" },
   -- UFO folding
   {
     "kevinhwang91/nvim-ufo",
@@ -59,7 +58,6 @@ return {
     },
     init = function()
       -- Setup UFO folding
-      vim.o.foldcolumn = "1" -- '0' is not bad
       vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
       vim.o.foldlevelstart = 99
       vim.o.foldenable = true

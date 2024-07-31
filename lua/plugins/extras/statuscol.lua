@@ -13,11 +13,8 @@ return {
       },
     })
   end,
-  -- NOTE: Enable foldcolumn if needed
-  -- Below is an example of how to enable foldcolumn
-  --
-  -- init = function()
-  --   -- Show foldcolumn on the left
-  --   vim.o.foldcolumn = "1"
-  -- end,
+  init = function()
+    -- Show foldcolumn on the left
+    vim.o.foldcolumn = "1"
+  end,
 }
