@@ -78,7 +78,6 @@ return {
         formatter = { "path.filename_first", 2 },
       },
       lsp = {
-        async_or_timeout = true,
         symbols = {
           symbol_hl = function(s)
             return "TroubleIcon" .. s
@@ -127,11 +126,15 @@ return {
 
       -- Refer https://github.com/ibhagwan/fzf-lua/issues/602
       vim.lsp.handlers["textDocument/codeAction"] = fzf_lua.lsp_code_actions
-      vim.lsp.handlers["textDocument/definition"] = fzf_lua.lsp_definitions
+      vim.lsp.handlers["textDocument/definition"] = function()
+        fzf_lua.lsp_definitions({ jump_to_single_result = true, ignore_current_line = true })
+      end
       vim.lsp.handlers["textDocument/declaration"] = fzf_lua.lsp_declarations
       vim.lsp.handlers["textDocument/typeDefinition"] = fzf_lua.lsp_typedefs
       vim.lsp.handlers["textDocument/implementation"] = fzf_lua.lsp_implementations
-      vim.lsp.handlers["textDocument/references"] = fzf_lua.lsp_references
+      vim.lsp.handlers["textDocument/references"] = function()
+        fzf_lua.lsp_references({ ignore_current_line = true, jump_to_single_result = true })
+      end
       vim.lsp.handlers["textDocument/documentSymbol"] = fzf_lua.lsp_document_symbols
       vim.lsp.handlers["workspace/symbol"] = fzf_lua.lsp_workspace_symbols
       vim.lsp.handlers["callHierarchy/incomingCalls"] = fzf_lua.lsp_incoming_calls
