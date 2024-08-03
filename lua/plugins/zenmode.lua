@@ -55,7 +55,7 @@ return {
         },
         kitty = {
           enabled = true,
-          font = "+1", -- increase font size by 2
+          font = "+1", -- increase font size by 1
         },
       },
     },
