@@ -35,6 +35,7 @@ require("lazy").setup({
     -- { import = "plugins.extras.statuscol" },
     -- { import = "plugins.extras.nvim-ufo" },
     -- { import = "plugins.extras.hardtime" },
+    -- { import = "plugins.extras.mini-hipatterns" },
     { import = "langs" },
   },
   checker = { enabled = true }, -- automatically check for plugin updates
