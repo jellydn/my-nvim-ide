@@ -196,6 +196,13 @@ return {
           require("mini.bufremove").delete(0, false)
         end,
       },
+      {
+        "<C-q>",
+        desc = "Delete buffer",
+        function()
+          require("mini.bufremove").delete(0, false)
+        end,
+      },
     },
   },
   -- Indent
