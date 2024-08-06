@@ -36,6 +36,7 @@ require("lazy").setup({
     -- { import = "plugins.extras.nvim-ufo" },
     -- { import = "plugins.extras.hardtime" },
     -- { import = "plugins.extras.mini-hipatterns" },
+    -- { import = "plugins.extras.screenkey" },
     { import = "langs" },
   },
   checker = { enabled = true }, -- automatically check for plugin updates

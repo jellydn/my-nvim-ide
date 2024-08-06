@@ -18,7 +18,7 @@ return {
   },
   -- Markdown preview
   {
-    "MeanderingProgrammer/markdown.nvim",
+    "MeanderingProgrammer/render-markdown.nvim",
     dependencies = { "nvim-treesitter/nvim-treesitter" },
     opts = {},
     ft = { "markdown" },
