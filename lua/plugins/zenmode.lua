@@ -57,9 +57,12 @@ return {
           enabled = true,
           font = "+1", -- increase font size by 1
         },
+        neovide = {
+          enabled = true,
+          scale = 1.1, -- Increase scale by 10%
+        },
       },
     },
-    config = true,
     keys = {
       -- add <leader>cz to enter zen mode
       {
