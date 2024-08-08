@@ -37,6 +37,7 @@ require("lazy").setup({
     -- { import = "plugins.extras.hardtime" },
     -- { import = "plugins.extras.mini-hipatterns" },
     -- { import = "plugins.extras.screenkey" },
+    -- { import = "plugins.extras.snipe" },
     { import = "langs" },
   },
   checker = { enabled = true }, -- automatically check for plugin updates
