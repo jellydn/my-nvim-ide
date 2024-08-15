@@ -106,6 +106,7 @@ return {
         treesitter = true,
         treesitter_context = true,
         which_key = true,
+        fzf = true,
       },
     },
   },
