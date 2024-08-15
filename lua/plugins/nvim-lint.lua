@@ -73,7 +73,7 @@ return {
     keys = {
       {
         -- Run lint by name
-        "<leader>lr",
+        "<leader>lR",
         function()
           local items = {
             -- Github actions
@@ -92,11 +92,11 @@ return {
             end
           end)
         end,
-        desc = "Run Nvim Lint",
+        desc = "Select Linter to run",
       },
       -- Fix .env variables
       {
-        "<leader>lf",
+        "<leader>le",
         function()
           local file = vim.fn.fnameescape(vim.fn.expand("%:p")) -- Escape file path for shell
 
