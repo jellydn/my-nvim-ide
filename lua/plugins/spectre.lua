@@ -18,7 +18,11 @@ return {
     -- Search and replace with pattern
     "nvim-pack/nvim-spectre",
     cmd = "Spectre",
-    opts = { open_cmd = "noswapfile vnew" },
+    opts = {
+      open_cmd = "noswapfile vnew",
+      lnum_for_results = true, -- show line number for search/replace results
+      is_insert_mode = true, -- start open panel on is_insert_mode
+    },
     keys = {
       -- Search and replace from git root
       {
