@@ -2,7 +2,7 @@
 -- whichever is smaller
 local function zen_mode_width()
   local width = vim.api.nvim_win_get_width(0)
-  local min_width = math.max(width * 0.70, 90)
+  local min_width = math.max(width * 0.75, 90)
   return math.min(width, min_width)
 end
 
