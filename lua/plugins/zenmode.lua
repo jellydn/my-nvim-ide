@@ -55,7 +55,7 @@ return {
         },
         kitty = {
           enabled = true,
-          font = "+1", -- increase font size by 1
+          font = "+0.5", -- increase font size by 0.5
         },
         neovide = {
           enabled = true,
