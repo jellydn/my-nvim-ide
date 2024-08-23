@@ -475,13 +475,7 @@ return {
     event = "VeryLazy",
     vscode = true, -- Enable this plugin for vscode
     ---@type Flash.Config
-    opts = {
-      modes = {
-        char = {
-          jump_labels = true,
-        },
-      },
-    },
+    opts = {},
     keys = {
       {
         "s",
