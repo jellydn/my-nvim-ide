@@ -15,6 +15,7 @@ return {
     },
     opts = {
       dap = false,
+      strategy = "toggleterm",
       -- Configuration for task floating windows
       task_win = {
         -- How much space to leave around the floating window
