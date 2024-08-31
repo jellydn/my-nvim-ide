@@ -26,6 +26,12 @@ return {
     opts = {
       spec = {
         { "<leader>a", group = "ai" },
+        { "gm", group = "+Copilot chat" },
+        { "gmh", desc = "Show help" },
+        { "gmd", desc = "Show diff" },
+        { "gmp", desc = "Show system prompt" },
+        { "gms", desc = "Show selection" },
+        { "gmy", desc = "Yank diff" },
       },
     },
   },
@@ -86,6 +92,10 @@ return {
         -- Show the user selection
         show_user_selection = {
           normal = "gms",
+        },
+        -- Show help
+        show_help = {
+          normal = "gmh",
         },
       },
     },
@@ -151,15 +161,6 @@ return {
             vim.bo.filetype = "markdown"
           end
         end,
-      })
-
-      local wk = require("which-key")
-      wk.add({
-        { "<leader>gm", group = "+Copilot Chat" }, -- group
-        { "<leader>gmd", desc = "Show diff" },
-        { "<leader>gmp", desc = "System prompt" },
-        { "<leader>gms", desc = "Show selection" },
-        { "<leader>gmy", desc = "Yank diff" },
       })
     end,
     keys = {
@@ -262,5 +263,14 @@ return {
         size = { width = 50 },
       })
     end,
+  },
+  {
+    "folke/which-key.nvim",
+    optional = true,
+    opts = {
+      spec = {
+        { "<leader>gm", group = "Copilot Chat" },
+      },
+    },
   },
 }
