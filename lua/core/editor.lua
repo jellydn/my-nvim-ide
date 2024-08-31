@@ -465,7 +465,12 @@ return {
       {
         "<leader>xt",
         ":Trouble todo filter = {tag = {TODO}}<CR>",
-        desc = "Todo (Trouble)",
+        desc = "Todo (Troble)",
+      },
+      {
+        "<leader>xT",
+        ":TodoFzfLua<CR>",
+        desc = "Todo (Fzf Lua)",
       },
     },
   },
