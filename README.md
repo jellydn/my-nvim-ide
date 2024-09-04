@@ -54,6 +54,35 @@ docker run -w /root -it --rm alpine:latest sh -uelic '
   '
 ```
 
+## Cheatsheet
+
+Here are the keybinding groups configured using the `which-key.nvim` plugin:
+
+| Keybinding      | Description             |
+| --------------- | ----------------------- |
+| `<leader><tab>` | Tabs                    |
+| `<leader>a`     | AI chat                 |
+| `<leader>b`     | Buffer operations       |
+| `<leader>c`     | Code actions            |
+| `<leader>d`     | Debug actions           |
+| `<leader>f`     | File/find operations    |
+| `<leader>g`     | Git operations          |
+| `<leader>o`     | Open task runner        |
+| `<leader>q`     | Quit/session management |
+| `<leader>r`     | Refactoring operations  |
+| `<leader>s`     | Search operations       |
+| `<leader>t`     | Toggle options          |
+| `<leader>u`     | UI operations           |
+| `<leader>w`     | Window management       |
+| `<leader>x`     | Diagnostics/quickfix    |
+| `[`             | Previous operations     |
+| `]`             | Next operations         |
+| `g`             | Goto operations         |
+| `gs`            | Surround operations     |
+| `z`             | Fold operations         |
+
+For a detailed list of all keybindings, you can press `<leader>` in Neovim to bring up the `which-key` menu.
+
 ## Screenshots
 
 [![Screenshot](https://i.gyazo.com/3134fcc6cd2a15340e10951d6a21f2c4.png)](https://gyazo.com/3134fcc6cd2a15340e10951d6a21f2c4)
