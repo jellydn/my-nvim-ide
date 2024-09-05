@@ -134,11 +134,11 @@ For a detailed list of all keybindings, you can press `<leader>` in Neovim to br
   - [x] dashboard
   - [x] eslint
   - [x] Fzf for file search
-  - [x] harpoon for quickly navigate between buffers
   - [x] hurl
   - [x] vim-jsdoc for JSDoc comments
   - [x] markdown
   - [x] nvim-lint
+  - [x] nvim-notify
   - [x] oil for file explorer
   - [x] overseer to run tasks
   - [x] quick-code-runner for running code
@@ -151,8 +151,23 @@ For a detailed list of all keybindings, you can press `<leader>` in Neovim to br
   - [x] typecheck for Typescript type checking
   - [x] undotree for undo history
   - [x] vscode for vscode integration
-  - [x] wakatime for tracking time
   - [x] zenmode & twilight for coding in distraction free mode
+- [ ] [Extras](./lua/plugins/extras)
+  - [x] aerial for code navigation
+  - [x] avante for AI chat
+  - [x] grug-far for search and replace
+  - [x] harpoon for quickly navigate between buffers
+  - [x] hardtime for learning VIM motion
+  - [x] lspsaga for LSP actions
+  - [x] mini-hipatterns for highlighting patterns
+  - [x] multicursor
+  - [x] no-neck-pain for center the layout
+  - [x] nvim-ufo for folding
+  - [x] package-info for npm package information
+  - [x] screenkey for showing key press
+  - [x] snipe for quick jump between buffer
+  - [x] statuscol for status color
+  - [x] wakatime for tracking time
 
 ## Neovide
 
