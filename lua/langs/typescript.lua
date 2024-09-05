@@ -1,5 +1,5 @@
 local Lsp = require("utils.lsp")
-local typescript_lsp = vim.g.typescript_lsp or "vtsls" -- tsserver or vtsls
+local typescript_lsp = vim.g.typescript_lsp or "vtsls" -- ts_ls or vtsls
 
 return {
   {
@@ -216,7 +216,7 @@ return {
             return true
           end
 
-          if typescript_lsp == "tsserver" then
+          if typescript_lsp == "ts_ls" then
             return true
           end
 
@@ -238,12 +238,12 @@ return {
           end
 
           Lsp.on_attach(function(client, bufnr)
-            if client.name == "tsserver" then
+            if client.name == "ts_ls" then
               -- Attach twoslash queries
               require("twoslash-queries").attach(client, bufnr)
             end
           end)
-          Lsp.register_keymaps("tsserver", opts.keys, "Typescript")
+          Lsp.register_keymaps("ts_ls", opts.keys, "Typescript")
         end,
       },
     },
