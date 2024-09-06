@@ -22,6 +22,17 @@ return {
         "<cmd>NoNeckPain<cr>",
         desc = "Distraction Free Mode",
       },
+      -- Increase and decrease width of NoNeckPain
+      {
+        "<leader>zu",
+        "<cmd>NoNeckPainWidthUp<cr>",
+        desc = "Increase NoNeckPain Width",
+      },
+      {
+        "<leader>zd",
+        "<cmd>NoNeckPainWidthDown<cr>",
+        desc = "Decrease NoNeckPain Width",
+      },
     },
   },
 }
