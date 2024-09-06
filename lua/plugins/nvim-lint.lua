@@ -22,21 +22,52 @@ return {
     },
   },
   {
+    "williamboman/mason.nvim",
+    optional = true,
+    opts = {
+      ensure_installed = {
+        "eslint_d",
+      },
+    },
+  },
+  {
     "mfussenegger/nvim-lint",
     event = "VeryLazy",
     opts = {
       linters_by_ft = {
         -- markdown = { "markdownlint" },
         ["*"] = { "cspell", "codespell" }, -- Install with: pip install codespell
-        javascript = { "oxlint" },
-        typescript = { "oxlint" },
-        javascriptreact = { "oxlint" },
-        typescriptreact = { "oxlint" },
+        javascript = { "oxlint", "eslint_d" },
+        typescript = { "oxlint", "eslint_d" },
+        javascriptreact = { "oxlint", "eslint_d" },
+        typescriptreact = { "oxlint", "eslint_d" },
+      },
+      linters = {
+        eslint_d = {
+          args = {
+            "--no-warn-ignored", -- Ignore warnings, support Eslint 9
+            "--format",
+            "json",
+            "--stdin",
+            "--stdin-filename",
+            function()
+              return vim.api.nvim_buf_get_name(0)
+            end,
+          },
+        },
       },
     },
     config = function(_, opts)
       local lint = require("lint")
       lint.linters_by_ft = opts.linters_by_ft
+
+      -- Ignore issue with missing eslint config file
+      lint.linters.eslint_d = require("lint.util").wrap(lint.linters.eslint_d, function(diagnostic)
+        if diagnostic.message:find("Error: Could not find config file") then
+          return nil
+        end
+        return diagnostic
+      end)
 
       vim.api.nvim_create_autocmd({ "BufWritePost", "BufReadPost", "InsertLeave" }, {
         callback = function()
@@ -82,6 +113,8 @@ return {
             "dotenv_linter", -- brew install dotenv-linter
             -- Markdown and writing
             "write_good", -- npm install -g write-good
+            -- Eslint
+            "eslint_d",
           }
 
           vim.ui.select(items, {
