@@ -77,6 +77,18 @@ local function get_config_path(filename)
   return nil
 end
 
+M.start_lsp_client_by_name = function(name, opts)
+  local clients = vim.lsp.get_active_clients()
+  for _, client in ipairs(clients) do
+    if client.name == name then
+      vim.notify("LSP client: " .. name .. " is already running", vim.log.levels.INFO, { title = "LSP" })
+      return
+    end
+  end
+  require("lspconfig")[name].setup(opts)
+  vim.notify("Started LSP client: " .. name, vim.log.levels.INFO, { title = "LSP" })
+end
+
 M.stop_lsp_client_by_name = function(name)
   local clients = vim.lsp.get_active_clients()
   for _, client in ipairs(clients) do
