@@ -27,7 +27,7 @@ return {
     ---@class PluginLspOpts
     opts = {
       servers = {
-        tsserver = {
+        ts_ls = {
           root_dir = require("lspconfig").util.root_pattern("package.json", "tsconfig.json"),
           single_file_support = false,
           handlers = {
@@ -228,7 +228,7 @@ return {
           end)
           Lsp.register_keymaps("vtsls", opts.keys, "TS")
         end,
-        tsserver = function(_, opts)
+        ts_ls = function(_, opts)
           if Lsp.deno_config_exist() then
             return true
           end
