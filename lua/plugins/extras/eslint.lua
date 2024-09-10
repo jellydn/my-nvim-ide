@@ -1,6 +1,5 @@
--- Turn off the default eslint LSP client, use eslint_d instead from nvim-lint
--- Turn on by running :ToggleEslint
-vim.g.lsp_eslint_enable = false
+-- Change the global to false to disable the eslint LSP start on startup
+vim.g.lsp_eslint_enable = true
 
 local Lsp = require("utils.lsp")
 
