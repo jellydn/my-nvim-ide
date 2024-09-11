@@ -130,8 +130,15 @@ end
 
 M.eslint_config_exists = function()
   local current_dir = vim.fn.getcwd()
-  local config_files =
-    { ".eslintrc.js", ".eslintrc.cjs", ".eslintrc.yaml", ".eslintrc.yml", ".eslintrc.json", ".eslintrc" }
+  local config_files = {
+    ".eslintrc.js",
+    ".eslintrc.cjs",
+    ".eslintrc.yaml",
+    ".eslintrc.yml",
+    ".eslintrc.json",
+    ".eslintrc",
+    "eslint.config.js",
+  }
 
   for _, file in ipairs(config_files) do
     local config_file = current_dir .. "/" .. file

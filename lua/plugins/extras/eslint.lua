@@ -1,5 +1,6 @@
 -- Change the global to false to disable the eslint LSP start on startup
-vim.g.lsp_eslint_enable = true
+-- vim.g.lsp_eslint_enable = "no" or "yes"
+local enable_eslint = vim.g.lsp_eslint_enable == "yes" or false
 
 local Lsp = require("utils.lsp")
 
@@ -15,8 +16,8 @@ local eslint_config = {
 }
 
 local function toggle_eslint()
-  vim.g.lsp_eslint_enable = not vim.g.lsp_eslint_enable
-  if vim.g.lsp_eslint_enable then
+  enable_eslint = not enable_eslint
+  if enable_eslint then
     Lsp.start_lsp_client_by_name("eslint", eslint_config)
     vim.cmd(":e") -- Workaround for the LSP on_attach function not being triggered
   else
@@ -38,7 +39,7 @@ return {
       },
       setup = {
         eslint = function()
-          if vim.g.lsp_eslint_enable == false then
+          if enable_eslint == false then
             return true
           end
           Lsp.on_attach(function(client, bufnr)
