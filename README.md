@@ -54,6 +54,21 @@ docker run -w /root -it --rm alpine:latest sh -uelic '
   '
 ```
 
+## Dynamic Config per project
+
+For example, I want to disable Eslint on a project, I can create a `.nvim-config.lua` file in the root of the project:
+
+```sh
+touch .nvim-config.lua
+```
+
+```lua
+print("Load custom settings")
+vim.g.lsp_eslint_enable = "yes"
+```
+
+You could enable Eslint manually by running `ToggleEslint` command.
+
 ## Cheatsheet
 
 Here are the keybinding groups configured using the `which-key.nvim` plugin:
