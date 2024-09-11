@@ -2,12 +2,17 @@
 -- @param name The name of the linter to run.
 local function run_linter_by(name)
   -- Refer for more details https://github.com/mfussenegger/nvim-lint/issues/22#issuecomment-841415438
-  require("lint").try_lint(name)
+  local cwd = require("utils.root").get()
+  require("lint").try_lint(name, {
+    cwd = cwd,
+  })
   local bufnr = vim.api.nvim_get_current_buf()
   vim.cmd(string.format("augroup au_%s_lint_%d", name, bufnr))
   vim.cmd("au!")
-  vim.cmd(string.format("au BufWritePost <buffer=%d> lua require'lint'.try_lint('%s')", bufnr, name))
-  vim.cmd(string.format("au BufEnter <buffer=%d> lua require'lint'.try_lint('%s')", bufnr, name))
+  vim.cmd(
+    string.format("au BufWritePost <buffer=%d> lua require'lint'.try_lint('%s', { cwd = '%s' })", bufnr, name, cwd)
+  )
+  vim.cmd(string.format("au BufEnter <buffer=%d> lua require'lint'.try_lint('%s', { cwd = '%s' })", bufnr, name, cwd))
   vim.cmd("augroup end")
 end
 
