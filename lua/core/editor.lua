@@ -166,9 +166,16 @@ return {
           local git = MiniStatusline.section_git({ trunc_width = 40 })
           local filename = MiniStatusline.section_filename({ trunc_width = 140 })
           local diagnostics = MiniStatusline.section_diagnostics({ trunc_width = 75 })
+          local lint_progress = function()
+            local linters = require("lint").get_running()
+            if #linters == 0 then
+              return "󰦕"
+            end
+            return "󱉶 " .. table.concat(linters, ", ")
+          end
           return MiniStatusline.combine_groups({
             { hl = mode_hl, strings = { mode:upper() } },
-            { hl = "MiniStatuslineDevinfo", strings = { git, diagnostics } },
+            { hl = "MiniStatuslineDevinfo", strings = { git, diagnostics, lint_progress() } },
             "%<", -- Mark general truncate point
             { hl = "MiniStatuslineFilename", strings = { filename } },
             "%=", -- End left alignment
