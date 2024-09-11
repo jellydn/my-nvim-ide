@@ -11,11 +11,12 @@ return {
   {
     "stevearc/overseer.nvim",
     dependencies = {
-      "akinsho/toggleterm.nvim",
+      -- Uncomment to use toggleterm as the strategy
+      -- "akinsho/toggleterm.nvim",
     },
     opts = {
       dap = false,
-      strategy = "toggleterm",
+      -- strategy = "toggleterm",
       -- Configuration for task floating windows
       task_win = {
         -- How much space to leave around the floating window
