@@ -29,7 +29,7 @@ git clone https://github.com/jellydn/my-nvim-ide.git ~/.config/nvim
 
 ### Try with NVIM_APPNAME
 
-> Install requires Neovim 0.10+. Always review the code before installing a configuration.
+> Install requires Neovim 0.10.1+. Always review the code before installing a configuration.
 
 Clone the repository and install the plugins:
 
@@ -54,29 +54,27 @@ docker run -w /root -it --rm alpine:latest sh -uelic '
   '
 ```
 
-## Dynamic Config per project
+### Dynamic Configuration with `.nvim-config.lua`
 
-For example, if you want to disable ESLint for a specific project and enable some extra plugins, you can create a `.nvim-config.lua` file in the root directory of the project:
+This configuration allows you to dynamically enable extra plugins and languages based on project-specific settings. Here's how it works:
 
-```sh
-touch .nvim-config.lua
-```
+1. **Project-Specific Configuration File**: Create a `.nvim-config.lua` file in the root of your project directory. This file is not tracked by Git and can be used to set project-specific settings.
 
-Let's say you want to use LSpSaga and No Neck Pain, and turn off the automatic start of ESLint for this project:
+2. **Enable Extra Plugins and Languages**: Define which extra plugins and languages should be enabled for your project in the `.nvim-config.lua` file.
+
+#### Example `.nvim-config.lua`
 
 ```lua
-print("Load custom settings")
--- Enable eslint plugin
+-- Enable extra plugins for this project
 vim.g.enable_plugins = {
-	lspsaga = "yes",
-	["no-neck-pain"] = "yes",
+  lspsaga = "yes"
 }
 
--- Turn off auto start of eslint
-vim.g.lsp_eslint_enable = "no"
+-- Enable extra languages for this project
+vim.g.enable_langs = {
+  python = "yes"
+}
 ```
-
-You can manually enable ESLint by running the `ToggleEslint` command.
 
 ## Cheatsheet
 
