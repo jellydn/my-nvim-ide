@@ -37,10 +37,10 @@ return {
       linters_by_ft = {
         -- markdown = { "markdownlint" },
         ["*"] = { "cspell", "codespell" }, -- Install with: pip install codespell
-        javascript = { "oxlint", "eslint_d" },
-        typescript = { "oxlint", "eslint_d" },
-        javascriptreact = { "oxlint", "eslint_d" },
-        typescriptreact = { "oxlint", "eslint_d" },
+        javascript = { "oxlint" },
+        typescript = { "oxlint" },
+        javascriptreact = { "oxlint" },
+        typescriptreact = { "oxlint" },
       },
       linters = {
         eslint_d = {
