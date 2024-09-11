@@ -34,44 +34,46 @@ if vim.loop.fs_stat(project_setting) then
   end
 end
 
-local enable_plugins = vim.g.enable_plugins or {}
+local enable_extra_plugins = vim.g.enable_plugins
+  or {
+    lspsaga = "yes",
+    ["no-neck-pain"] = "yes",
+    wakatime = "no",
+    harpoon = "no",
+  }
 
---- Import extra plugins if enabled
----@param plugin_name string
-local function load_optional_plugin(plugin_name)
-  return enable_plugins[plugin_name] == "yes" and { import = "plugins.extras." .. plugin_name } or nil
+local enable_extra_langs = vim.g.enable_langs or {
+  go = "yes",
+  rust = "yes",
+  python = "no",
+  ruby = "no",
+}
+
+-- Core spec
+local spec = {
+  { import = "core.editor" },
+  { import = "core.coding" },
+  { import = "core.colorscheme" },
+  { import = "core.lspconfig" },
+  { import = "core.treesitter" },
+  { import = "plugins" },
+  { import = "langs" },
+}
+
+-- Enable extra plugins and languages
+for plugin_name, enabled in pairs(enable_extra_plugins) do
+  if enabled == "yes" then
+    table.insert(spec, { import = "plugins.extras." .. plugin_name })
+  end
+end
+for lang_name, enabled in pairs(enable_extra_langs) do
+  if enabled == "yes" then
+    table.insert(spec, { import = "langs.extras." .. lang_name })
+  end
 end
 
 require("lazy").setup({
-  spec = {
-    { import = "core.editor" },
-    { import = "core.coding" },
-    { import = "core.colorscheme" },
-    { import = "core.lspconfig" },
-    { import = "core.treesitter" },
-    { import = "plugins" },
-    { import = "langs" },
-    -- Extra plugins won't be loaded by default
-    -- Add the extra plugins here if needed
-    load_optional_plugin("lspsaga"),
-    load_optional_plugin("no-neck-pain"),
-    load_optional_plugin("wakatime"),
-    load_optional_plugin("snipe"),
-    load_optional_plugin("mini-hipatterns"),
-    load_optional_plugin("aerial"),
-    load_optional_plugin("multicursor"),
-    load_optional_plugin("avante"),
-    load_optional_plugin("package-info"),
-    load_optional_plugin("grug-far"),
-    load_optional_plugin("screenkey"),
-    load_optional_plugin("statuscol"),
-    load_optional_plugin("nvim-ufo"),
-    load_optional_plugin("hardtime"),
-    load_optional_plugin("harpoon"),
-    -- Extra languages won't be loaded by default
-    -- { import = "langs.extras.ruby" },
-    -- { import = "langs.extras.swift" },
-  },
+  spec = spec,
   checker = { enabled = true }, -- automatically check for plugin updates
   performance = {
     rtp = {
