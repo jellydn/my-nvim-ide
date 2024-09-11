@@ -67,6 +67,7 @@ This configuration allows you to dynamically enable extra plugins and languages 
 ```lua
 -- Enable extra plugins for this project
 vim.g.enable_plugins = {
+	["no-neck-pain"] = "yes",
   lspsaga = "yes"
 }
 
@@ -74,6 +75,13 @@ vim.g.enable_plugins = {
 vim.g.enable_langs = {
   python = "yes"
 }
+
+-- Turn off auto start of eslint LSP, then you could run `ToggleEslint` to on/off
+vim.g.lsp_eslint_enable = "no"
+
+-- Use ts_ls for Typescript LSP
+vim.g.typescript_lsp = "ts_ls"
+
 ```
 
 ## Cheatsheet
