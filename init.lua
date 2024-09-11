@@ -34,6 +34,14 @@ if vim.loop.fs_stat(project_setting) then
   end
 end
 
+local enable_plugins = vim.g.enable_plugins or {}
+
+--- Import extra plugins if enabled
+---@param plugin_name string
+local function load_optional_plugin(plugin_name)
+  return enable_plugins[plugin_name] == "yes" and { import = "plugins.extras." .. plugin_name } or nil
+end
+
 require("lazy").setup({
   spec = {
     { import = "core.editor" },
@@ -43,24 +51,26 @@ require("lazy").setup({
     { import = "core.treesitter" },
     { import = "plugins" },
     { import = "langs" },
-    -- { import = "langs.extras.ruby" },
-    -- { import = "langs.extras.swift" },
     -- Extra plugins won't be loaded by default
     -- Add the extra plugins here if needed
-    -- { import = "plugins.extras.snipe" },
-    -- { import = "plugins.extras.mini-hipatterns" },
-    -- { import = "plugins.extras.aerial" },
-    -- { import = "plugins.extras.wakatime" },
-    -- { import = "plugins.extras.no-neck-pain" },
-    -- { import = "plugins.extras.multicursor" },
-    -- { import = "plugins.extras.avante" },
-    -- { import = "plugins.extras.package-info" },
-    -- { import = "plugins.extras.grug-far" },
-    -- { import = "plugins.extras.screenkey" },
-    -- { import = "plugins.extras.statuscol" },
-    -- { import = "plugins.extras.nvim-ufo" },
-    -- { import = "plugins.extras.hardtime" },
-    -- { import = "plugins.extras.lspsaga" },
+    load_optional_plugin("lspsaga"),
+    load_optional_plugin("no-neck-pain"),
+    load_optional_plugin("wakatime"),
+    load_optional_plugin("snipe"),
+    load_optional_plugin("mini-hipatterns"),
+    load_optional_plugin("aerial"),
+    load_optional_plugin("multicursor"),
+    load_optional_plugin("avante"),
+    load_optional_plugin("package-info"),
+    load_optional_plugin("grug-far"),
+    load_optional_plugin("screenkey"),
+    load_optional_plugin("statuscol"),
+    load_optional_plugin("nvim-ufo"),
+    load_optional_plugin("hardtime"),
+    load_optional_plugin("harpoon"),
+    -- Extra languages won't be loaded by default
+    -- { import = "langs.extras.ruby" },
+    -- { import = "langs.extras.swift" },
   },
   checker = { enabled = true }, -- automatically check for plugin updates
   performance = {
