@@ -10,13 +10,6 @@ return {
         end,
         desc = "Show NPM Package Info",
       },
-      {
-        "<leader>nu",
-        function()
-          require("package-info").update()
-        end,
-        desc = "Update current package",
-      },
     },
     opts = {},
   },
@@ -25,7 +18,7 @@ return {
     optional = true,
     opts = {
       spec = {
-        { "<leader>n", group = "NPM" },
+        { "<leader>n", group = "NodeJs/NPM" },
       },
     },
   },
