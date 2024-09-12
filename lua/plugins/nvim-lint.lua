@@ -42,6 +42,7 @@ return {
       linters_by_ft = {
         -- markdown = { "markdownlint" },
         ["*"] = { "cspell", "codespell" }, -- Install with: pip install codespell
+        -- Install: cargo install --git https://github.com/oxc-project/oxc oxlint
         javascript = { "oxlint" },
         typescript = { "oxlint" },
         javascriptreact = { "oxlint" },
