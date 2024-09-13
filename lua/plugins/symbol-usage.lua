@@ -2,6 +2,7 @@ return {
   "Wansmer/symbol-usage.nvim",
   event = "LspAttach",
   opts = {
+    request_pending_text = "",
     vt_position = "end_of_line",
     text_format = function(symbol)
       if symbol.references then
