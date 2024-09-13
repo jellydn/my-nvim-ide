@@ -7,6 +7,11 @@ return {
     dependencies = { "MunifTanjim/nui.nvim" },
     opts = {
       debug = false,
+      position = "50%",
+      size = {
+        width = "60%",
+        height = "60%",
+      },
     },
     cmd = { "QuickCodeRunner", "QuickCodePad" },
     keys = {
