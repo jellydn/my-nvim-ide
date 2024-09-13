@@ -36,7 +36,11 @@ return {
     },
   },
   {
-    dir = IS_DEV and "~/Projects/research/CopilotChat.nvim" or nil,
+    "nvim-treesitter/nvim-treesitter",
+    opts = { ensure_installed = { "diff", "markdown" } },
+  },
+  {
+    dir = IS_DEV and "~/research/CopilotChat.nvim" or nil,
     "CopilotC-Nvim/CopilotChat.nvim",
     -- version = "v2.10.0",
     branch = "canary", -- Use the canary branch if you want to test the latest features but it might be unstable
