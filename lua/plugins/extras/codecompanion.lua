@@ -235,7 +235,11 @@ return {
               content = function(context)
                 local code = require("codecompanion.helpers.actions").get_code(context.start_line, context.end_line)
 
-                return "Please explain this code:\n\n```" .. context.filetype .. "\n" .. code .. "\n```\n\n"
+                return "Please explain how the following code works:\n\n```"
+                  .. context.filetype
+                  .. "\n"
+                  .. code
+                  .. "\n```\n\n"
               end,
               opts = {
                 contains_code = true,
@@ -392,7 +396,6 @@ return {
         "<leader>Aa",
         "<cmd>CodeCompanionActions<cr>",
         desc = "Code Companion - Actions",
-        mode = { "n", "v" },
       },
       { "<leader>Av", "<cmd>CodeCompanionToggle<cr>", desc = "Code Companion - Toggle", mode = { "n", "v" } },
       -- Some common usages with visual mode
@@ -405,7 +408,17 @@ return {
         mode = { "n", "v" },
       },
       { "<leader>At", "<cmd>CodeCompanion /tests<cr>", desc = "Code Companion - Generate unit test", mode = "v" },
+      {
+        "<leader>Ac",
+        "<cmd>CodeCompanion /commit<cr>",
+        desc = "Code Companion - Git commit message",
+      },
       -- Custom prompts
+      {
+        "<leader>As",
+        "<cmd>CodeCompanion /staged-commit<cr>",
+        desc = "Code Companion - Git commit message (staged)",
+      },
       { "<leader>Ad", "<cmd>CodeCompanion /doc<cr>", desc = "Code Companion - Document code", mode = "v" },
       { "<leader>Ar", "<cmd>CodeCompanion /review<cr>", desc = "Code Companion - Review code", mode = "v" },
       { "<leader>An", "<cmd>CodeCompanion /naming<cr>", desc = "Code Companion - Better naming", mode = "v" },
