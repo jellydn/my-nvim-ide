@@ -182,6 +182,8 @@ return {
       },
       display = {
         chat = {
+          -- Change to true to show the current model
+          show_settings = false,
           window = {
             layout = "vertical", -- float|vertical|horizontal|buffer
           },
