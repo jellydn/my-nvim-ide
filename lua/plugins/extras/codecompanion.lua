@@ -6,7 +6,7 @@ return {
     optional = true,
     opts = {
       spec = {
-        { "<leader>A", group = "AI Code Companion" },
+        { "<leader>A", group = "AI Code Companion", mode = { "n", "v" } },
       },
     },
   },

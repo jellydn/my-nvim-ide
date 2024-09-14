@@ -25,7 +25,7 @@ return {
     optional = true,
     opts = {
       spec = {
-        { "<leader>a", group = "ai" },
+        { "<leader>a", group = "ai", mode = { "n", "v" } },
         { "gm", group = "+Copilot chat" },
         { "gmh", desc = "Show help" },
         { "gmd", desc = "Show diff" },
