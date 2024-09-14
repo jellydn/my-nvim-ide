@@ -122,14 +122,33 @@ return {
     dependencies = {
       "nvim-lua/plenary.nvim",
       "nvim-treesitter/nvim-treesitter",
-      -- Optional to show loading spinner on API request
-      "jellydn/spinner.nvim",
+      "ibhagwan/fzf-lua", -- For fzf provider, file or buffer picker
+      "jellydn/spinner.nvim", -- Show loading spinner when request is started
     },
     opts = {
       strategies = {
         chat = {
           adapter = "copilot",
           roles = { llm = "  Copilot Chat", user = "IT Man" },
+          slash_commands = {
+            ["buffer"] = {
+              callback = "helpers.slash_commands.buffer",
+              description = "Insert open buffers",
+              opts = {
+                contains_code = true,
+                provider = "fzf_lua", -- default|telescope|mini_pick|fzf_lua
+              },
+            },
+            ["file"] = {
+              callback = "helpers.slash_commands.file",
+              description = "Insert a file",
+              opts = {
+                contains_code = true,
+                max_lines = 1000,
+                provider = "fzf_lua", -- telescope|mini_pick|fzf_lua
+              },
+            },
+          },
           keymaps = {
             send = {
               modes = {
