@@ -248,9 +248,9 @@ return {
     opts = {
       defaults = {},
       ---@type false | "classic" | "modern" | "helix"
-      preset = "helix", -- default is "classic"
+      preset = vim.g.which_key_preset or "helix", -- default is "classic"
       -- Custom helix layout
-      win = {
+      win = vim.g.which_key_window or {
         width = { min = 30, max = 60 },
         height = { min = 4, max = 0.85 },
       },
