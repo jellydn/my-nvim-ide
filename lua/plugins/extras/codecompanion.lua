@@ -81,25 +81,26 @@ Identify any issues related to:
 - Repetitive code patterns that could be more efficiently handled through abstraction or optimization.
 
 Your feedback must be concise, directly addressing each identified issue with:
-- The specific line number(s) where the issue is found.
 - A clear description of the problem.
 - A concrete suggestion for how to improve or correct the issue.
   
 Format your feedback as follows:
-line=<line_number>: <issue_description>
-
-If the issue is related to a range of lines, use the following format:
-line=<start_line>-<end_line>: <issue_description>
-  
-If you find multiple issues on the same line, list each issue separately within the same feedback statement, using a semicolon to separate them.
-
-Example feedback:
-line=3: The variable name 'x' is unclear. Comment next to variable declaration is unnecessary.
-line=8: Expression is overly complex. Break down the expression into simpler components.
-line=10: Using camel case here is unconventional for lua. Use snake case instead.
-line=11-15: Excessive nesting makes the code hard to follow. Consider refactoring to reduce nesting levels.
-  
+- Explain the high-level issue or problem briefly.
+- Provide a specific suggestion for improvement.
+ 
 If the code snippet has no readability issues, simply confirm that the code is clear and well-written as is.
+]]
+
+local COPILOT_REFACTOR =
+  [[Your task is to refactor the provided code snippet, focusing specifically on its readability and maintainability.
+Identify any issues related to:
+- Naming conventions that are unclear, misleading or doesn't follow conventions for the language being used.
+- The presence of unnecessary comments, or the lack of necessary ones.
+- Overly complex expressions that could benefit from simplification.
+- High nesting levels that make the code difficult to follow.
+- The use of excessively long names for variables or functions.
+- Any inconsistencies in naming, formatting, or overall coding style.
+- Repetitive code patterns that could be more efficiently handled through abstraction or optimization.
 ]]
 
 return {
@@ -124,6 +125,13 @@ return {
       "nvim-treesitter/nvim-treesitter",
       "ibhagwan/fzf-lua", -- For fzf provider, file or buffer picker
       "jellydn/spinner.nvim", -- Show loading spinner when request is started
+    },
+    cmd = {
+      "CodeCompanion",
+      "CodeCompanionActions",
+      "CodeCompanionChat",
+      "CodeCompanionAdd",
+      "CodeCompanionToggle",
     },
     opts = {
       strategies = {
@@ -179,6 +187,9 @@ return {
         },
         inline = { adapter = "copilot" },
         agent = { adapter = "copilot" },
+      },
+      inline = {
+        layout = "buffer", -- vertical|horizontal|buffer
       },
       display = {
         chat = {
@@ -274,12 +285,40 @@ return {
             },
           },
         },
+        ["Inline-Document"] = {
+          strategy = "inline",
+          description = "Add documentation for code.",
+          opts = {
+            mapping = "<LocalLeader>cd",
+            modes = { "v" },
+            slash_cmd = "inline-doc",
+            auto_submit = true,
+            user_prompt = false,
+            stop_context_insertion = true,
+          },
+          prompts = {
+            {
+              role = "user",
+              content = function(context)
+                local code = require("codecompanion.helpers.actions").get_code(context.start_line, context.end_line)
+
+                return "Please provide documentation in comment code for the following code and suggest to have better naming to improve readability.\n\n```"
+                  .. context.filetype
+                  .. "\n"
+                  .. code
+                  .. "\n```\n\n"
+              end,
+              opts = {
+                contains_code = true,
+              },
+            },
+          },
+        },
         ["Document"] = {
           strategy = "chat",
           description = "Write documentation for code.",
           opts = {
-            index = 10,
-            mapping = "<LocalLeader>cd",
+            mapping = "<LocalLeader>cD",
             modes = { "v" },
             slash_cmd = "doc",
             auto_submit = true,
@@ -309,7 +348,7 @@ return {
           description = "Review the provided code snippet.",
           opts = {
             index = 11,
-            mapping = "<LocalLeader>cr",
+            mapping = "<LocalLeader>cR",
             modes = { "v" },
             slash_cmd = "review",
             auto_submit = true,
@@ -341,8 +380,45 @@ return {
             },
           },
         },
+        ["Refactor"] = {
+          strategy = "inline",
+          description = "Refactor the provided code snippet.",
+          opts = {
+            index = 11,
+            mapping = "<LocalLeader>cr",
+            modes = { "v" },
+            slash_cmd = "refactor",
+            auto_submit = true,
+            user_prompt = false,
+            stop_context_insertion = true,
+          },
+          prompts = {
+            {
+              role = "system",
+              content = COPILOT_REFACTOR,
+              opts = {
+                visible = false,
+              },
+            },
+            {
+              role = "user",
+              content = function(context)
+                local code = require("codecompanion.helpers.actions").get_code(context.start_line, context.end_line)
+
+                return "Please refactor the following code to improve its clarity and readability:\n\n```"
+                  .. context.filetype
+                  .. "\n"
+                  .. code
+                  .. "\n```\n\n"
+              end,
+              opts = {
+                contains_code = true,
+              },
+            },
+          },
+        },
         ["Naming"] = {
-          strategy = "chat",
+          strategy = "inline",
           description = "Give betting naming for the provided code snippet.",
           opts = {
             index = 12,
@@ -421,8 +497,15 @@ return {
         "<cmd>CodeCompanion /staged-commit<cr>",
         desc = "Code Companion - Git commit message (staged)",
       },
-      { "<leader>Ad", "<cmd>CodeCompanion /doc<cr>", desc = "Code Companion - Document code", mode = "v" },
-      { "<leader>Ar", "<cmd>CodeCompanion /review<cr>", desc = "Code Companion - Review code", mode = "v" },
+      {
+        "<leader>Ad",
+        "<cmd>CodeCompanion /inline-doc<cr>",
+        desc = "Code Companion - Inline document code",
+        mode = "v",
+      },
+      { "<leader>AD", "<cmd>CodeCompanion /doc<cr>", desc = "Code Companion - Document code", mode = "v" },
+      { "<leader>Ar", "<cmd>CodeCompanion /refactor<cr>", desc = "Code Companion - Refactor code", mode = "v" },
+      { "<leader>AR", "<cmd>CodeCompanion /review<cr>", desc = "Code Companion - Review code", mode = "v" },
       { "<leader>An", "<cmd>CodeCompanion /naming<cr>", desc = "Code Companion - Better naming", mode = "v" },
     },
   },
