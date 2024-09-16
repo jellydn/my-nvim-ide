@@ -131,13 +131,7 @@ return {
       "ibhagwan/fzf-lua", -- For fzf provider, file or buffer picker
       "jellydn/spinner.nvim", -- Show loading spinner when request is started
     },
-    cmd = {
-      "CodeCompanion",
-      "CodeCompanionActions",
-      "CodeCompanionChat",
-      "CodeCompanionAdd",
-      "CodeCompanionToggle",
-    },
+    event = "VeryLazy",
     opts = {
       strategies = {
         chat = {
@@ -512,13 +506,13 @@ return {
         mode = "v",
       },
       {
-        mapping_key_prefix .. "c",
+        mapping_key_prefix .. "m",
         "<cmd>CodeCompanion /commit<cr>",
         desc = "Code Companion - Git commit message",
       },
       -- Custom prompts
       {
-        mapping_key_prefix .. "s",
+        mapping_key_prefix .. "M",
         "<cmd>CodeCompanion /staged-commit<cr>",
         desc = "Code Companion - Git commit message (staged)",
       },
