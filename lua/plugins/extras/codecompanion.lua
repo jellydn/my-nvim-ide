@@ -1,4 +1,4 @@
-local mapping_key_prefix = "<leader>A"
+local mapping_key_prefix = vim.g.ai_prefix_key or "<leader>A"
 local IS_DEV = false
 
 -- This is custom system prompt for Copilot adapter
