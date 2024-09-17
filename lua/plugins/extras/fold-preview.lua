@@ -9,4 +9,24 @@ return {
     dependencies = "anuvyklack/keymap-amend.nvim",
     config = true,
   },
+  -- Custom fold text with line count
+  {
+    "bbjornstad/pretty-fold.nvim",
+    event = "BufReadPost",
+    config = function()
+      require("pretty-fold").setup({
+        keep_indentation = false,
+        fill_char = " ",
+        sections = {
+          left = {
+            "content",
+          },
+          right = {
+            "󰁂 ",
+            "number_of_folded_lines",
+          },
+        },
+      })
+    end,
+  },
 }
