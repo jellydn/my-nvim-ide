@@ -122,16 +122,13 @@ return {
   },
   {
     dir = IS_DEV and "~/Projects/research/codecompanion.nvim" or nil,
-    -- NOTE: Copilot adapter is not working for me, so I use my forked version, you can use the original one if it works for you
-    -- PR is created to fix the issue here: https://github.com/olimorris/codecompanion.nvim/pull/220
-    "jellydn/codecompanion.nvim",
+    "olimorris/codecompanion.nvim",
     dependencies = {
       "nvim-lua/plenary.nvim",
       "nvim-treesitter/nvim-treesitter",
       "ibhagwan/fzf-lua", -- For fzf provider, file or buffer picker
       "jellydn/spinner.nvim", -- Show loading spinner when request is started
     },
-    event = "VeryLazy",
     opts = {
       strategies = {
         chat = {
