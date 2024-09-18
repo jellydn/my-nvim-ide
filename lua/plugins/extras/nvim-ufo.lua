@@ -27,6 +27,11 @@ local fold_text_handler = function(virtual_text, lnum, endLnum, width, truncate)
 end
 
 return {
+  -- Disable pretty-fold.nvim if ufo is enabled
+  {
+    "bbjornstad/pretty-fold.nvim",
+    enabled = false,
+  },
   -- UFO folding
   {
     "kevinhwang91/nvim-ufo",
