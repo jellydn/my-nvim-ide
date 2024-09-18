@@ -282,6 +282,10 @@ bufs
 jellydn
 avante
 Avante
+sysname
+ibhagwan
+anuvyklack
+bbjornstad
 Grug
 cword
 xshen
@@ -313,7 +317,6 @@ relculright
 foldfunc
 lnumfunc
 ahmedkhalf
-ibhagwan
 cursorlinenr
 winopts
 scrollchars
