@@ -470,13 +470,24 @@ return {
         desc = "Fix/Fixme (Trouble)",
       },
       {
+        "<leader>xF",
+        function()
+          local root = require("utils.root").get()
+          require("todo-comments.fzf").todo({ keywords = { "FIX", "FIXME" }, cwd = root })
+        end,
+        desc = "Fix/Fixme (Fzf Lua)",
+      },
+      {
         "<leader>xt",
         ":Trouble todo filter = {tag = {TODO}}<CR>",
         desc = "Todo (Troble)",
       },
       {
         "<leader>xT",
-        ":TodoFzfLua<CR>",
+        function()
+          local root = require("utils.root").get()
+          require("todo-comments.fzf").todo({ keywords = { "TODO", cwd = root } })
+        end,
         desc = "Todo (Fzf Lua)",
       },
     },
