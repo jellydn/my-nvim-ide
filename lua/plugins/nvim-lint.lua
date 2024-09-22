@@ -32,6 +32,9 @@ return {
     opts = {
       ensure_installed = {
         "eslint_d",
+        "oxlint",
+        "codespell",
+        "cspell",
       },
     },
   },
@@ -40,9 +43,7 @@ return {
     event = "VeryLazy",
     opts = {
       linters_by_ft = {
-        -- markdown = { "markdownlint" },
-        ["*"] = { "cspell", "codespell" }, -- Install with: pip install codespell
-        -- Install: cargo install --git https://github.com/oxc-project/oxc oxlint
+        ["*"] = { "cspell", "codespell" },
         javascript = { "oxlint" },
         typescript = { "oxlint" },
         javascriptreact = { "oxlint" },
