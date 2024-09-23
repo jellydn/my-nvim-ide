@@ -16,11 +16,17 @@ return {
       },
     },
   },
+  {
+    "nvim-treesitter/nvim-treesitter",
+    opts = { ensure_installed = { "markdown", "markdown_inline" } },
+  },
   -- Markdown preview
   {
     "MeanderingProgrammer/render-markdown.nvim",
     dependencies = { "nvim-treesitter/nvim-treesitter" },
-    opts = {},
+    opts = {
+      latex = { enabled = false },
+    },
     ft = { "markdown" },
     keys = {
       {
@@ -34,7 +40,7 @@ return {
     "previm/previm",
     config = function()
       -- define global for open markdown preview, let g:previm_open_cmd = 'open -a Safari'
-      vim.g.previm_open_cmd = "open -a Arc"
+      vim.g.previm_open_cmd = "open -a Brave"
     end,
     ft = { "markdown" },
     keys = {
