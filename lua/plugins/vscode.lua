@@ -117,6 +117,11 @@ vim.api.nvim_create_autocmd("User", {
       vscode.action("workbench.action.editor.previousChange")
     end)
 
+    -- Revert change
+    vim.keymap.set("v", "<leader>ghr", function()
+      vscode.action("git.revertSelectedRanges")
+    end)
+
     -- +Buffer
     -- Close buffer
     vim.keymap.set("n", "<leader>bd", function()

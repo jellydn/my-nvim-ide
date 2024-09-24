@@ -53,13 +53,15 @@ vim.keymap.set("n", "<leader>sC", select_theme, {
 
 -- Select color scheme based on the time
 M.selectColorSchemeByTime = function()
-  -- Return cobalt2 if it's vscode
-  if is_vscode() then
-    return "cobalt2"
-  end
-
-  -- If it's warp terminal, tmux, neovide then use default color scheme
-  if is_warp_terminal() or is_tmux() or is_alacritty_terminal() or is_kitty_terminal() or vim.g.neovide then
+  -- If it's vscode,, warp terminal, tmux, neovide then use default color scheme
+  if
+    is_vscode()
+    or is_warp_terminal()
+    or is_tmux()
+    or is_alacritty_terminal()
+    or is_kitty_terminal()
+    or vim.g.neovide
+  then
     return default_color_scheme
   end
 
