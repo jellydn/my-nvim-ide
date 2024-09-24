@@ -34,13 +34,4 @@ return {
     },
     ft = { "markdown", "Avante" },
   },
-  {
-    "folke/which-key.nvim",
-    optional = true,
-    opts = {
-      spec = {
-        { "<leader>r", group = "Refactor/AI" },
-      },
-    },
-  },
 }
