@@ -200,7 +200,7 @@ return {
         log_level = "DEBUG",
         system_prompt = SYSTEM_PROMPT,
       },
-      pre_defined_prompts = {
+      prompt_library = {
         -- Custom the default prompt
         ["Generate a Commit Message"] = {
           prompts = {
