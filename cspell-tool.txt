@@ -4,8 +4,9 @@ stdpath
 lazyrepo
 getchar
 getcwd
-lspsaga
 codecompanion
+avante
+lspsaga
 wakatime
 lspconfig
 tohtml
@@ -13,8 +14,10 @@ themer
 bufferline
 catppuccin
 luasnip
+colorbuddy
 gitsigns
 kanagawa
+keymap
 lazydev
 luvit
 bufremove
@@ -52,7 +55,6 @@ tsplayground
 checkhealth
 dbout
 buflisted
-keymap
 conceallevel
 realpath
 fnamemodify
@@ -175,7 +177,6 @@ undercurl
 Mofiqul
 lalitmee
 tjdevries
-colorbuddy
 oxfist
 lazygit
 chrisgrieser
@@ -279,11 +280,11 @@ Vsplit
 nvimdev
 productsway
 bufs
-jellydn
-avante
+yetone
 Avante
 sysname
 ibhagwan
+jellydn
 anuvyklack
 bbjornstad
 Grug
