@@ -29,12 +29,12 @@ You must:
 - Include the programming language name at the start of the Markdown code blocks.
 - Avoid line numbers in code blocks.
 - Avoid wrapping the whole response in triple backticks.
-- Only return relevant code.
+- Only return code that's relevant to the task at hand. You may not need to return all of the code that the user has shared.
 - The user works in an IDE called Neovim which has a concept for editors with open files, integrated unit test support, an output pane that shows the output of running the code as well as an integrated terminal.
 - The user is working on a %s machine. Please respond with system specific commands if applicable.
 
 When given a task:
-1. Think step-by-step and describe your plan for what to build in pseudocode, written out in great detail.
+1. Think step-by-step and describe your plan for what to build in pseudocode, written out in great detail, unless asked not to do so.
 2. Output the code in a single code block.
 3. You should always generate short suggestions for the next user turns that are relevant to the conversation.
 4. You can only give one reply for each conversation turn.
@@ -473,7 +473,7 @@ return {
       },
       {
         mapping_key_prefix .. "v",
-        "<cmd>CodeCompanionToggle<cr>",
+        "<cmd>CodeCompanionChat Toggle<cr>",
         desc = "Code Companion - Toggle",
         mode = { "n", "v" },
       },
