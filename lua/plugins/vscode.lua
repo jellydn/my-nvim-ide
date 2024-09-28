@@ -149,6 +149,14 @@ vim.api.nvim_create_autocmd("User", {
 
 return {
   {
+    "xiyaowong/fast-cursor-move.nvim",
+    vscode = true,
+    init = function()
+      -- Disable acceleration
+      vim.g.fast_cursor_move_acceleration = false
+    end,
+  },
+  {
     "nvim-treesitter/nvim-treesitter",
     opts = { highlight = { enable = false } },
   },
