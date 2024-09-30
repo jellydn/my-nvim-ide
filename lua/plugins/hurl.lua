@@ -28,6 +28,27 @@ return {
           "html",
         },
       },
+      fixture_vars = {
+        {
+          name = "random_int_number",
+          callback = function()
+            return math.random(1, 1000)
+          end,
+        },
+        {
+          name = "random_float_number",
+          callback = function()
+            local result = math.random() * 10
+            return string.format("%.2f", result)
+          end,
+        },
+        {
+          name = "now",
+          callback = function()
+            return os.date("%d/%m/%Y")
+          end,
+        },
+      },
     },
     keys = {
       -- Run API request
