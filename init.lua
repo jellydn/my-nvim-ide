@@ -37,12 +37,13 @@ end
 local enable_extra_plugins = vim.g.enable_plugins
   or {
     -- Below are the good extra plugins, but they are disabled by default
-    lspsaga = "no",
-    codecompanion = "no",
-    ["no-neck-pain"] = "no",
-    ["fold-preview"] = "no",
-    harpoon = "no",
-    wakatime = "no",
+    codecompanion = "yes",
+    avante = "no",
+    lspsaga = "yes",
+    ["fold-preview"] = "yes",
+    ["no-neck-pain"] = "yes",
+    harpoon = "yes",
+    wakatime = "yes",
   }
 
 local enable_extra_langs = vim.g.enable_langs or {

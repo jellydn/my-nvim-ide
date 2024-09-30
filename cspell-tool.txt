@@ -364,6 +364,7 @@ Undotree
 undodir
 isdirectory
 commentstring
+xiyaowong
 showcmd
 wezterm
 alacritty
@@ -393,3 +394,4 @@ multicursor
 buttonless
 getnf
 todesktop
+xiyaowong

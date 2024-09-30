@@ -151,6 +151,7 @@ return {
   {
     "xiyaowong/fast-cursor-move.nvim",
     vscode = true,
+    enabled = vim.g.vscode,
     init = function()
       -- Disable acceleration
       vim.g.fast_cursor_move_acceleration = false
