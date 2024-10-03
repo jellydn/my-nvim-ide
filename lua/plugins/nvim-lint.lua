@@ -35,6 +35,7 @@ return {
         "oxlint",
         "codespell",
         "cspell",
+        "shellcheck",
       },
     },
   },
@@ -44,6 +45,7 @@ return {
     opts = {
       linters_by_ft = {
         ["*"] = { "cspell", "codespell" },
+        sh = { "shellcheck" },
         javascript = { "oxlint" },
         typescript = { "oxlint" },
         javascriptreact = { "oxlint" },
