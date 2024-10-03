@@ -51,7 +51,7 @@ return {
   -- E.g.: rustup component add rust-analyzer
   {
     "mrcjkb/rustaceanvim",
-    version = "^4", -- Recommended
+    version = "^5", -- Recommended
     ft = { "rust" },
     opts = {
       server = {
