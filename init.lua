@@ -21,6 +21,10 @@ if vim.g.deprecation_warnings == false then
   vim.deprecate = function() end
 end
 
+-- Set LSP servers to be ignored when used with `util.root.detectors.lsp`
+-- for detecting the LSP root
+vim.g.root_lsp_ignore = { "copilot" }
+
 -- Load project setting if available, e.g: .nvim-config.lua
 -- This file is not tracked by git
 -- It can be used to set project specific settings

@@ -31,7 +31,12 @@ function M.detectors.lsp(buf)
     return {}
   end
   local roots = {} ---@type string[]
-  for _, client in pairs(require("utils.lsp").get_clients({ bufnr = buf })) do
+  local clients = require("utils.lsp").get_clients({ bufnr = buf })
+  clients = vim.tbl_filter(function(client)
+    return not vim.tbl_contains(vim.g.root_lsp_ignore or {}, client.name)
+  end, clients)
+
+  for _, client in pairs(clients) do
     local workspace = client.config.workspace_folders
     for _, ws in pairs(workspace or {}) do
       roots[#roots + 1] = vim.uri_to_fname(ws.uri)
@@ -80,8 +85,6 @@ function M.realpath(path)
   return M.norm(path)
 end
 
----@param spec LazyRootSpec
----@return LazyRootFn
 function M.resolve(spec)
   if M.detectors[spec] then
     return M.detectors[spec]
@@ -93,7 +96,6 @@ function M.resolve(spec)
   end
 end
 
----@param opts? { buf?: number, spec?: LazyRootSpec[], all?: boolean }
 function M.detect(opts)
   opts = opts or {}
   opts.spec = opts.spec or type(vim.g.root_spec) == "table" and vim.g.root_spec or M.spec

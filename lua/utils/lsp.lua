@@ -78,7 +78,7 @@ local function get_config_path(filename)
 end
 
 M.start_lsp_client_by_name = function(name, opts)
-  local clients = vim.lsp.get_active_clients()
+  local clients = M.get_clients()
   for _, client in ipairs(clients) do
     if client.name == name then
       vim.notify("LSP client: " .. name .. " is already running", vim.log.levels.INFO, { title = "LSP" })
@@ -181,7 +181,6 @@ function M.register_keymaps(name, keymaps, prefix)
 end
 
 --- Below are LSP related functions from LazyVim
----@param opts? lsp.Client.filter
 function M.get_clients(opts)
   local ret = {} ---@type vim.lsp.Client[]
   if vim.lsp.get_clients then
