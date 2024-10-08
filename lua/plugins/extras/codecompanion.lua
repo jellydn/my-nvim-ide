@@ -224,9 +224,8 @@ return {
           opts = {
             index = 4,
             default_prompt = true,
-            mapping = "<LocalLeader>ce",
             modes = { "v" },
-            slash_cmd = "explain",
+            short_name = "explain",
             auto_submit = true,
             user_prompt = false,
             stop_context_insertion = true,
@@ -262,8 +261,7 @@ return {
           description = "Generate a commit message for staged change",
           opts = {
             index = 9,
-            mapping = "<LocalLeader>cM",
-            slash_cmd = "staged-commit",
+            short_name = "staged-commit",
             auto_submit = true,
           },
           prompts = {
@@ -285,9 +283,8 @@ return {
           strategy = "inline",
           description = "Add documentation for code.",
           opts = {
-            mapping = "<LocalLeader>cd",
             modes = { "v" },
-            slash_cmd = "inline-doc",
+            short_name = "inline-doc",
             auto_submit = true,
             user_prompt = false,
             stop_context_insertion = true,
@@ -314,9 +311,8 @@ return {
           strategy = "chat",
           description = "Write documentation for code.",
           opts = {
-            mapping = "<LocalLeader>cD",
             modes = { "v" },
-            slash_cmd = "doc",
+            short_name = "doc",
             auto_submit = true,
             user_prompt = false,
             stop_context_insertion = true,
@@ -344,9 +340,8 @@ return {
           description = "Review the provided code snippet.",
           opts = {
             index = 11,
-            mapping = "<LocalLeader>cR",
             modes = { "v" },
-            slash_cmd = "review",
+            short_name = "review",
             auto_submit = true,
             user_prompt = false,
             stop_context_insertion = true,
@@ -381,9 +376,8 @@ return {
           description = "Refactor the provided code snippet.",
           opts = {
             index = 11,
-            mapping = "<LocalLeader>cr",
             modes = { "v" },
-            slash_cmd = "refactor",
+            short_name = "refactor",
             auto_submit = true,
             user_prompt = false,
             stop_context_insertion = true,
@@ -418,9 +412,8 @@ return {
           description = "Give betting naming for the provided code snippet.",
           opts = {
             index = 12,
-            mapping = "<LocalLeader>cn",
             modes = { "v" },
-            slash_cmd = "naming",
+            short_name = "naming",
             auto_submit = true,
             user_prompt = false,
             stop_context_insertion = true,
