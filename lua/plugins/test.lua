@@ -126,7 +126,7 @@ return {
               if adapter.setup then
                 adapter.setup(config)
               elseif meta and meta.__call then
-                adapter(config)
+                adapter = adapter(config)
               else
                 error("Adapter " .. name .. " does not support setup")
               end
