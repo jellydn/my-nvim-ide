@@ -40,7 +40,7 @@ return {
     "previm/previm",
     config = function()
       -- define global for open markdown preview, let g:previm_open_cmd = 'open -a Safari'
-      vim.g.previm_open_cmd = "open -a Brave"
+      vim.g.previm_open_cmd = "open -a Arc"
     end,
     ft = { "markdown" },
     keys = {
