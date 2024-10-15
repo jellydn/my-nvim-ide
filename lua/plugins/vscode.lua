@@ -28,6 +28,32 @@ vim.api.nvim_create_autocmd("User", {
     -- +File
     -- Find file
     vim.keymap.set("n", "<leader><space>", "<cmd>Find<cr>")
+
+    -- Use with https://github.com/tomrijndorp/vscode-finditfaster
+    vim.keymap.set("n", "<leader>ff", function()
+      vscode.action("find-it-faster.findFiles")
+    end)
+    -- Find word
+    vim.keymap.set({ "n", "v" }, "<leader>fw", function()
+      vscode.action("find-it-faster.findWithinFiles")
+    end)
+    vim.keymap.set("n", "<leader>fw", function()
+      vscode.action("editor.action.addSelectionToNextFindMatch")
+      vscode.action("find-it-faster.findWithinFiles")
+    end)
+    -- Find file from git status, refer https://github.com/jellydn/vscode-finditfaster/pull/1
+    vim.keymap.set("n", "<leader>fg", function()
+      vscode.action("find-it-faster.pickFileFromGitStatus")
+    end)
+    -- Resume last search
+    vim.keymap.set("n", "<leader>fr", function()
+      vscode.action("find-it-faster.resumeSearch")
+    end)
+    -- Find todo/fixme
+    vim.keymap.set("n", "<leader>fx", function()
+      vscode.action("find-it-faster.findTodoFixme")
+    end)
+
     -- Open other files
     vim.keymap.set("n", "<leader>,", function()
       vscode.action("workbench.action.showAllEditors")
@@ -153,7 +179,7 @@ return {
     vscode = true,
     enabled = vim.g.vscode,
     init = function()
-      -- Disable acceleration
+      -- Disable acceleration, use key repeat settings instead
       vim.g.fast_cursor_move_acceleration = false
     end,
   },
