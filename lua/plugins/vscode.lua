@@ -29,29 +29,29 @@ vim.api.nvim_create_autocmd("User", {
     -- Find file
     vim.keymap.set("n", "<leader><space>", "<cmd>Find<cr>")
 
-    -- Use with https://github.com/tomrijndorp/vscode-finditfaster
+    -- Need to install https://github.com/jellydn/vscode-fzf-picker
     vim.keymap.set("n", "<leader>ff", function()
-      vscode.action("find-it-faster.findFiles")
+      vscode.action("fzf-picker.findFiles")
     end)
     -- Find word
     vim.keymap.set({ "n", "v" }, "<leader>fw", function()
-      vscode.action("find-it-faster.findWithinFiles")
+      vscode.action("fzf-picker.findWithinFiles")
     end)
     vim.keymap.set("n", "<leader>fw", function()
       vscode.action("editor.action.addSelectionToNextFindMatch")
-      vscode.action("find-it-faster.findWithinFiles")
+      vscode.action("fzf-picker.findWithinFiles")
     end)
     -- Find file from git status, refer https://github.com/jellydn/vscode-finditfaster/pull/1
     vim.keymap.set("n", "<leader>fg", function()
-      vscode.action("find-it-faster.pickFileFromGitStatus")
+      vscode.action("fzf-picker.pickFileFromGitStatus")
     end)
     -- Resume last search
     vim.keymap.set("n", "<leader>fr", function()
-      vscode.action("find-it-faster.resumeSearch")
+      vscode.action("fzf-picker.resumeSearch")
     end)
     -- Find todo/fixme
     vim.keymap.set("n", "<leader>fx", function()
-      vscode.action("find-it-faster.findTodoFixme")
+      vscode.action("fzf-picker.findTodoFixme")
     end)
 
     -- Open other files
