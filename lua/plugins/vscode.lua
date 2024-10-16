@@ -41,7 +41,7 @@ vim.api.nvim_create_autocmd("User", {
       vscode.action("editor.action.addSelectionToNextFindMatch")
       vscode.action("fzf-picker.findWithinFiles")
     end)
-    -- Find file from git status, refer https://github.com/jellydn/vscode-finditfaster/pull/1
+    -- Find file from git status
     vim.keymap.set("n", "<leader>fg", function()
       vscode.action("fzf-picker.pickFileFromGitStatus")
     end)
@@ -166,6 +166,29 @@ vim.api.nvim_create_autocmd("User", {
     -- Markdown preview
     vim.keymap.set("n", "<leader>mp", function()
       vscode.action("markdown.showPreviewToSide")
+    end)
+
+    -- Hurl runner, https://github.com/jellydn/vscode-hurl-runner
+    vim.keymap.set("n", "<leader>ha", function()
+      vscode.action("vscode-hurl-runner.runHurl")
+    end)
+    vim.keymap.set("n", "<leader>hr", function()
+      vscode.action("vscode-hurl-runner.rerunLastCommand")
+    end)
+    vim.keymap.set("n", "<leader>hA", function()
+      vscode.action("vscode-hurl-runner.runHurlFile")
+    end)
+    vim.keymap.set("n", "<leader>he", function()
+      vscode.action("vscode-hurl-runner.runHurlFromBegin")
+    end)
+    vim.keymap.set("n", "<leader>hE", function()
+      vscode.action("vscode-hurl-runner.runHurlToEnd")
+    end)
+    vim.keymap.set("n", "<leader>hg", function()
+      vscode.action("vscode-hurl-runner.manageInlineVariables")
+    end)
+    vim.keymap.set("v", "<leader>hh", function()
+      vscode.action("vscode-hurl-runner.runHurlSelection")
     end)
 
     -- Other keymaps will be used with https://github.com/VSpaceCode/vscode-which-key, so we don't need to define them here
