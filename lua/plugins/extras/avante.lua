@@ -4,6 +4,7 @@ return {
     event = "VeryLazy",
     build = "make",
     opts = {
+      hints = { enabled = false }, -- Disable hints
       provider = "copilot", -- You can then change this provider here
       mappings = {
         ask = "<leader>ra",
