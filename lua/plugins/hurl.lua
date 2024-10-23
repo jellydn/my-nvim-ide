@@ -55,6 +55,7 @@ return {
       { "<leader>hA", "<cmd>HurlRunner<CR>", desc = "Run All requests" },
       { "<leader>ha", "<cmd>HurlRunnerAt<CR>", desc = "Run Api request" },
       { "<leader>he", "<cmd>HurlRunnerToEntry<CR>", desc = "Run Api request to entry" },
+      { "<leader>hE", "<cmd>HurlRunnerToEnd<CR>", desc = "Run Api request from current entry to end" },
       { "<leader>hv", "<cmd>HurlVerbose<CR>", desc = "Run Api in verbose mode" },
       -- Run Hurl request in visual mode
       { "<leader>hh", ":HurlRunner<CR>", desc = "Hurl Runner", mode = "v" },
