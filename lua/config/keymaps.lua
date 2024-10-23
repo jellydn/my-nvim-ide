@@ -8,11 +8,11 @@ map({ "n", "x" }, "<Up>", "v:count == 0 ? 'gk' : 'k'", { desc = "Up", expr = tru
 
 -- -- Move to window using the <ctrl> hjkl keys with tmux-navigator
 if vim.g.vscode then
-    -- Only map if that is inside vscode
-    map("n", "<C-h>", "<C-w>h", { desc = "Go to Left Window", remap = true })
-    map("n", "<C-j>", "<C-w>j", { desc = "Go to Lower Window", remap = true })
-    map("n", "<C-k>", "<C-w>k", { desc = "Go to Upper Window", remap = true })
-    map("n", "<C-l>", "<C-w>l", { desc = "Go to Right Window", remap = true })
+  -- Only map if that is inside vscode
+  map("n", "<C-h>", "<C-w>h", { desc = "Go to Left Window", remap = true })
+  map("n", "<C-j>", "<C-w>j", { desc = "Go to Lower Window", remap = true })
+  map("n", "<C-k>", "<C-w>k", { desc = "Go to Upper Window", remap = true })
+  map("n", "<C-l>", "<C-w>l", { desc = "Go to Right Window", remap = true })
 end
 
 -- Resize window using <ctrl> arrow keys
@@ -22,12 +22,12 @@ map("n", "<C-Left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease Window Wi
 map("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase Window Width" })
 
 -- Move Lines
-map("n", "<A-j>", "<cmd>m .+1<cr>==", { desc = "Move Down" })
-map("n", "<A-k>", "<cmd>m .-2<cr>==", { desc = "Move Up" })
+map("n", "<A-j>", "<cmd>execute 'move .+' . v:count1<cr>==", { desc = "Move Down" })
+map("n", "<A-k>", "<cmd>execute 'move .-' . (v:count1 + 1)<cr>==", { desc = "Move Up" })
 map("i", "<A-j>", "<esc><cmd>m .+1<cr>==gi", { desc = "Move Down" })
 map("i", "<A-k>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move Up" })
-map("v", "<A-j>", ":m '>+1<cr>gv=gv", { desc = "Move Down" })
-map("v", "<A-k>", ":m '<-2<cr>gv=gv", { desc = "Move Up" })
+map("v", "<A-j>", ":<C-u>execute \"'<,'>move '>+\" . v:count1<cr>gv=gv", { desc = "Move Down" })
+map("v", "<A-k>", ":<C-u>execute \"'<,'>move '<-\" . (v:count1 + 1)<cr>gv=gv", { desc = "Move Up" })
 
 -- Goto
 map("n", "gl", "$", { desc = "Go to end of line" })
@@ -47,10 +47,10 @@ map({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and Clear hlsea
 -- Clear search, diff update and redraw
 -- taken from runtime/lua/_editor.lua
 map(
-    "n",
-    "<leader>ur",
-    "<Cmd>nohlsearch<Bar>diffupdate<Bar>normal! <C-L><CR>",
-    { desc = "Redraw / Clear hlsearch / Diff Update" }
+  "n",
+  "<leader>ur",
+  "<Cmd>nohlsearch<Bar>diffupdate<Bar>normal! <C-L><CR>",
+  { desc = "Redraw / Clear hlsearch / Diff Update" }
 )
 
 -- https://github.com/mhinz/vim-galore#saner-behavior-of-n-and-n
@@ -94,11 +94,11 @@ map("n", "]q", vim.cmd.cnext, { desc = "Next Quickfix" })
 
 -- diagnostic
 local diagnostic_goto = function(next, severity)
-    local go = next and vim.diagnostic.goto_next or vim.diagnostic.goto_prev
-    severity = severity and vim.diagnostic.severity[severity] or nil
-    return function()
-        go({ severity = severity })
-    end
+  local go = next and vim.diagnostic.goto_next or vim.diagnostic.goto_prev
+  severity = severity and vim.diagnostic.severity[severity] or nil
+  return function()
+    go({ severity = severity })
+  end
 end
 map("n", "<leader>cd", vim.diagnostic.open_float, { desc = "Line Diagnostics" })
 map("n", "]d", diagnostic_goto(true), { desc = "Next Diagnostic" })
@@ -142,32 +142,32 @@ map("n", "<leader><tab>d", "<cmd>tabclose<cr>", { desc = "Close Tab" })
 map("n", "<leader><tab>[", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
 
 vim.api.nvim_create_user_command("FormatDisable", function(args)
-    if args.bang then
-        -- FormatDisable! will disable formatting just for this buffer
-        vim.b.disable_autoformat = true
-    else
-        vim.g.disable_autoformat = true
-    end
+  if args.bang then
+    -- FormatDisable! will disable formatting just for this buffer
+    vim.b.disable_autoformat = true
+  else
+    vim.g.disable_autoformat = true
+  end
 end, {
-    desc = "Disable autoformat-on-save",
-    bang = true,
+  desc = "Disable autoformat-on-save",
+  bang = true,
 })
 vim.api.nvim_create_user_command("FormatEnable", function()
-    vim.b.disable_autoformat = false
-    vim.g.disable_autoformat = false
+  vim.b.disable_autoformat = false
+  vim.g.disable_autoformat = false
 end, {
-    desc = "Re-enable autoformat-on-save",
+  desc = "Re-enable autoformat-on-save",
 })
 
 -- Define a global variable to enable/disable autoformat
 local auto_format = true
 map("n", "<leader>uf", function()
-    auto_format = not auto_format
-    if auto_format then
-        vim.cmd("FormatEnable")
-    else
-        vim.cmd("FormatDisable")
-    end
+  auto_format = not auto_format
+  if auto_format then
+    vim.cmd("FormatEnable")
+  else
+    vim.cmd("FormatDisable")
+  end
 end, { desc = "Toggle Autoformat" })
 
 -- ------------------------------------------------------------------------- }}}
@@ -178,26 +178,26 @@ end, { desc = "Toggle Autoformat" })
 
 -- Close all fold except the current one.
 map("n", "zv", "zMzvzz", {
-    desc = "Close all folds except the current one",
+  desc = "Close all folds except the current one",
 })
 
 -- Close current fold when open. Always open next fold.
 map("n", "zj", "zcjzOzz", {
-    desc = "Close current fold when open. Always open next fold.",
+  desc = "Close current fold when open. Always open next fold.",
 })
 
 -- Close current fold when open. Always open previous fold.
 map("n", "zk", "zckzOzz", {
-    desc = "Close current fold when open. Always open previous fold.",
+  desc = "Close current fold when open. Always open previous fold.",
 })
 
 -- Refer [FAQ - Neovide](https://neovide.dev/faq.html#how-can-i-use-cmd-ccmd-v-to-copy-and-paste)
 if vim.g.neovide then
-    vim.keymap.set("n", "<D-s>", ":w<CR>")        -- Save
-    vim.keymap.set("v", "<D-c>", '"+y')           -- Copy
-    vim.keymap.set({ "n", "v" }, "<D-v>", '"+P')  -- Paste normal and visual mode
-    vim.keymap.set({ "i", "c" }, "<D-v>", "<C-R>+") -- Paste insert and command mode
-    vim.keymap.set("t", "<D-v>", [[<C-\><C-N>"+P]]) -- Paste terminal mode  vim.keymap.set("n", "<D-s>", ":w<CR>") -- Save
+  vim.keymap.set("n", "<D-s>", ":w<CR>") -- Save
+  vim.keymap.set("v", "<D-c>", '"+y') -- Copy
+  vim.keymap.set({ "n", "v" }, "<D-v>", '"+P') -- Paste normal and visual mode
+  vim.keymap.set({ "i", "c" }, "<D-v>", "<C-R>+") -- Paste insert and command mode
+  vim.keymap.set("t", "<D-v>", [[<C-\><C-N>"+P]]) -- Paste terminal mode  vim.keymap.set("n", "<D-s>", ":w<CR>") -- Save
 end
 
 -- Silent keymap option
@@ -220,12 +220,12 @@ map("v", ">", ">gv", opts)
 
 -- Easier access to beginning and end of lines
 map("n", "<A-h>", "^", {
-    desc = "Go to start of line",
-    silent = true,
+  desc = "Go to start of line",
+  silent = true,
 })
 map("n", "<A-l>", "$", {
-    desc = "Go to end of line",
-    silent = true,
+  desc = "Go to end of line",
+  silent = true,
 })
 
 -- Move live up or down
@@ -242,32 +242,32 @@ map("n", "<leader>cl", "<cmd>LspInfo<CR>", opts)
 
 -- Fix Spell checking
 map("n", "z0", "1z=", {
-    desc = "Fix world under cursor",
+  desc = "Fix world under cursor",
 })
 
 map(
-    "n",
-    "<leader>us",
-    "<cmd>lua require('utils.cspell').add_word_to_c_spell_dictionary()<CR>",
-    { noremap = true, silent = true, desc = "Add unknown to cspell dictionary" }
+  "n",
+  "<leader>us",
+  "<cmd>lua require('utils.cspell').add_word_to_c_spell_dictionary()<CR>",
+  { noremap = true, silent = true, desc = "Add unknown to cspell dictionary" }
 )
 
 -- Toggle wrap
 map("n", "<leader>tw", "<cmd>set wrap!<CR>", {
-    desc = "Toggle Wrap",
-    silent = true,
+  desc = "Toggle Wrap",
+  silent = true,
 })
 
 -- Toggle spell
 map("n", "<leader>ts", "<cmd>set spell!<CR>", {
-    desc = "Toggle Spell",
-    silent = true,
+  desc = "Toggle Spell",
+  silent = true,
 })
 
 -- Format selected text with jq
 map("x", "<leader>ff", ":<C-u>lua require('utils.format').format_json_with_jq()<CR>", {
-    desc = "Format selected text with jq",
-    silent = true,
+  desc = "Format selected text with jq",
+  silent = true,
 })
 
 local Diagnostics = require("utils.diagnostics")
@@ -275,37 +275,37 @@ local Lsp = require("utils.lsp")
 local Cmd = require("utils.cmd")
 
 map("n", "<leader>td", function()
-    Diagnostics.toggle_diagnostics_level()
+  Diagnostics.toggle_diagnostics_level()
 end, { noremap = true, silent = true, desc = "Toggle Diagnostics Level" })
 
 -- Stop LSP client by name
 Cmd.create_cmd("StopLspClient", function()
-    -- List all active clients
-    local clients = vim.lsp.get_active_clients()
-    local items = {}
-    for _, client in ipairs(clients) do
-        table.insert(items, client.name)
-    end
+  -- List all active clients
+  local clients = vim.lsp.get_active_clients()
+  local items = {}
+  for _, client in ipairs(clients) do
+    table.insert(items, client.name)
+  end
 
-    -- Show list of clients with ui select
-    vim.ui.select(items, {
-        prompt = "Select LSP client to stop",
-    }, function(choice)
-        if choice ~= nil then
-            Lsp.stop_lsp_client_by_name(choice)
-        end
-    end)
+  -- Show list of clients with ui select
+  vim.ui.select(items, {
+    prompt = "Select LSP client to stop",
+  }, function(choice)
+    if choice ~= nil then
+      Lsp.stop_lsp_client_by_name(choice)
+    end
+  end)
 end, { nargs = 0 })
 
 map("n", "<leader>ls", ":StopLspClient<CR>", { noremap = true, silent = true, desc = "Stop LSP Client" })
 
 -- Change directory to the root of the current LSP client
 Cmd.create_cmd("LspRooter", function()
-    local root_dir = require("utils.root").get()
-    if root_dir then
-        vim.cmd("cd " .. root_dir)
-    else
-        print("No root directory found for client")
-    end
+  local root_dir = require("utils.root").get()
+  if root_dir then
+    vim.cmd("cd " .. root_dir)
+  else
+    print("No root directory found for client")
+  end
 end, { nargs = 0 })
 map("n", "<leader>ld", ":LspRooter<CR>", { noremap = true, silent = true, desc = "Change directory to LSP root" })
