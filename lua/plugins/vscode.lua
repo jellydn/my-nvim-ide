@@ -29,6 +29,11 @@ vim.api.nvim_create_autocmd("User", {
     -- Find file
     vim.keymap.set("n", "<leader><space>", "<cmd>Find<cr>")
 
+    -- Find recent open files
+    vim.keymap.set("n", "<leader>fr", function()
+      vscode.action("workbench.action.showAllEditorsByMostRecentlyUsed")
+    end)
+
     -- Need to install https://github.com/jellydn/vscode-fzf-picker
     vim.keymap.set("n", "<leader>ff", function()
       vscode.action("fzf-picker.findFiles")
@@ -46,7 +51,7 @@ vim.api.nvim_create_autocmd("User", {
       vscode.action("fzf-picker.pickFileFromGitStatus")
     end)
     -- Resume last search
-    vim.keymap.set("n", "<leader>fr", function()
+    vim.keymap.set("n", "<leader>fR", function()
       vscode.action("fzf-picker.resumeSearch")
     end)
     -- Find todo/fixme
@@ -192,6 +197,15 @@ vim.api.nvim_create_autocmd("User", {
     end)
     vim.keymap.set("v", "<leader>hh", function()
       vscode.action("vscode-hurl-runner.runHurlSelection")
+    end)
+
+    -- Run task
+    vim.keymap.set("n", "<leader>rt", function()
+      vscode.action("workbench.action.tasks.runTask")
+    end)
+    -- Re-run
+    vim.keymap.set("n", "<leader>rr", function()
+      vscode.action("workbench.action.tasks.reRunTask")
     end)
 
     -- Other keymaps will be used with https://github.com/VSpaceCode/vscode-which-key, so we don't need to define them here
