@@ -13,6 +13,7 @@ return {
   {
     "jellydn/hurl.nvim",
     dir = IS_DEV and "~/Projects/research/hurl.nvim" or nil,
+    branch = "canary",
     ft = "hurl",
     dependencies = { "MunifTanjim/nui.nvim", "nvim-treesitter/nvim-treesitter" },
     opts = {
@@ -57,6 +58,8 @@ return {
       { "<leader>he", "<cmd>HurlRunnerToEntry<CR>", desc = "Run Api request to entry" },
       { "<leader>hE", "<cmd>HurlRunnerToEnd<CR>", desc = "Run Api request from current entry to end" },
       { "<leader>hv", "<cmd>HurlVerbose<CR>", desc = "Run Api in verbose mode" },
+      { "<leader>hV", "<cmd>HurlVeryVerbose<CR>", desc = "Run Api in very verbose mode" },
+      { "<leader>hr", "<cmd>HurlRerun<CR>", desc = "Rerun last command" },
       -- Run Hurl request in visual mode
       { "<leader>hh", ":HurlRunner<CR>", desc = "Hurl Runner", mode = "v" },
       -- Show last response
