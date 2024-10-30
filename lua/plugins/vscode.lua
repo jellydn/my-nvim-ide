@@ -79,10 +79,14 @@ vim.api.nvim_create_autocmd("User", {
     end)
     -- Search word under cursor
     vim.keymap.set("n", "<leader>sw", function()
-      local code = require("vscode")
-      code.action("editor.action.addSelectionToNextFindMatch")
-      code.action("workbench.action.findInFiles")
+      vscode.action("editor.action.addSelectionToNextFindMatch")
+      vscode.action("workbench.action.findInFiles")
       -- Or send as the param like this: code.action("workbench.action.findInFiles", { args = { query = vim.fn.expand("<cword>") } })
+    end)
+
+    -- Search work in current buffer
+    vim.keymap.set("n", "<leader>sb", function()
+      vscode.action("actions.find")
     end)
 
     -- +Code
