@@ -71,16 +71,4 @@ return {
       { "<leader>tH", "<cmd>HurlToggleMode<CR>", desc = "Toggle Hurl Split/Popup" },
     },
   },
-  {
-    "folke/edgy.nvim",
-    optional = true,
-    opts = function(_, opts)
-      opts.right = opts.right or {}
-      table.insert(opts.right, {
-        title = "hurl.nvim",
-        ft = "hurl-nvim",
-        size = { width = 0.5 },
-      })
-    end,
-  },
 }
