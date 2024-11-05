@@ -15,7 +15,6 @@ return {
         },
       },
     },
-    ---@param opts cmp.ConfigSchema
     opts = function(_, opts)
       opts.sources = opts.sources or {}
       table.insert(opts.sources, { name = "crates" })
@@ -97,6 +96,7 @@ return {
     "neovim/nvim-lspconfig",
     opts = {
       servers = {
+        rust_analyzer = { enabled = false },
         taplo = {
           keys = {
             {
