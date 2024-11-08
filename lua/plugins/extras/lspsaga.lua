@@ -76,7 +76,7 @@ return {
         end,
         desc = "Source Action",
       },
-      -- Rename in project
+      -- Rename in project, c-k to quit
       { "<leader>lr", "<cmd>Lspsaga rename<CR>", desc = "Rename" },
 
       { "]d", "<cmd>Lspsaga diagnostic_jump_next<CR>", desc = "Jump to Next Diagnostic" },

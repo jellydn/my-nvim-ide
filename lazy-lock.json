@@ -50,7 +50,7 @@
   "night-owl.nvim": { "branch": "main", "commit": "86ed124c2f7e118670649701288e024444bf91e5" },
   "nightfox.nvim": { "branch": "main", "commit": "7557f26defd093c4e9bc17f28b08403f706f5a44" },
   "no-neck-pain.nvim": { "branch": "main", "commit": "c7efdbd0b739646c58d22fa44f6fffa2973f303e" },
-  "noice.nvim": { "branch": "main", "commit": "81013884522c1715c370bb15a65831d3253813b9" },
+  "noice.nvim": { "branch": "main", "commit": "eac7e84b16765066dc235a4d6cf8102d7436f6cd" },
   "nui.nvim": { "branch": "main", "commit": "b58e2bfda5cea347c9d58b7f11cf3012c7b3953f" },
   "nvim-cmp": { "branch": "main", "commit": "f17d9b4394027ff4442b298398dfcaab97e40c4f" },
   "nvim-early-retirement": { "branch": "main", "commit": "2c36a5671b9d8f0d9e11b77c5a55de802bc45e34" },
