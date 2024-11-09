@@ -132,10 +132,6 @@ return {
       vim.lsp.handlers["textDocument/declaration"] = fzf_lua.lsp_declarations
       vim.lsp.handlers["textDocument/typeDefinition"] = fzf_lua.lsp_typedefs
       vim.lsp.handlers["textDocument/implementation"] = fzf_lua.lsp_implementations
-      vim.lsp.handlers["textDocument/references"] = function()
-        -- FIXME: This doesn't work on neovim nightly, NVIM v0.11.0-dev-1108+g5a86360400
-        fzf_lua.lsp_references({ ignore_current_line = true, jump_to_single_result = true })
-      end
       vim.lsp.handlers["textDocument/documentSymbol"] = fzf_lua.lsp_document_symbols
       vim.lsp.handlers["workspace/symbol"] = fzf_lua.lsp_workspace_symbols
       vim.lsp.handlers["callHierarchy/incomingCalls"] = fzf_lua.lsp_incoming_calls
