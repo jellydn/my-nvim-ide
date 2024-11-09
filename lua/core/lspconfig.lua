@@ -11,9 +11,12 @@ local setup_keymaps = function(client, buffer)
     vim.keymap.set("n", keys, func, { buffer = buffer, desc = "LSP: " .. desc })
   end
 
+  -- We don't want to use fzf-lua when running in vscode
+  local has_fzf = not vim.g.vscode
+
+  -- Setup LSP keymaps with fzf-lua if available, otherwise use default handlers
   map("<leader>ca", vim.lsp.buf.code_action, "Code Actions")
   map("<leader>.", vim.lsp.buf.code_action, "Code Actions")
-
   map("<leader>cA", require("utils.lsp").action.source, "Source Actions")
   map("<leader>cr", vim.lsp.buf.rename, "Code Rename")
   map("<leader>cf", vim.lsp.buf.format, "Code Format")
@@ -22,20 +25,59 @@ local setup_keymaps = function(client, buffer)
     map("<leader>k", vim.lsp.buf.hover, "Documentation")
     map("K", vim.lsp.buf.hover, "Documentation")
   end
-  if client.server_capabilities.definitionProvider or client.server_capabilities.declarationProvider then
-    map("gd", vim.lsp.buf.definition, "Goto Definition")
+
+  if client.server_capabilities.definitionProvider then
+    if has_fzf then
+      map(
+        "gd",
+        "<cmd>FzfLua lsp_definitions jump_to_single_result=true ignore_current_line=true<cr>",
+        "Goto Definition"
+      )
+    else
+      map("gd", vim.lsp.buf.definition, "Goto Definition")
+    end
+  end
+
+  if client.server_capabilities.declarationProvider then
     map("gD", vim.lsp.buf.declaration, "Goto Declaration")
   end
+
   if client.server_capabilities.referencesProvider then
-    -- NOTE: Neovim v0.11 has introduced a default keymaps for LSP, refer https://github.com/neovim/neovim/pull/28650
-    -- map("gr", vim.lsp.buf.references, "Goto References")
-    vim.keymap.set("n", "gr", vim.lsp.buf.references, { buffer = buffer, desc = "LSP: Goto References", nowait = true })
+    if has_fzf then
+      map("gr", "<cmd>FzfLua lsp_references jump_to_single_result=true ignore_current_line=true<cr>", "Goto References")
+    else
+      -- NOTE: Neovim v0.11 has introduced a default keymaps for LSP, refer https://github.com/neovim/neovim/pull/28650
+      vim.keymap.set(
+        "n",
+        "gr",
+        vim.lsp.buf.references,
+        { buffer = buffer, desc = "LSP: Goto References", nowait = true }
+      )
+    end
   end
+
   if client.server_capabilities.implementationProvider then
-    map("gi", vim.lsp.buf.implementation, "Goto Implementation")
+    if has_fzf then
+      map(
+        "gi",
+        "<cmd>FzfLua lsp_implementations jump_to_single_result=true ignore_current_line=true<cr>",
+        "Goto Implementation"
+      )
+    else
+      map("gi", vim.lsp.buf.implementation, "Goto Implementation")
+    end
   end
+
   if client.server_capabilities.typeDefinitionProvider then
-    map("gy", vim.lsp.buf.type_definition, "Goto Type Definition")
+    if has_fzf then
+      map(
+        "gy",
+        "<cmd>FzfLua lsp_typedefs jump_to_single_result=true ignore_current_line=true<cr>",
+        "Goto Type Definition"
+      )
+    else
+      map("gy", vim.lsp.buf.type_definition, "Goto Type Definition")
+    end
   end
 
   if client and client.server_capabilities.inlayHintProvider and vim.lsp.inlay_hint then
@@ -44,6 +86,7 @@ local setup_keymaps = function(client, buffer)
     end, "Toggle Inlay Hints")
   end
 end
+
 return {
   -- Lsp config
   {
