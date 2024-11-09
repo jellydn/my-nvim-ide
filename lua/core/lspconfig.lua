@@ -1,4 +1,6 @@
 -- Setup LSP servers and related tools base on LazyVim
+local Lsp = require("utils.lsp")
+
 local diagnostics = {
   Error = " ",
   Warn = " ",
@@ -7,83 +9,63 @@ local diagnostics = {
 }
 
 local setup_keymaps = function(client, buffer)
-  local map = function(keys, func, desc)
-    vim.keymap.set("n", keys, func, { buffer = buffer, desc = "LSP: " .. desc })
-  end
+  -- Get default keymaps
+  local keymaps = Lsp.get_default_keymaps()
 
   -- We don't want to use fzf-lua when running in vscode
-  local has_fzf = not vim.g.vscode
+  local has_fzf = not vim.g.vscode and package.loaded["fzf-lua"]
 
-  -- Setup LSP keymaps with fzf-lua if available, otherwise use default handlers
-  map("<leader>ca", vim.lsp.buf.code_action, "Code Actions")
-  map("<leader>.", vim.lsp.buf.code_action, "Code Actions")
-  map("<leader>cA", require("utils.lsp").action.source, "Source Actions")
-  map("<leader>cr", vim.lsp.buf.rename, "Code Rename")
-  map("<leader>cf", vim.lsp.buf.format, "Code Format")
-
-  if client.server_capabilities.hoverProvider then
-    map("<leader>k", vim.lsp.buf.hover, "Documentation")
-    map("K", vim.lsp.buf.hover, "Documentation")
+  if has_fzf then
+    -- Override default keymaps with fzf-lua variants
+    vim.list_extend(keymaps, {
+      {
+        keys = "gd",
+        func = "<cmd>FzfLua lsp_definitions jump_to_single_result=true ignore_current_line=true<cr>",
+        desc = "Goto Definition",
+        has = "definitionProvider",
+      },
+      {
+        keys = "gr",
+        func = "<cmd>FzfLua lsp_references jump_to_single_result=true ignore_current_line=true<cr>",
+        desc = "Goto References",
+        has = "referencesProvider",
+        nowait = true,
+      },
+      {
+        keys = "gi",
+        func = "<cmd>FzfLua lsp_implementations jump_to_single_result=true ignore_current_line=true<cr>",
+        desc = "Goto Implementation",
+        has = "implementationProvider",
+      },
+      {
+        keys = "gy",
+        func = "<cmd>FzfLua lsp_typedefs jump_to_single_result=true ignore_current_line=true<cr>",
+        desc = "Goto Type Definition",
+        has = "typeDefinitionProvider",
+      },
+    })
   end
 
-  if client.server_capabilities.definitionProvider then
-    if has_fzf then
-      map(
-        "gd",
-        "<cmd>FzfLua lsp_definitions jump_to_single_result=true ignore_current_line=true<cr>",
-        "Goto Definition"
-      )
-    else
-      map("gd", vim.lsp.buf.definition, "Goto Definition")
-    end
-  end
-
-  if client.server_capabilities.declarationProvider then
-    map("gD", vim.lsp.buf.declaration, "Goto Declaration")
-  end
-
-  if client.server_capabilities.referencesProvider then
-    if has_fzf then
-      map("gr", "<cmd>FzfLua lsp_references jump_to_single_result=true ignore_current_line=true<cr>", "Goto References")
-    else
-      -- NOTE: Neovim v0.11 has introduced a default keymaps for LSP, refer https://github.com/neovim/neovim/pull/28650
-      vim.keymap.set(
-        "n",
-        "gr",
-        vim.lsp.buf.references,
-        { buffer = buffer, desc = "LSP: Goto References", nowait = true }
-      )
-    end
-  end
-
-  if client.server_capabilities.implementationProvider then
-    if has_fzf then
-      map(
-        "gi",
-        "<cmd>FzfLua lsp_implementations jump_to_single_result=true ignore_current_line=true<cr>",
-        "Goto Implementation"
-      )
-    else
-      map("gi", vim.lsp.buf.implementation, "Goto Implementation")
-    end
-  end
-
-  if client.server_capabilities.typeDefinitionProvider then
-    if has_fzf then
-      map(
-        "gy",
-        "<cmd>FzfLua lsp_typedefs jump_to_single_result=true ignore_current_line=true<cr>",
-        "Goto Type Definition"
-      )
-    else
-      map("gy", vim.lsp.buf.type_definition, "Goto Type Definition")
-    end
-  end
-
+  -- Add inlay hints toggle if supported
   if client and client.server_capabilities.inlayHintProvider and vim.lsp.inlay_hint then
-    map("<leader>th", function()
-      require("utils.toggle").inlay_hints(buffer)
-    end, "Toggle Inlay Hints")
+    table.insert(keymaps, {
+      keys = "<leader>th",
+      func = function()
+        require("utils.toggle").inlay_hints(buffer)
+      end,
+      desc = "Toggle Inlay Hints",
+    })
+  end
+
+  -- Setup all keymaps
+  for _, keymap in ipairs(keymaps) do
+    if not keymap.has or client.server_capabilities[keymap.has] then
+      vim.keymap.set(keymap.mode or "n", keymap.keys, keymap.func, {
+        buffer = buffer,
+        desc = "LSP: " .. keymap.desc,
+        nowait = keymap.nowait,
+      })
+    end
   end
 end
 
