@@ -48,6 +48,7 @@ local enable_extra_plugins = vim.g.enable_plugins
     ["no-neck-pain"] = "yes",
     harpoon = "yes",
     wakatime = "yes",
+    snacks = "yes",
   }
 
 local enable_extra_langs = vim.g.enable_langs or {

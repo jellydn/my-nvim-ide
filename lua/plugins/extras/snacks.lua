@@ -29,6 +29,7 @@ return {
     "rcarriga/nvim-notify",
     enabled = false,
   },
+  -- Layout management
   {
     "folke/edgy.nvim",
     optional = true,
@@ -78,6 +79,7 @@ return {
           height = 0,
         },
       },
+      -- Learn this tip from LazyVim
       terminal = {
         win = {
           keys = {

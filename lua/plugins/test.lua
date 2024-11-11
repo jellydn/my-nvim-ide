@@ -64,22 +64,28 @@ return {
       if vim.g.vscode then
         vim.g["test#strategy"] = "neovim_vscode"
       else
-        local tt = require("toggleterm")
-        local ttt = require("toggleterm.terminal")
+        vim.g["test#strategy"] = "neovim"
 
-        vim.g["test#custom_strategies"] = {
-          tterm = function(cmd)
-            tt.exec(cmd)
-          end,
+        -- Change to toggle term if that is enable
+        local has_toggleterm, _ = pcall(require, "toggleterm")
+        if has_toggleterm then
+          local tt = require("toggleterm")
+          local ttt = require("toggleterm.terminal")
 
-          tterm_close = function(cmd)
-            local term_id = 0
-            tt.exec(cmd, term_id)
-            ttt.get_or_create_term(term_id):close()
-          end,
-        }
+          vim.g["test#custom_strategies"] = {
+            tterm = function(cmd)
+              tt.exec(cmd)
+            end,
 
-        vim.g["test#strategy"] = "tterm"
+            tterm_close = function(cmd)
+              local term_id = 0
+              tt.exec(cmd, term_id)
+              ttt.get_or_create_term(term_id):close()
+            end,
+          }
+
+          vim.g["test#strategy"] = "tterm"
+        end
       end
       -- add -A to deno test
       vim.g["test#javascript#denotest#options"] = "-A"
