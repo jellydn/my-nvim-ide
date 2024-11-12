@@ -13,7 +13,6 @@ return {
   {
     "jellydn/hurl.nvim",
     dir = IS_DEV and "~/Projects/research/hurl.nvim" or nil,
-    branch = "canary",
     ft = "hurl",
     dependencies = { "MunifTanjim/nui.nvim", "nvim-treesitter/nvim-treesitter" },
     opts = {
