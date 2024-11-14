@@ -121,11 +121,11 @@ return {
         desc = "Lazygit",
       },
       {
-        "<leader>gB",
+        "<leader>go",
         function()
           Snacks.gitbrowse()
         end,
-        desc = "Git Browse",
+        desc = "Git Open on browser",
       },
       {
         "<leader>gf",
