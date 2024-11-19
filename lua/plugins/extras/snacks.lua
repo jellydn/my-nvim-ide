@@ -19,6 +19,9 @@ local function term_nav(dir)
   end
 end
 
+-- Use nvim dashboard as it is more stable
+local enable_nvim_dashboard = true
+
 return {
   -- Disable toggle term and use Snacks terminal instead
   {
@@ -43,7 +46,7 @@ return {
   -- Disable dashboard
   {
     "nvimdev/dashboard-nvim",
-    enabled = false,
+    enabled = enable_nvim_dashboard,
   },
   -- Layout management
   {
@@ -75,7 +78,7 @@ return {
     ---@type snacks.Config
     opts = {
       dashboard = {
-        enabled = true,
+        enabled = not enable_nvim_dashboard,
         preset = {
           header = logo,
           keys = {
