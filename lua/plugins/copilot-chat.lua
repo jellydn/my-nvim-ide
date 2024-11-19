@@ -115,14 +115,7 @@ return {
       opts.answer_header = "  Copilot "
       -- Override the git prompts message
       opts.prompts.Commit = {
-        prompt = 'Write commit message with commitizen convention. Write clear, informative commit messages that explain the "what" and "why" behind changes, not just the "how".',
-        selection = select.gitdiff,
-      }
-      opts.prompts.CommitStaged = {
-        prompt = 'Write commit message for the change with commitizen convention. Write clear, informative commit messages that explain the "what" and "why" behind changes, not just the "how".',
-        selection = function(source)
-          return select.gitdiff(source, true)
-        end,
+        prompt = '> #git:staged\n\nWrite commit message with commitizen convention. Write clear, informative commit messages that explain the "what" and "why" behind changes, not just the "how".',
       }
 
       chat.setup(opts)
@@ -217,12 +210,6 @@ return {
         "<cmd>CopilotChatCommit<cr>",
         desc = "CopilotChat - Generate commit message for all changes",
       },
-      {
-        "<leader>aM",
-        "<cmd>CopilotChatCommitStaged<cr>",
-        desc = "CopilotChat - Generate commit message for staged changes",
-      },
-      -- Quick chat with Copilot
       {
         "<leader>aq",
         function()
