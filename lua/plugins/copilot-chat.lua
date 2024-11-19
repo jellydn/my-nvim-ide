@@ -42,9 +42,9 @@ return {
   {
     dir = IS_DEV and "~/research/CopilotChat.nvim" or nil,
     "CopilotC-Nvim/CopilotChat.nvim",
-    -- version = "v2.10.0",
-    branch = "canary", -- Use the canary branch if you want to test the latest features but it might be unstable
     -- Do not use branch and version together, either use branch or version
+    -- version = "v3.1.0",
+    branch = "canary", -- Use the canary branch if you want to test the latest features but it might be unstable
     dependencies = {
       { "nvim-lua/plenary.nvim" },
     },
@@ -55,7 +55,6 @@ return {
       prompts = prompts,
       model = "claude-3.5-sonnet",
       auto_follow_cursor = false, -- Don't follow the cursor after getting response
-      show_help = false, -- Show help in virtual text, set to true if that's 1st time using Copilot Chat
       mappings = {
         -- Use tab for completion
         complete = {
@@ -127,8 +126,6 @@ return {
       }
 
       chat.setup(opts)
-      -- Setup CMP integration
-      require("CopilotChat.integrations.cmp").setup()
 
       vim.api.nvim_create_user_command("CopilotChatVisual", function(args)
         chat.ask(args.args, { selection = select.visual })
@@ -169,15 +166,6 @@ return {
       })
     end,
     keys = {
-      -- Show help actions
-      {
-        "<leader>ah",
-        function()
-          local actions = require("CopilotChat.actions")
-          require("CopilotChat.integrations.fzflua").pick(actions.help_actions())
-        end,
-        desc = "CopilotChat - Help actions",
-      },
       -- Show prompts actions
       {
         "<leader>ap",
