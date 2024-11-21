@@ -11,7 +11,6 @@ logo = string.rep("\n", 4) .. logo .. "\n\n"
 
 -- Terminal Mappings
 local function term_nav(dir)
-  ---@param self snacks.terminal
   return function(self)
     return self:is_floating() and "<c-" .. dir .. ">" or vim.schedule(function()
       vim.cmd.wincmd(dir)
@@ -21,6 +20,7 @@ end
 
 -- Use nvim dashboard as it is more stable
 local enable_nvim_dashboard = true
+local hostname = io.popen("hostname"):read("*a"):gsub("%s+", "")
 
 return {
   -- Disable toggle term and use Snacks terminal instead
@@ -75,7 +75,6 @@ return {
     "folke/snacks.nvim",
     priority = 1000,
     lazy = false,
-    ---@type snacks.Config
     opts = {
       dashboard = {
         enabled = not enable_nvim_dashboard,
@@ -101,6 +100,14 @@ return {
           { section = "header" },
           { icon = " ", title = "Keymaps", section = "keys", indent = 2, padding = 1 },
           { icon = " ", title = "Recent Files", section = "recent_files", indent = 2, padding = 1, limit = 3 },
+          {
+            section = "terminal",
+            title = "Productsway.com",
+            icon = "©",
+            --  local user = hostname or vim.env.USER or "User"
+            --  local user = vim.fn.expand("$USER")
+            cmd = "echo Welcome back, " .. hostname .. "! | bunx cowsay --think",
+          },
         },
       },
       bigfile = { enabled = true },
@@ -171,6 +178,10 @@ return {
           Snacks.gitbrowse()
         end,
         desc = "Git Open on browser",
+        mode = {
+          "n",
+          "v",
+        },
       },
       {
         "<leader>gf",
