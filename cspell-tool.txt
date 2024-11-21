@@ -166,7 +166,6 @@ williamboman
 codespell
 markdownlint
 rustywind
-astro
 folke
 Primeagen
 danymat
@@ -181,7 +180,6 @@ oxfist
 lazygit
 chrisgrieser
 echasnovski
-devcontainer
 dotenv
 devicons
 topdelete
@@ -193,7 +191,6 @@ akinsho
 Statusline
 trunc
 Devinfo
-Fileinfo
 miniindentscope
 Keymaps
 cmdline
@@ -274,7 +271,6 @@ shfmt
 dprint
 formatexpr
 commitizen
-gitdiff
 fzflua
 Vsplit
 nvimdev
@@ -311,6 +307,13 @@ foldenable
 vuki
 screenkey
 Screenkey
+rcarriga
+oldfiles
+bigfile
+quickfile
+statuscolumn
+bufdelete
+gitbrowse
 leath
 luukvbaal
 statuscol
@@ -324,7 +327,6 @@ scrollchars
 multiprocess
 bcommits
 lastused
-oldfiles
 curbuf
 colorschemes
 Jumplist
@@ -332,8 +334,8 @@ heavenshell
 lehre
 Previm
 oxlint
+shellcheck
 rhysd
-rcarriga
 zindex
 gsplit
 trimempty
@@ -394,4 +396,3 @@ multicursor
 buttonless
 getnf
 todesktop
-xiyaowong
