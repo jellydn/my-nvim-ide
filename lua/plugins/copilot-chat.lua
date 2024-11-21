@@ -32,6 +32,8 @@ return {
         { "gmp", desc = "Show system prompt" },
         { "gms", desc = "Show selection" },
         { "gmy", desc = "Yank diff" },
+        { "gmj", desc = "Jump to diff" },
+        { "gmf", desc = "Quickfix diff" },
       },
     },
   },
@@ -88,6 +90,12 @@ return {
         -- Show the diff
         show_diff = {
           normal = "gmd",
+        },
+        jump_to_diff = {
+          normal = "gmj",
+        },
+        quickfix_diffs = {
+          normal = "gmf",
         },
         -- Show the prompt
         show_system_prompt = {
