@@ -115,6 +115,7 @@ return {
         enabled = true,
         --- Available style: "compact"|"fancy"|"minimal"
         style = "fancy", -- similar to the default nvim-notify style
+        level = vim.log.levels.ERROR,
       },
       quickfile = { enabled = true },
       statuscolumn = {
