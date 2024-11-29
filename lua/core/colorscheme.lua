@@ -40,6 +40,15 @@ return {
           NormalDark = { fg = theme.ui.fg_dim, bg = theme.ui.bg_m3 },
           LazyNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
           MasonNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
+
+          -- Dashboard (Snacks)
+          SnacksDashboardDesc = { fg = theme.syn.identifier },
+          SnacksDashboardFooter = { fg = theme.syn.comment },
+          SnacksDashboardHeader = { fg = theme.vcs.removed },
+          SnacksDashboardIcon = { fg = theme.ui.special },
+          SnacksDashboardKey = { fg = theme.syn.special1 },
+          SnacksDashboardSpecial = { fg = theme.syn.special1 },
+          SnacksDashboardDir = { link = "Directory" },
         }
       end,
     },
