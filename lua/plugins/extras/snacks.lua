@@ -48,6 +48,11 @@ return {
     "nvimdev/dashboard-nvim",
     enabled = enable_nvim_dashboard,
   },
+  -- Disable mynote
+  {
+    "jellydn/my-note.nvim",
+    enabled = false,
+  },
   -- Layout management
   {
     "folke/edgy.nvim",
@@ -111,6 +116,7 @@ return {
         },
       },
       bigfile = { enabled = true },
+      scratch = { enabled = true },
       notifier = {
         enabled = true,
         --- Available style: "compact"|"fancy"|"minimal"
@@ -151,6 +157,20 @@ return {
           Snacks.notifier.hide()
         end,
         desc = "Dismiss All Notifications",
+      },
+      {
+        "<leader>no",
+        function()
+          Snacks.scratch()
+        end,
+        desc = "Open Note/Scratch Buffer",
+      },
+      {
+        "<leader>ns",
+        function()
+          Snacks.scratch.select()
+        end,
+        desc = "Select Note/Scratch Buffer",
       },
       {
         "<S-q>",
