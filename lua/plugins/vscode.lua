@@ -212,6 +212,11 @@ vim.api.nvim_create_autocmd("User", {
       vscode.action("workbench.action.tasks.reRunTask")
     end)
 
+    -- Debug typescript type, used with https://marketplace.visualstudio.com/items?itemName=Orta.vscode-twoslash-queries
+    vim.keymap.set("n", "<leader>dd", function()
+      vscode.action("orta.vscode-twoslash-queries.insert-twoslash-query")
+    end)
+
     -- Other keymaps will be used with https://github.com/VSpaceCode/vscode-which-key, so we don't need to define them here
     -- Trigger which-key by pressing <CMD+Space>, refer more default keymaps https://github.com/VSpaceCode/vscode-which-key/blob/15c5aa2da5812a21210c5599d9779c46d7bfbd3c/package.json#L265
   end,
