@@ -61,6 +61,10 @@ return {
     "shortcuts/no-neck-pain.nvim",
     enabled = false,
   },
+  {
+    "echasnovski/mini.indentscope",
+    enabled = false,
+  },
   -- Layout management
   {
     "folke/edgy.nvim",
@@ -135,6 +139,10 @@ return {
           dim = false,
         },
       },
+      indent = {
+        enabled = true,
+      },
+      input = { enabled = true },
       notifier = {
         enabled = true,
         --- Available style: "compact"|"fancy"|"minimal"
@@ -217,6 +225,13 @@ return {
           Snacks.bufdelete()
         end,
         desc = "Delete Buffer",
+      },
+      {
+        "<leader>cR",
+        function()
+          Snacks.rename.rename_file()
+        end,
+        desc = "Rename File",
       },
       {
         "<leader>gg",
@@ -313,6 +328,8 @@ return {
           Snacks.toggle.treesitter():map("<leader>uT")
           Snacks.toggle.option("background", { off = "light", on = "dark", name = "Dark Background" }):map("<leader>ub")
           Snacks.toggle.inlay_hints():map("<leader>uh")
+          Snacks.toggle.indent():map("<leader>ug")
+          Snacks.toggle.dim():map("<leader>uD")
         end,
       })
     end,
