@@ -19,7 +19,7 @@ local function term_nav(dir)
 end
 
 -- Use nvim dashboard as it is more stable
-local enable_nvim_dashboard = true
+local enable_nvim_dashboard = false
 local hostname = io.popen("hostname"):read("*a"):gsub("%s+", "")
 
 return {
@@ -51,6 +51,14 @@ return {
   -- Disable mynote
   {
     "jellydn/my-note.nvim",
+    enabled = false,
+  },
+  {
+    "folke/zen-mode.nvim",
+    enabled = false,
+  },
+  {
+    "shortcuts/no-neck-pain.nvim",
     enabled = false,
   },
   -- Layout management
@@ -97,14 +105,13 @@ return {
             },
             { icon = " ", key = "s", desc = "Restore Session", section = "session" },
             { icon = " ", key = "q", desc = "Quit", action = ":qa" },
-            { icon = "󰒲 ", key = "L", desc = "Lazy", action = ":Lazy", enabled = package.loaded.lazy },
-            { icon = "󰊳 ", desc = "Update", group = "@property", action = ":Lazy update", key = "U" },
+            { icon = "󰒲 ", key = "l", desc = "Lazy", action = ":Lazy", enabled = package.loaded.lazy },
+            { icon = "󰊳 ", key = "u", desc = "Update", group = "@property", action = ":Lazy update" },
           },
         },
         sections = {
           { section = "header" },
           { icon = " ", title = "Keymaps", section = "keys", indent = 2, padding = 1 },
-          { icon = " ", title = "Recent Files", section = "recent_files", indent = 2, padding = 1, limit = 3 },
           {
             section = "terminal",
             title = "Productsway.com",
@@ -117,6 +124,17 @@ return {
       },
       bigfile = { enabled = true },
       scratch = { enabled = true },
+      zen = {
+        enabled = true,
+        win = {
+          -- Hide backdrop
+          backdrop = { transparent = false },
+        },
+        toggles = {
+          -- Turn off dim plugin for zen mode
+          dim = false,
+        },
+      },
       notifier = {
         enabled = true,
         --- Available style: "compact"|"fancy"|"minimal"
@@ -152,13 +170,19 @@ return {
     },
     keys = {
       {
+        "<leader>cz",
+        function()
+          Snacks.zen()
+        end,
+        desc = "Toggle Zen Mode",
+      },
+      {
         "<leader>uH",
         function()
           Snacks.notifier.show_history()
         end,
         desc = "Notification History",
       },
-
       {
         "<leader>un",
         function()
