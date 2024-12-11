@@ -54,7 +54,7 @@ return {
       error_header = "## Error ",
       prompts = prompts,
       -- Turn off Claude model as it's not working well
-      -- model = "claude-3.5-sonnet",
+      model = "claude-3.5-sonnet",
       auto_follow_cursor = false, -- Don't follow the cursor after getting response
       mappings = {
         -- Use tab for completion
