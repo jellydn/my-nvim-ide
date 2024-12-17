@@ -20,6 +20,7 @@ end
 
 -- Use nvim dashboard as it is more stable
 local enable_nvim_dashboard = false
+local enable_no_neck_pain = true
 local hostname = io.popen("hostname"):read("*a"):gsub("%s+", "")
 
 return {
@@ -59,7 +60,10 @@ return {
   },
   {
     "shortcuts/no-neck-pain.nvim",
-    enabled = false,
+    enabled = enable_no_neck_pain,
+    opts = {
+      width = 120,
+    },
   },
   {
     "echasnovski/mini.indentscope",
@@ -129,7 +133,7 @@ return {
       bigfile = { enabled = true },
       scratch = { enabled = true },
       zen = {
-        enabled = true,
+        enabled = not enable_no_neck_pain,
         win = {
           -- Hide backdrop
           backdrop = { transparent = false },
@@ -180,7 +184,11 @@ return {
       {
         "<leader>cz",
         function()
-          Snacks.zen()
+          if enable_no_neck_pain then
+            vim.cmd("NoNeckPain")
+          else
+            Snacks.zen()
+          end
         end,
         desc = "Toggle Zen Mode",
       },
