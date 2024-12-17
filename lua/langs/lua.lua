@@ -52,8 +52,10 @@ return {
       },
     },
   },
-  { -- optional completion source for require statements and module annotations
+  {
+    -- Optional completion source for require statements and module annotations
     "hrsh7th/nvim-cmp",
+    optional = true,
     opts = function(_, opts)
       opts.sources = opts.sources or {}
       table.insert(opts.sources, {

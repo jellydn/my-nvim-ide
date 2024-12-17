@@ -3,22 +3,9 @@ local Lsp = require("utils.lsp")
 return {
   -- Extend auto completion
   {
-    "hrsh7th/nvim-cmp",
-    dependencies = {
-      {
-        "Saecki/crates.nvim",
-        event = { "BufRead Cargo.toml" },
-        opts = {
-          completion = {
-            cmp = { enabled = true },
-          },
-        },
-      },
-    },
-    opts = function(_, opts)
-      opts.sources = opts.sources or {}
-      table.insert(opts.sources, { name = "crates" })
-    end,
+    "saecki/crates.nvim",
+    event = { "BufRead Cargo.toml" },
+    opts = {},
   },
 
   -- Format & Lint

@@ -49,6 +49,7 @@ local enable_extra_plugins = vim.g.enable_plugins
     ["fold-preview"] = "yes",
     wakatime = "yes",
     snacks = "yes",
+    blink = "yes",
   }
 
 local enable_extra_langs = vim.g.enable_langs or {
