@@ -84,6 +84,13 @@ vim.api.nvim_create_autocmd("User", {
       -- Or send as the param like this: code.action("workbench.action.findInFiles", { args = { query = vim.fn.expand("<cword>") } })
     end)
 
+    -- Keep undo/redo lists in sync with VsCode
+    vim.keymap.set("n", "u", "<Cmd>call VSCodeNotify('undo')<CR>")
+    vim.keymap.set("n", "<C-r>", "<Cmd>call VSCodeNotify('redo')<CR>")
+    -- Navigate VSCode tabs like lazyvim buffers
+    vim.keymap.set("n", "<S-h>", "<Cmd>call VSCodeNotify('workbench.action.previousEditor')<CR>")
+    vim.keymap.set("n", "<S-l>", "<Cmd>call VSCodeNotify('workbench.action.nextEditor')<CR>")
+
     -- Search work in current buffer
     vim.keymap.set("n", "<leader>sb", function()
       vscode.action("actions.find")
