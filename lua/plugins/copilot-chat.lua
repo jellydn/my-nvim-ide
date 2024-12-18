@@ -53,9 +53,7 @@ return {
       answer_header = "## Copilot ",
       error_header = "## Error ",
       prompts = prompts,
-      -- Turn off Claude model as it's not working well
       model = "claude-3.5-sonnet",
-      auto_follow_cursor = false, -- Don't follow the cursor after getting response
       mappings = {
         -- Use tab for completion
         complete = {
@@ -82,39 +80,14 @@ return {
           normal = "<C-y>",
           insert = "<C-y>",
         },
-        -- Yank the diff in the response to register
-        yank_diff = {
-          normal = "gmy",
-        },
-        -- Show the diff
-        show_diff = {
-          normal = "gmd",
-        },
-        jump_to_diff = {
-          normal = "gmj",
-        },
-        quickfix_diffs = {
-          normal = "gmf",
-        },
-        -- Show the info
-        show_info = {
-          normal = "gmi",
-        },
-        -- Show the context
-        show_context = {
-          normal = "gmc",
-        },
         -- Show help
         show_help = {
-          normal = "gmh",
+          normal = "g?",
         },
       },
     },
     config = function(_, opts)
       local chat = require("CopilotChat")
-      local select = require("CopilotChat.select")
-      -- Use unnamed register for the selection
-      opts.selection = select.unnamed
 
       local hostname = io.popen("hostname"):read("*a"):gsub("%s+", "")
       local user = hostname or vim.env.USER or "User"
@@ -127,6 +100,7 @@ return {
 
       chat.setup(opts)
 
+      local select = require("CopilotChat.select")
       vim.api.nvim_create_user_command("CopilotChatVisual", function(args)
         chat.ask(args.args, { selection = select.visual })
       end, { nargs = "*", range = true })
@@ -156,12 +130,6 @@ return {
         callback = function()
           vim.opt_local.relativenumber = true
           vim.opt_local.number = true
-
-          -- Get current filetype and set it to markdown if the current filetype is copilot-chat
-          local ft = vim.bo.filetype
-          if ft == "copilot-chat" then
-            vim.bo.filetype = "markdown"
-          end
         end,
       })
     end,
@@ -237,6 +205,8 @@ return {
       { "<leader>av", "<cmd>CopilotChatToggle<cr>", desc = "CopilotChat - Toggle" },
       -- Copilot Chat Models
       { "<leader>a?", "<cmd>CopilotChatModels<cr>", desc = "CopilotChat - Select Models" },
+      -- Copilot Chat Agents
+      { "<leader>aa", "<cmd>CopilotChatAgents<cr>", desc = "CopilotChat - Select Agents" },
     },
   },
   {
@@ -247,7 +217,7 @@ return {
       table.insert(opts.right, {
         ft = "copilot-chat",
         title = "Copilot Chat",
-        size = { width = 50 },
+        size = { width = 0.5 },
       })
     end,
   },

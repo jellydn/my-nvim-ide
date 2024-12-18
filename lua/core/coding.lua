@@ -98,6 +98,7 @@ return {
         ["TelescopePrompt"] = false,
         ["grug-far"] = false,
         ["grug-far-history"] = false,
+        ["copilot-chat"] = false,
       }
 
       -- Set to true to assume that copilot is already mapped
