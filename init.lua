@@ -45,11 +45,11 @@ local enable_extra_plugins = vim.g.enable_plugins
     avante = "no",
     ["no-neck-pain"] = "no",
     harpoon = "no",
+    snacks = "yes",
+    blink = "yes",
     lspsaga = "yes",
     ["fold-preview"] = "yes",
     wakatime = "yes",
-    snacks = "yes",
-    blink = "yes",
   }
 
 local enable_extra_langs = vim.g.enable_langs or {
