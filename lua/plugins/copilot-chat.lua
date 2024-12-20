@@ -26,14 +26,6 @@ return {
     opts = {
       spec = {
         { "<leader>a", group = "ai", mode = { "n", "v" } },
-        { "gm", group = "+Copilot chat" },
-        { "gmh", desc = "Show help" },
-        { "gmd", desc = "Show diff" },
-        { "gmi", desc = "Show info" },
-        { "gmc", desc = "Show context" },
-        { "gmy", desc = "Yank diff" },
-        { "gmj", desc = "Jump to diff" },
-        { "gmf", desc = "Quickfix diff" },
       },
     },
   },
