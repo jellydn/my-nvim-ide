@@ -59,13 +59,6 @@ return {
         documentation = {
           auto_show = true,
         },
-        accept = {
-          -- experimental auto-brackets support
-          auto_brackets = {
-            enabled = true,
-            auto_show_delay_ms = 200,
-          },
-        },
       },
       -- Experimental signature help support
       signature = {
