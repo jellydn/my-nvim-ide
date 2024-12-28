@@ -17,6 +17,10 @@ local function is_kitty_terminal()
   return os.getenv("TERM") == "xterm-kitty"
 end
 
+local function is_ghostty_terminal()
+  return os.getenv("TERM") == "xterm-ghostty"
+end
+
 local function is_vscode()
   return vim.g.vscode or os.getenv("TERM_PROGRAM") == "vscode"
 end
@@ -60,6 +64,7 @@ M.selectColorSchemeByTime = function()
     or is_tmux()
     or is_alacritty_terminal()
     or is_kitty_terminal()
+    or is_ghostty_terminal()
     or vim.g.neovide
   then
     return default_color_scheme
