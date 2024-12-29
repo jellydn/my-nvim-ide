@@ -84,6 +84,8 @@ return {
       },
       sources = {
         default = { "lsp", "path", "luasnip", "buffer" },
+        -- Disable cmdline completions
+        cmdline = {},
       },
     },
     -- without having to redefine it
