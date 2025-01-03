@@ -155,7 +155,7 @@ return {
       },
       quickfile = { enabled = true },
       statuscolumn = {
-        enabled = true,
+        enabled = false,
       },
       words = { enabled = true },
       styles = {
