@@ -202,18 +202,6 @@ return {
     },
   },
   {
-    "folke/edgy.nvim",
-    optional = true,
-    opts = function(_, opts)
-      opts.right = opts.right or {}
-      table.insert(opts.right, {
-        ft = "copilot-chat",
-        title = "Copilot Chat",
-        size = { width = 0.5 },
-      })
-    end,
-  },
-  {
     "folke/which-key.nvim",
     optional = true,
     opts = {
