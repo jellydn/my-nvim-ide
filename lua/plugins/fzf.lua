@@ -439,9 +439,7 @@ return {
   },
   {
     "folke/todo-comments.nvim",
-    event = "VeryLazy",
-    dependencies = { "nvim-lua/plenary.nvim" },
-    opts = {},
+    optional = true,
     keys = {
       {
         "<leader>st",
@@ -456,6 +454,22 @@ return {
           require("todo-comments.fzf").todo({ keywords = { "TODO", "FIX", "FIXME" } })
         end,
         desc = "Todo/Fix/Fixme",
+      },
+      {
+        "<leader>xF",
+        function()
+          local root = require("utils.root").get()
+          require("todo-comments.fzf").todo({ keywords = { "FIX", "FIXME" }, cwd = root })
+        end,
+        desc = "Fix/Fixme (Fzf Lua)",
+      },
+      {
+        "<leader>xT",
+        function()
+          local root = require("utils.root").get()
+          require("todo-comments.fzf").todo({ keywords = { "TODO", cwd = root } })
+        end,
+        desc = "Todo (Fzf Lua)",
       },
     },
   },
