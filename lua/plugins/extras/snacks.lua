@@ -19,8 +19,8 @@ local function term_nav(dir)
 end
 
 -- NOTE: I prefer to fzf and code neck pain is stable than snacks.nvim for picker and zen mode
-local enabled_fzf = true
 local enable_no_neck_pain = true
+local enabled_fzf = true
 local enable_nvim_dashboard = false
 local hostname = io.popen("hostname"):read("*a"):gsub("%s+", "")
 
@@ -105,6 +105,48 @@ return {
     opts = {
       picker = {
         enabled = not enabled_fzf,
+        ---@class snacks.picker.sources.Config
+        sources = {
+          files = {
+            hidden = true, -- show hidden files
+          },
+        },
+        ----@class snacks.picker.layout.Config
+        layout = {
+          layout = {
+            backdrop = true,
+          },
+        },
+        ----@class snacks.picker.formatters.Config
+        formatters = {
+          file = {
+            filename_first = true, -- display filename before the file path
+          },
+        },
+        ---@class snacks.picker.previewers.Config
+        previewers = {
+          git = {
+            native = true, -- use native (terminal) or Neovim for previewing git diffs and commits
+          },
+        },
+        ---@class snacks.picker.icons.Config
+        icons = {
+          files = {
+            enabled = false, -- show file icons
+          },
+        },
+        ---@class snacks.picker.win.Config
+        win = {
+          -- input window
+          input = {
+            keys = {
+              -- Close picker
+              ["<Esc>"] = { "close", mode = { "n", "i" } },
+              -- Hidden
+              ["<a-.>"] = { "toggle_hidden", mode = { "i", "n" } },
+            },
+          },
+        },
       },
       dashboard = {
         enabled = not enable_nvim_dashboard,
@@ -414,35 +456,6 @@ return {
         desc = "Projects",
       },
       -- LSP
-      {
-        "gd",
-        function()
-          Snacks.picker.lsp_definitions()
-        end,
-        desc = "Goto Definition",
-      },
-      {
-        "gr",
-        function()
-          Snacks.picker.lsp_references()
-        end,
-        nowait = true,
-        desc = "References",
-      },
-      {
-        "gI",
-        function()
-          Snacks.picker.lsp_implementations()
-        end,
-        desc = "Goto Implementation",
-      },
-      {
-        "gy",
-        function()
-          Snacks.picker.lsp_type_definitions()
-        end,
-        desc = "Goto T[y]pe Definition",
-      },
       {
         "<leader>ss",
         function()

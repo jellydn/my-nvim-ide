@@ -14,6 +14,7 @@ local setup_keymaps = function(client, buffer)
 
   -- We don't want to use fzf-lua when running in vscode
   local has_fzf = not vim.g.vscode and package.loaded["fzf-lua"]
+  local has_snacks = not vim.g.vscode and package.loaded["snacks"]
 
   if has_fzf then
     -- Override default keymaps with fzf-lua variants
@@ -40,6 +41,44 @@ local setup_keymaps = function(client, buffer)
       {
         keys = "gy",
         func = "<cmd>FzfLua lsp_typedefs jump_to_single_result=true ignore_current_line=true<cr>",
+        desc = "Goto Type Definition",
+        has = "typeDefinitionProvider",
+      },
+    })
+  end
+
+  if has_snacks then
+    vim.list_extend(keymaps, {
+      {
+        keys = "gd",
+        func = function()
+          Snacks.picker.lsp_definitions()
+        end,
+        desc = "Goto Definition",
+        has = "definitionProvider",
+      },
+      {
+        keys = "gr",
+        func = function()
+          Snacks.picker.lsp_references()
+        end,
+        desc = "Goto References",
+        has = "referencesProvider",
+        nowait = true,
+      },
+      {
+        keys = "gi",
+        func = function()
+          Snacks.picker.lsp_implementations()
+        end,
+        desc = "Goto Implementation",
+        has = "implementationProvider",
+      },
+      {
+        keys = "gy",
+        func = function()
+          Snacks.picker.lsp_type_definitions()
+        end,
         desc = "Goto Type Definition",
         has = "typeDefinitionProvider",
       },

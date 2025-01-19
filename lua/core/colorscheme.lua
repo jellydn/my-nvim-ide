@@ -41,7 +41,7 @@ return {
           LazyNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
           MasonNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
 
-          -- Dashboard (Snacks)
+          -- Snacks.nvim dashboard
           SnacksDashboardDesc = { fg = theme.syn.identifier },
           SnacksDashboardFooter = { fg = theme.syn.comment },
           SnacksDashboardHeader = { fg = theme.vcs.removed },
@@ -49,6 +49,13 @@ return {
           SnacksDashboardKey = { fg = theme.syn.special1 },
           SnacksDashboardSpecial = { fg = theme.syn.special1 },
           SnacksDashboardDir = { link = "Directory" },
+
+          -- TODO: support Snacks.nvim picker
+          SnacksPickerInputBorder = { fg = theme.ui.fg_dim },
+          SnacksPickerInputTitle = { fg = theme.ui.bg_m3 },
+          SnacksPickerBoxTitle = { fg = theme.ui.fg_dim },
+          SnacksPickerSelected = { fg = theme.ui.special },
+          SnacksPickerMatch = { fg = theme.syn.special1 },
         }
       end,
     },
