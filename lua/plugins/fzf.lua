@@ -47,6 +47,13 @@ return {
           scrollchars = { "┃", "" },
         },
         backdrop = 60,
+        -- title         = "Title",
+        -- title_pos     = "center",        -- 'left', 'center' or 'right'
+        -- title_flags = false, -- uncomment to disable title flags
+        -- defaults keys:
+        -- alt-i: toggle ignore
+        -- alt-h: toggle hidden
+        -- alt-f: toggle follow
       },
       files = {
         multiprocess = true,
