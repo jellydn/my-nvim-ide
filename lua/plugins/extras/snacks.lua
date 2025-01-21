@@ -109,6 +109,7 @@ return {
         sources = {
           files = {
             hidden = true, -- show hidden files
+            follow = true,
           },
         },
         ----@class snacks.picker.layout.Config
@@ -144,6 +145,7 @@ return {
               ["<Esc>"] = { "close", mode = { "n", "i" } },
               -- Hidden
               ["<a-.>"] = { "toggle_hidden", mode = { "i", "n" } },
+              ["<a-h"] = false,
             },
           },
         },
