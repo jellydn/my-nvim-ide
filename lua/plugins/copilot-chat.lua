@@ -19,6 +19,8 @@ local prompts = {
   Concise = "Please rewrite the following text to make it more concise.",
 }
 
+local has_fzf = not vim.g.vscode and package.loaded["fzf-lua"]
+
 return {
   {
     "folke/which-key.nvim",
@@ -36,6 +38,7 @@ return {
   {
     dir = IS_DEV and "~/research/CopilotChat.nvim" or nil,
     "CopilotC-Nvim/CopilotChat.nvim",
+    branch = "main",
     -- version = "v3.3.0",
     dependencies = {
       { "nvim-lua/plenary.nvim" },
@@ -45,7 +48,7 @@ return {
       answer_header = "## Copilot ",
       error_header = "## Error ",
       prompts = prompts,
-      model = "claude-3.5-sonnet",
+      -- model = "claude-3.5-sonnet",
       mappings = {
         -- Use tab for completion
         complete = {
@@ -131,13 +134,30 @@ return {
         "<leader>ap",
         function()
           local actions = require("CopilotChat.actions")
-          require("CopilotChat.integrations.fzflua").pick(actions.prompt_actions())
+          if has_fzf then
+            require("CopilotChat.integrations.fzflua").pick(actions.prompt_actions())
+          else
+            -- __AUTO_GENERATED_PRINT_VAR_START__
+            print([==[function#if has_snacks:]==], vim.inspect(has_snacks)) -- __AUTO_GENERATED_PRINT_VAR_END__
+            require("CopilotChat.integrations.snacks").pick(actions.prompt_actions())
+          end
         end,
         desc = "CopilotChat - Prompt actions",
       },
       {
         "<leader>ap",
-        ":lua require('CopilotChat.integrations.fzflua').pick(require('CopilotChat.actions').prompt_actions({selection = require('CopilotChat.select').visual}))<CR>",
+        function()
+          local actions = require("CopilotChat.actions")
+          if has_fzf then
+            require("CopilotChat.integrations.fzflua").pick(
+              actions.prompt_actions({ selection = require("CopilotChat.select").visual })
+            )
+          else
+            require("CopilotChat.integrations.snacks").pick(
+              actions.prompt_actions({ selection = require("CopilotChat.select").visual })
+            )
+          end
+        end,
         mode = "x",
         desc = "CopilotChat - Prompt actions",
       },
