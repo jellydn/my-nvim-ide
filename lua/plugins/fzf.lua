@@ -13,6 +13,7 @@ end
 return {
   {
     "ahmedkhalf/project.nvim",
+    optional = true,
     config = function(_, opts)
       require("project_nvim").setup(opts)
     end,
@@ -461,22 +462,6 @@ return {
           require("todo-comments.fzf").todo({ keywords = { "TODO", "FIX", "FIXME" } })
         end,
         desc = "Todo/Fix/Fixme",
-      },
-      {
-        "<leader>xF",
-        function()
-          local root = require("utils.root").get()
-          require("todo-comments.fzf").todo({ keywords = { "FIX", "FIXME" }, cwd = root })
-        end,
-        desc = "Fix/Fixme (Fzf Lua)",
-      },
-      {
-        "<leader>xT",
-        function()
-          local root = require("utils.root").get()
-          require("todo-comments.fzf").todo({ keywords = { "TODO", cwd = root } })
-        end,
-        desc = "Todo (Fzf Lua)",
       },
     },
   },
