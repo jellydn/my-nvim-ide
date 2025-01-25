@@ -451,7 +451,7 @@ return {
         desc = "Colorschemes",
       },
       {
-        "<leader>qp",
+        "<leader>sp",
         function()
           Snacks.picker.projects()
         end,
