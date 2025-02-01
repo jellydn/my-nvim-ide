@@ -21,7 +21,8 @@ end
 -- NOTE: I prefer to fzf and code neck pain is stable than snacks.nvim for picker and zen mode
 local enable_no_neck_pain = true
 local enabled_fzf = true
-local enable_nvim_dashboard = false
+local enable_oil = true
+local enable_nvim_dashboard = true
 local hostname = io.popen("hostname"):read("*a"):gsub("%s+", "")
 
 return {
@@ -75,6 +76,11 @@ return {
     enabled = enabled_fzf,
     optional = true,
   },
+  {
+    "stevearc/oil.nvim",
+    enabled = enable_oil,
+    optional = true,
+  },
   -- Layout management
   {
     "folke/edgy.nvim",
@@ -97,6 +103,48 @@ return {
         })
       end
     end,
+  },
+  -- Flash
+  {
+    "folke/flash.nvim",
+    optional = true,
+    specs = {
+      {
+        "folke/snacks.nvim",
+        opts = {
+          picker = {
+            win = {
+              input = {
+                keys = {
+                  ["<a-s>"] = { "flash", mode = { "n", "i" } },
+                  ["s"] = { "flash" },
+                },
+              },
+            },
+            actions = {
+              flash = function(picker)
+                require("flash").jump({
+                  pattern = "^",
+                  label = { after = { 0, 0 } },
+                  search = {
+                    mode = "search",
+                    exclude = {
+                      function(win)
+                        return vim.bo[vim.api.nvim_win_get_buf(win)].filetype ~= "snacks_picker_list"
+                      end,
+                    },
+                  },
+                  action = function(match)
+                    local idx = picker.list:row2idx(match.pos[1])
+                    picker.list:_move(idx, true, true)
+                  end,
+                })
+              end,
+            },
+          },
+        },
+      },
+    },
   },
   {
     "folke/snacks.nvim",
@@ -263,6 +311,34 @@ return {
         end,
         desc = "Find Files",
       },
+          -- Explorer
+      not enable_oil
+          and {
+            "<leader>e",
+            function()
+              Snacks.picker.explorer({
+                cwd = vim.fn.expand("%:p:h"),
+                auto_close = true,
+                layout = {
+                  preset = "vertical",
+                },
+              })
+            end,
+            desc = "Explorer",
+          }
+        or {
+          "<leader>fe",
+          function()
+            Snacks.picker.explorer({
+              cwd = vim.fn.expand("%:p:h"),
+              auto_close = true,
+              layout = {
+                preset = "vertical",
+              },
+            })
+          end,
+          desc = "Explorer",
+        },
       -- find
       {
         "<leader>fb",
@@ -270,6 +346,13 @@ return {
           Snacks.picker.buffers()
         end,
         desc = "Buffers",
+      },
+      {
+        "<leader>fB",
+        function()
+          Snacks.picker.buffers({ hidden = true, nofile = true })
+        end,
+        desc = "Buffers (all)",
       },
       {
         "<leader>fc",
@@ -444,6 +527,13 @@ return {
         desc = "Quickfix List",
       },
       {
+        "<leader>su",
+        function()
+          Snacks.picker.undo()
+        end,
+        desc = "Undotree",
+      },
+      {
         "<leader>uC",
         function()
           Snacks.picker.colorschemes()
@@ -456,6 +546,13 @@ return {
           Snacks.picker.projects()
         end,
         desc = "Projects",
+      },
+      {
+        "<leader>sP",
+        function()
+          Snacks.picker.lazy()
+        end,
+        desc = "Search for Plugin Spec",
       },
       -- LSP
       {
@@ -628,6 +725,21 @@ return {
           Snacks.toggle.dim():map("<leader>uD")
         end,
       })
+
+      -- Explorer
+      if not enable_oil then
+        vim.api.nvim_create_autocmd("BufEnter", {
+          group = vim.api.nvim_create_augroup("snacks_explorer_start_directory", { clear = true }),
+          desc = "Start Snacks Explorer with directory",
+          once = true,
+          callback = function()
+            local dir = vim.fn.argv(0) --[[@as string]]
+            if dir ~= "" and vim.fn.isdirectory(dir) == 1 then
+              Snacks.picker.explorer({ cwd = dir })
+            end
+          end,
+        })
+      end
     end,
   },
   not enabled_fzf and {
