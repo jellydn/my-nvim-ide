@@ -151,6 +151,9 @@ return {
     priority = 1000,
     lazy = false,
     opts = {
+      explorer = {
+        enabled = not enable_oil,
+      },
       picker = {
         enabled = not enabled_fzf,
         ---@class snacks.picker.sources.Config
@@ -397,6 +400,13 @@ return {
         end,
         desc = "Git Status",
       },
+      {
+        "<leader>gS",
+        function()
+          Snacks.picker.git_stash()
+        end,
+        desc = "Git Stash",
+      },
       -- Grep
       {
         "<leader>sb",
@@ -462,6 +472,13 @@ return {
           Snacks.picker.diagnostics()
         end,
         desc = "Diagnostics",
+      },
+      {
+        "<leader>sD",
+        function()
+          Snacks.picker.diagnostics_buffer()
+        end,
+        desc = "Buffer Diagnostics",
       },
       {
         "<leader>sh",
@@ -725,21 +742,6 @@ return {
           Snacks.toggle.dim():map("<leader>uD")
         end,
       })
-
-      -- Explorer
-      if not enable_oil then
-        vim.api.nvim_create_autocmd("BufEnter", {
-          group = vim.api.nvim_create_augroup("snacks_explorer_start_directory", { clear = true }),
-          desc = "Start Snacks Explorer with directory",
-          once = true,
-          callback = function()
-            local dir = vim.fn.argv(0) --[[@as string]]
-            if dir ~= "" and vim.fn.isdirectory(dir) == 1 then
-              Snacks.picker.explorer({ cwd = dir })
-            end
-          end,
-        })
-      end
     end,
   },
   not enabled_fzf and {
