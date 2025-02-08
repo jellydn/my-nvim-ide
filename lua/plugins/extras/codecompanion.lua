@@ -226,7 +226,6 @@ return {
           strategy = "chat",
           description = "Explain how code in a buffer works",
           opts = {
-            index = 4,
             default_prompt = true,
             modes = { "v" },
             short_name = "explain",
@@ -259,14 +258,36 @@ return {
             },
           },
         },
+        ["Explain Code"] = {
+          strategy = "chat",
+          description = "Explain how code works",
+          opts = {
+            short_name = "explain-code",
+            auto_submit = false,
+            is_slash_cmd = true,
+          },
+          prompts = {
+            {
+              role = "system",
+              content = COPILOT_EXPLAIN,
+              opts = {
+                visible = false,
+              },
+            },
+            {
+              role = "user",
+              content = [[Please explain how the following code works.]],
+            },
+          },
+        },
         -- Add custom prompts
         ["Generate a Commit Message for Staged"] = {
           strategy = "chat",
           description = "Generate a commit message for staged change",
           opts = {
-            index = 9,
             short_name = "staged-commit",
             auto_submit = true,
+            is_slash_cmd = true,
           },
           prompts = {
             {
@@ -283,7 +304,7 @@ return {
             },
           },
         },
-        ["Inline-Document"] = {
+        ["Inline Document"] = {
           strategy = "inline",
           description = "Add documentation for code.",
           opts = {
@@ -343,7 +364,6 @@ return {
           strategy = "chat",
           description = "Review the provided code snippet.",
           opts = {
-            index = 11,
             modes = { "v" },
             short_name = "review",
             auto_submit = true,
@@ -375,11 +395,32 @@ return {
             },
           },
         },
+        ["Review Code"] = {
+          strategy = "chat",
+          description = "Review code and provide suggestions for improvement.",
+          opts = {
+            short_name = "review-code",
+            auto_submit = false,
+            is_slash_cmd = true,
+          },
+          prompts = {
+            {
+              role = "system",
+              content = COPILOT_REVIEW,
+              opts = {
+                visible = false,
+              },
+            },
+            {
+              role = "user",
+              content = "Please review the following code and provide suggestions for improvement then refactor the following code to improve its clarity and readability.",
+            },
+          },
+        },
         ["Refactor"] = {
           strategy = "inline",
           description = "Refactor the provided code snippet.",
           opts = {
-            index = 11,
             modes = { "v" },
             short_name = "refactor",
             auto_submit = true,
@@ -411,11 +452,32 @@ return {
             },
           },
         },
+        ["Refactor Code"] = {
+          strategy = "chat",
+          description = "Refactor the provided code snippet.",
+          opts = {
+            short_name = "refactor-code",
+            auto_submit = false,
+            is_slash_cmd = true,
+          },
+          prompts = {
+            {
+              role = "system",
+              content = COPILOT_REFACTOR,
+              opts = {
+                visible = false,
+              },
+            },
+            {
+              role = "user",
+              content = "Please refactor the following code to improve its clarity and readability.",
+            },
+          },
+        },
         ["Naming"] = {
           strategy = "inline",
           description = "Give betting naming for the provided code snippet.",
           opts = {
-            index = 12,
             modes = { "v" },
             short_name = "naming",
             auto_submit = true,
@@ -437,6 +499,21 @@ return {
               opts = {
                 contains_code = true,
               },
+            },
+          },
+        },
+        ["Better Naming"] = {
+          strategy = "chat",
+          description = "Give betting naming for the provided code snippet.",
+          opts = {
+            short_name = "better-naming",
+            auto_submit = false,
+            is_slash_cmd = true,
+          },
+          prompts = {
+            {
+              role = "user",
+              content = "Please provide better names for the following variables and functions.",
             },
           },
         },
