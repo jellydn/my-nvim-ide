@@ -68,6 +68,8 @@ return {
       { "<leader>hG", "<cmd>HurlManageVariable<CR>", desc = "Manage global variable" },
       -- Toggle
       { "<leader>tH", "<cmd>HurlToggleMode<CR>", desc = "Toggle Hurl Split/Popup" },
+      -- Debug
+      { "<leader>hd", "<cmd>HurlDebugInfo<CR>", desc = "Debug Info" },
     },
   },
 }
