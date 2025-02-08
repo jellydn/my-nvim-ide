@@ -140,7 +140,7 @@ return {
           roles = { llm = "  Copilot Chat", user = "IT Man" },
           slash_commands = {
             ["buffer"] = {
-              callback = "helpers.slash_commands.buffer",
+              callback = "strategies.chat.slash_commands.buffer",
               description = "Insert open buffers",
               opts = {
                 contains_code = true,
@@ -148,7 +148,7 @@ return {
               },
             },
             ["file"] = {
-              callback = "helpers.slash_commands.file",
+              callback = "strategies.chat.slash_commands.file",
               description = "Insert a file",
               opts = {
                 contains_code = true,
