@@ -20,9 +20,9 @@ end
 
 -- NOTE: I prefer to fzf and code neck pain is stable than snacks.nvim for picker and zen mode
 local enable_no_neck_pain = true
-local enabled_fzf = true
-local enable_oil = true
-local enable_nvim_dashboard = true
+local enabled_fzf = false
+local enable_oil = false
+local enable_nvim_dashboard = false
 local hostname = io.popen("hostname"):read("*a"):gsub("%s+", "")
 
 return {
@@ -154,6 +154,7 @@ return {
       explorer = {
         enabled = not enable_oil,
       },
+      image = {},
       picker = {
         enabled = not enabled_fzf,
         ---@class snacks.picker.sources.Config
@@ -385,6 +386,13 @@ return {
         end,
         desc = "Recent",
       },
+      {
+        "<leader>fp",
+        function()
+          Snacks.picker.projects()
+        end,
+        desc = "Projects",
+      },
       -- git
       {
         "<leader>gc",
@@ -559,13 +567,6 @@ return {
       },
       {
         "<leader>sp",
-        function()
-          Snacks.picker.projects()
-        end,
-        desc = "Projects",
-      },
-      {
-        "<leader>sP",
         function()
           Snacks.picker.lazy()
         end,
