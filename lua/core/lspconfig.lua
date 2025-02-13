@@ -21,26 +21,26 @@ local setup_keymaps = function(client, buffer)
     vim.list_extend(keymaps, {
       {
         keys = "gd",
-        func = "<cmd>FzfLua lsp_definitions jump_to_single_result=true ignore_current_line=true<cr>",
+        func = "<cmd>FzfLua lsp_definitions jump1=true ignore_current_line=true<cr>",
         desc = "Goto Definition",
         has = "definitionProvider",
       },
       {
         keys = "gr",
-        func = "<cmd>FzfLua lsp_references jump_to_single_result=true ignore_current_line=true<cr>",
+        func = "<cmd>FzfLua lsp_references jump1=true ignore_current_line=true<cr>",
         desc = "Goto References",
         has = "referencesProvider",
         nowait = true,
       },
       {
         keys = "gi",
-        func = "<cmd>FzfLua lsp_implementations jump_to_single_result=true ignore_current_line=true<cr>",
+        func = "<cmd>FzfLua lsp_implementations jump1=true ignore_current_line=true<cr>",
         desc = "Goto Implementation",
         has = "implementationProvider",
       },
       {
         keys = "gy",
-        func = "<cmd>FzfLua lsp_typedefs jump_to_single_result=true ignore_current_line=true<cr>",
+        func = "<cmd>FzfLua lsp_typedefs jump1=true ignore_current_line=true<cr>",
         desc = "Goto Type Definition",
         has = "typeDefinitionProvider",
       },

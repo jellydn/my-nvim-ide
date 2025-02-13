@@ -135,7 +135,7 @@ return {
       -- Refer https://github.com/ibhagwan/fzf-lua/issues/602
       vim.lsp.handlers["textDocument/codeAction"] = fzf_lua.lsp_code_actions
       vim.lsp.handlers["textDocument/definition"] = function()
-        fzf_lua.lsp_definitions({ jump_to_single_result = true, ignore_current_line = true })
+        fzf_lua.lsp_definitions({ jump1 = true, ignore_current_line = true })
       end
       vim.lsp.handlers["textDocument/declaration"] = fzf_lua.lsp_declarations
       vim.lsp.handlers["textDocument/typeDefinition"] = fzf_lua.lsp_typedefs
