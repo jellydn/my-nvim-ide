@@ -151,11 +151,11 @@ return {
     priority = 1000,
     lazy = false,
     opts = {
-      explorer = {
-        enabled = not enable_oil,
-      },
       image = {
         -- NOTE: brew install imagemagick to install on Mac, refer https://imagemagick.org/script/download.php for more detail
+      },
+      explorer = {
+        enabled = not enable_oil,
       },
       picker = {
         enabled = not enabled_fzf,
@@ -328,6 +328,13 @@ return {
                 layout = {
                   preset = "vertical",
                 },
+                win = {
+                  list = {
+                    keys = {
+                      ["-"] = "explorer_up",
+                    },
+                  },
+                },
               })
             end,
             desc = "Explorer",
@@ -340,6 +347,13 @@ return {
               auto_close = true,
               layout = {
                 preset = "vertical",
+              },
+              win = {
+                list = {
+                  keys = {
+                    ["-"] = "explorer_up",
+                  },
+                },
               },
             })
           end,
