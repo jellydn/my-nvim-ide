@@ -41,22 +41,25 @@ return {
     ---@type blink.cmp.Config
     -- Refer https://cmp.saghen.dev/installation.html
     opts = {
-      --  "enter" keymap
-      --   ['<C-space>'] = { 'show', 'show_documentation', 'hide_documentation' },
-      --   ['<C-e>'] = { 'hide', 'fallback' },
-      --   ['<CR>'] = { 'accept', 'fallback' },
-      --
-      --   ['<Tab>'] = { 'snippet_forward', 'fallback' },
-      --   ['<S-Tab>'] = { 'snippet_backward', 'fallback' },
-      --
-      --   ['<Up>'] = { 'select_prev', 'fallback' },
-      --   ['<Down>'] = { 'select_next', 'fallback' },
-      --   ['<C-p>'] = { 'select_prev', 'fallback' },
-      --   ['<C-n>'] = { 'select_next', 'fallback' },
-      --
-      --   ['<C-b>'] = { 'scroll_documentation_up', 'fallback' },
-      --   ['<C-f>'] = { 'scroll_documentation_down', 'fallback' },
-      keymap = { preset = "enter" },
+      keymap = {
+        preset = "enter",
+        ["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
+        ["<C-e>"] = { "hide", "fallback" },
+        ["<CR>"] = { "accept", "fallback" },
+
+        ["<Tab>"] = { "snippet_forward", "fallback" },
+        ["<S-Tab>"] = { "snippet_backward", "fallback" },
+
+        ["<Up>"] = { "select_prev", "fallback" },
+        ["<Down>"] = { "select_next", "fallback" },
+        ["<C-p>"] = { "select_prev", "fallback" },
+        ["<C-n>"] = { "select_next", "fallback" },
+
+        ["<C-b>"] = { "scroll_documentation_up", "fallback" },
+        ["<C-f>"] = { "scroll_documentation_down", "fallback" },
+
+        ["<C-k>"] = { "show_signature", "hide_signature", "fallback" },
+      },
       completion = {
         -- Controls whether the documentation window will automatically show when selecting a completion item
         documentation = {
@@ -78,8 +81,10 @@ return {
       snippets = { preset = "luasnip" },
       sources = {
         default = { "lsp", "path", "snippets", "buffer" },
-        -- Disable cmdline completions
-        cmdline = {},
+      },
+      -- Disable cmdline completions
+      cmdline = {
+        enabled = false,
       },
     },
     -- without having to redefine it
