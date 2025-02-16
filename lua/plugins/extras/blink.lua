@@ -42,13 +42,16 @@ return {
     -- Refer https://cmp.saghen.dev/installation.html
     opts = {
       keymap = {
-        preset = "enter",
+        preset = "none",
         ["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
         ["<C-e>"] = { "hide", "fallback" },
         ["<CR>"] = { "accept", "fallback" },
 
-        ["<Tab>"] = { "snippet_forward", "fallback" },
-        ["<S-Tab>"] = { "snippet_backward", "fallback" },
+        -- Tab is not working nicely so change to C-h and C-l for snippet navigation
+        -- ["<Tab>"] = { "snippet_forward", "fallback" },
+        -- ["<S-Tab>"] = { "snippet_backward", "fallback" },
+        ["<C-l>"] = { "snippet_forward", "fallback" },
+        ["<C-h>"] = { "snippet_backward", "fallback" },
 
         ["<Up>"] = { "select_prev", "fallback" },
         ["<Down>"] = { "select_next", "fallback" },
