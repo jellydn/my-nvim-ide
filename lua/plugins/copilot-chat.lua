@@ -137,8 +137,6 @@ return {
           if has_fzf then
             require("CopilotChat.integrations.fzflua").pick(actions.prompt_actions())
           else
-            -- __AUTO_GENERATED_PRINT_VAR_START__
-            print([==[function#if has_snacks:]==], vim.inspect(has_snacks)) -- __AUTO_GENERATED_PRINT_VAR_END__
             require("CopilotChat.integrations.snacks").pick(actions.prompt_actions())
           end
         end,
