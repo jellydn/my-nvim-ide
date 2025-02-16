@@ -18,9 +18,8 @@ local function term_nav(dir)
   end
 end
 
--- NOTE: I prefer to fzf and code neck pain is stable than snacks.nvim for picker and zen mode
-local enable_no_neck_pain = true
-local enabled_fzf = true
+local enable_no_neck_pain = false
+local enabled_fzf = false
 local enable_oil = false
 local enable_nvim_dashboard = false
 local hostname = io.popen("hostname"):read("*a"):gsub("%s+", "")
