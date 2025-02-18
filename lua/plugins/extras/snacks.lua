@@ -248,6 +248,22 @@ return {
           -- Turn off dim plugin for zen mode
           dim = false,
         },
+        -- Zoom mode
+        zoom = {
+          toggles = {
+            -- Turn off dim plugin for zoom mode
+            dim = false,
+            git_signs = false,
+            mini_diff_signs = false,
+            -- diagnostics = false,
+            -- inlay_hints = false,
+          },
+          show = { statusline = false, tabline = true },
+          win = {
+            backdrop = { transparent = false },
+            width = 120,
+          },
+        },
       },
       indent = {
         enabled = true,
@@ -607,6 +623,14 @@ return {
         end,
         desc = "Toggle Zen Mode",
       },
+      {
+        "<leader>tz",
+        function()
+          Snacks.zen.zoom()
+        end,
+        desc = "Toggle Zoom",
+      },
+
       -- Notifier
       {
         "<leader>uH",
