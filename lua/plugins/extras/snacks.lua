@@ -181,6 +181,7 @@ return {
         previewers = {
           git = {
             native = true, -- use native (terminal) or Neovim for previewing git diffs and commits
+            cmd = { "delta " },
           },
         },
         ---@class snacks.picker.icons.Config
