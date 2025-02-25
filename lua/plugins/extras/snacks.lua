@@ -419,6 +419,13 @@ return {
         desc = "Recent",
       },
       {
+        "<leader>ft",
+        function()
+          Snacks.terminal()
+        end,
+        desc = "Toggle Terminal",
+      },
+      {
         "<leader>fp",
         function()
           Snacks.picker.projects()
