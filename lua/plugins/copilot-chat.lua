@@ -39,7 +39,7 @@ return {
     dir = IS_DEV and "~/research/CopilotChat.nvim" or nil,
     "CopilotC-Nvim/CopilotChat.nvim",
     branch = "main",
-    -- version = "v3.3.0",
+    -- version = "v3.7.0",
     dependencies = {
       { "nvim-lua/plenary.nvim" },
     },
@@ -48,7 +48,7 @@ return {
       answer_header = "## Copilot ",
       error_header = "## Error ",
       prompts = prompts,
-      -- model = "claude-3.5-sonnet",
+      model = "claude-3.7-sonnet",
       mappings = {
         -- Use tab for completion
         complete = {
