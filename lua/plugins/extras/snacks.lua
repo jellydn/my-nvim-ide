@@ -60,6 +60,10 @@ return {
     enabled = false,
   },
   {
+    "kosayoda/nvim-lightbulb",
+    enabled = false,
+  },
+  {
     "shortcuts/no-neck-pain.nvim",
     enabled = enable_no_neck_pain,
     opts = {
@@ -278,7 +282,7 @@ return {
       },
       quickfile = { enabled = true },
       statuscolumn = {
-        enabled = false,
+        enabled = true,
       },
       words = { enabled = true },
       styles = {
