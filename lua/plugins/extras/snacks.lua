@@ -156,6 +156,7 @@ return {
     opts = {
       image = {
         -- NOTE: brew install imagemagick to install on Mac, refer https://imagemagick.org/script/download.php for more detail
+        enabled = true,
       },
       explorer = {
         enabled = not enable_oil,
@@ -252,6 +253,10 @@ return {
         toggles = {
           -- Turn off dim plugin for zen mode
           dim = false,
+        },
+        show = {
+          statusline = false, -- can only be shown when using the global statusline
+          tabline = true,
         },
         -- Zoom mode
         zoom = {
