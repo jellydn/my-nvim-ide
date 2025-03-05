@@ -226,6 +226,11 @@ vim.api.nvim_create_autocmd("User", {
 
     -- Other keymaps will be used with https://github.com/VSpaceCode/vscode-which-key, so we don't need to define them here
     -- Trigger which-key by pressing <CMD+Space>, refer more default keymaps https://github.com/VSpaceCode/vscode-which-key/blob/15c5aa2da5812a21210c5599d9779c46d7bfbd3c/package.json#L265
+
+    -- Mutiple cursors
+    vim.keymap.set({ "n", "x", "i" }, "<C-m>", function()
+      require("vscode-multi-cursor").addSelectionToNextFindMatch()
+    end)
   end,
 })
 
@@ -238,6 +243,16 @@ return {
       -- Disable acceleration, use key repeat settings instead
       vim.g.fast_cursor_move_acceleration = false
     end,
+  },
+  -- Refer https://github.com/vscode-neovim/vscode-multi-cursor.nvim to more usages
+  -- gcc: clear multi cursors
+  -- gc: create multi cursors
+  -- mi/mI/ma/MA: insert text at each cursor
+  {
+    "vscode-neovim/vscode-multi-cursor.nvim",
+    event = "VeryLazy",
+    cond = not not vim.g.vscode,
+    opts = {},
   },
   {
     "nvim-treesitter/nvim-treesitter",
