@@ -133,28 +133,18 @@ return {
       {
         "<leader>ap",
         function()
-          local actions = require("CopilotChat.actions")
-          if has_fzf then
-            require("CopilotChat.integrations.fzflua").pick(actions.prompt_actions())
-          else
-            require("CopilotChat.integrations.snacks").pick(actions.prompt_actions())
-          end
+          require("CopilotChat").select_prompt({
+            context = {
+              "buffers",
+            },
+          })
         end,
         desc = "CopilotChat - Prompt actions",
       },
       {
         "<leader>ap",
         function()
-          local actions = require("CopilotChat.actions")
-          if has_fzf then
-            require("CopilotChat.integrations.fzflua").pick(
-              actions.prompt_actions({ selection = require("CopilotChat.select").visual })
-            )
-          else
-            require("CopilotChat.integrations.snacks").pick(
-              actions.prompt_actions({ selection = require("CopilotChat.select").visual })
-            )
-          end
+          require("CopilotChat").select_prompt()
         end,
         mode = "x",
         desc = "CopilotChat - Prompt actions",
