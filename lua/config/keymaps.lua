@@ -250,7 +250,9 @@ map("v", "<A-Down>", ":m '>+1<CR>gv=gv", opts)
 map("v", "<A-Up>", ":m '<-2<CR>gv=gv", opts)
 
 -- Show Lsp info
-map("n", "<leader>cl", "<cmd>LspInfo<CR>", opts)
+map("n", "<leader>cl", function()
+  Snacks.picker.lsp_config()
+end, opts)
 
 -- Fix Spell checking
 map("n", "z0", "1z=", {
