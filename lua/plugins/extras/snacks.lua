@@ -156,7 +156,20 @@ return {
     opts = {
       image = {
         -- NOTE: brew install imagemagick to install on Mac, refer https://imagemagick.org/script/download.php for more detail
+        -- For mermaidjs: npm install -g @mermaid-js/mermaid-cli
         enabled = true,
+        doc = {
+          -- enable image viewer for documents
+          -- a treesitter parser must be available for the enabled languages.
+          enabled = true,
+          -- render the image inline in the buffer
+          -- if your env doesn't support unicode placeholders, this will be disabled
+          -- takes precedence over `opts.float` on supported terminals
+          inline = false,
+          -- render the image in a floating window
+          -- only used if `opts.inline` is disabled
+          float = true,
+        },
       },
       explorer = {
         enabled = not enable_oil,
@@ -240,6 +253,7 @@ return {
             --  local user = vim.fn.expand("$USER")
             cmd = "echo Welcome back, " .. hostname .. "! | bunx cowsay --think",
           },
+          { section = "startup" },
         },
       },
       bigfile = { enabled = true },
@@ -279,6 +293,7 @@ return {
         enabled = true,
       },
       input = { enabled = true },
+      scroll = { enabled = true },
       notifier = {
         enabled = true,
         --- Available style: "compact"|"fancy"|"minimal"
@@ -627,6 +642,13 @@ return {
           Snacks.picker.lsp_symbols()
         end,
         desc = "LSP Symbols",
+      },
+      {
+        "<leader>sS",
+        function()
+          Snacks.picker.lsp_workspace_symbols()
+        end,
+        desc = "LSP Workspace Symbols",
       },
       -- Zen mode
       {
