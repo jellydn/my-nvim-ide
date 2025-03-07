@@ -162,7 +162,7 @@ return {
       },
       {
         "<leader>ax",
-        ":CopilotChatInline<cr>",
+        ":CopilotChatInline",
         mode = "x",
         desc = "CopilotChat - Inline chat",
       },
@@ -188,7 +188,9 @@ return {
         function()
           local input = vim.fn.input("Quick Chat: ")
           if input ~= "" then
-            vim.cmd("CopilotChatBuffer " .. input)
+            require("CopilotChat").ask(input, {
+              selection = require("CopilotChat.select").buffer,
+            })
           end
         end,
         desc = "CopilotChat - Quick chat",
