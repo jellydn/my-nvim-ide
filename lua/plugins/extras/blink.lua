@@ -113,4 +113,20 @@ return {
       },
     },
   },
+  -- markdown
+  {
+    "saghen/blink.cmp",
+    opts = {
+      sources = {
+        default = { "markdown" },
+        providers = {
+          markdown = {
+            name = "RenderMarkdown",
+            module = "render-markdown.integ.blink",
+            fallbacks = { "lsp" },
+          },
+        },
+      },
+    },
+  },
 }
