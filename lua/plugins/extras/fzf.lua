@@ -13,7 +13,6 @@ end
 return {
   {
     "ahmedkhalf/project.nvim",
-    optional = true,
     config = function(_, opts)
       require("project_nvim").setup(opts)
     end,
