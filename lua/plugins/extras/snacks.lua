@@ -18,10 +18,9 @@ local function term_nav(dir)
   end
 end
 
+-- [TODO] Move to snacks by default, keep oil
 local enable_no_neck_pain = false
-local enabled_fzf = false
 local enable_oil = false
-local enable_nvim_dashboard = false
 local hostname = io.popen("hostname"):read("*a"):gsub("%s+", "")
 
 return {
@@ -48,7 +47,7 @@ return {
   -- Disable dashboard
   {
     "nvimdev/dashboard-nvim",
-    enabled = enable_nvim_dashboard,
+    enabled = false,
   },
   -- Disable mynote
   {
@@ -73,11 +72,6 @@ return {
   {
     "echasnovski/mini.indentscope",
     enabled = false,
-  },
-  {
-    "ibhagwan/fzf-lua",
-    enabled = enabled_fzf,
-    optional = true,
   },
   {
     "stevearc/oil.nvim",
@@ -175,7 +169,7 @@ return {
         enabled = not enable_oil,
       },
       picker = {
-        enabled = not enabled_fzf,
+        enabled = true,
         ---@class snacks.picker.sources.Config
         sources = {
           files = {
@@ -223,7 +217,7 @@ return {
         },
       },
       dashboard = {
-        enabled = not enable_nvim_dashboard,
+        enabled = true,
         preset = {
           header = logo,
           keys = {
@@ -372,6 +366,7 @@ return {
                   list = {
                     keys = {
                       ["-"] = "explorer_up",
+                      ["g."] = "toggle_hidden",
                     },
                   },
                 },
@@ -392,6 +387,7 @@ return {
                 list = {
                   keys = {
                     ["-"] = "explorer_up",
+                    ["g."] = "toggle_hidden",
                   },
                 },
               },
@@ -448,13 +444,6 @@ return {
           Snacks.terminal()
         end,
         desc = "Toggle Terminal",
-      },
-      {
-        "<leader>fp",
-        function()
-          Snacks.picker.projects()
-        end,
-        desc = "Projects",
       },
       -- git
       {
@@ -606,6 +595,13 @@ return {
           Snacks.picker.resume()
         end,
         desc = "Resume",
+      },
+      {
+        "<leader>sP",
+        function()
+          Snacks.picker.projects()
+        end,
+        desc = "Projects",
       },
       {
         "<leader>sq",
@@ -823,7 +819,7 @@ return {
       })
     end,
   },
-  not enabled_fzf and {
+  {
     "folke/todo-comments.nvim",
     optional = true,
     keys = {
@@ -843,7 +839,7 @@ return {
       },
     },
   } or {},
-  not enabled_fzf and {
+  {
     "folke/trouble.nvim",
     optional = true,
     specs = {
