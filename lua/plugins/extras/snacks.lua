@@ -19,7 +19,7 @@ local function term_nav(dir)
 end
 
 -- [TODO] Move to snacks by default, keep oil
-local enable_no_neck_pain = false
+local enable_no_neck_pain = true
 local enable_oil = false
 local hostname = io.popen("hostname"):read("*a"):gsub("%s+", "")
 
