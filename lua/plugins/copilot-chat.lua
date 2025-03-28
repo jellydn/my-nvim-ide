@@ -34,6 +34,7 @@ return {
     opts = { ensure_installed = { "diff", "markdown" } },
   },
   {
+    -- [NOTE]: brew install lynx if you want browser terminal
     dir = IS_DEV and "~/research/CopilotChat.nvim" or nil,
     "CopilotC-Nvim/CopilotChat.nvim",
     branch = "main",

@@ -90,6 +90,7 @@ return {
   -- Copilot
   {
     "github/copilot.vim",
+    -- NOTE: Pin version to avoid breaking changes
     version = "v1.42.0",
     event = "VeryLazy",
     config = function()
