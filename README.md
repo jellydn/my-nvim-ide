@@ -9,6 +9,9 @@
 
 [![IT Man - My Neovim IDE 2024 Version](https://i.ytimg.com/vi/MhBuhOhwGSM/hqdefault.jpg)](https://www.youtube.com/watch?v=MhBuhOhwGSM)
 
+>[!NOTE]
+> I'm switching to my new [tiny-nvim](https://github.com/jellydn/tiny-nvim) configuration for Neovim 0.11 and later versions.
+
 ## Why another neovim configuration?
 
 I have been using Neovim for a long time and I have tried many configurations. I have learned a lot from them and I have decided to create my own configuration. This configuration is inspired by LazyVim and other configurations (kickstart.nvim, nvchad/tinyvim) and I have added my own ideas to it.
